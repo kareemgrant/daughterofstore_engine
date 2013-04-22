@@ -1,0 +1,42 @@
+= form_for(@order) do |f|
+  - if @order.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@order.errors.count, "error")
+        prohibited this charge from processing:
+      %ul
+        - @order.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.hidden_field :stripe_card_token
+  .field
+    -unless current_user
+      = f.text_field :email, placeholder: "Email"
+
+    %h4 Billing Address
+    = f.fields_for :billing_address do |s|
+      = s.text_field :street, placeholder: "Street"
+      = s.text_field :city, placeholder: "City"
+      = s.text_field :state, placeholder: "State"
+      = s.text_field :zipcode, placeholder: "Zipcode"
+
+    %h4 Shipping Address
+    = f.fields_for :shipping_address do |s|
+      = s.text_field :street, placeholder: "Street"
+      = s.text_field :city, placeholder: "City"
+      = s.text_field :state, placeholder: "State"
+      = s.text_field :zipcode, placeholder: "Zipcode"
+
+  %h4 Payment Details
+  .field
+    = text_field_tag :card_number, nil, name: nil, placeholder: "Credit card number"
+  .field
+    = text_field_tag :card_code, nil, name: nil, placeholder: "Security code (CVV)"
+  .field
+    = label_tag :card_month, "Card Expiration"
+    = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+    = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+  #stripe_error
+    %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+  .actions
+    = f.submit :order, class: "form-primary-button"

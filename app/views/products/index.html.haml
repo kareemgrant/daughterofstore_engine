@@ -1,0 +1,37 @@
+/ %h1= current_store.name
+%ul.breadcrumb
+  %li
+    %span.divider
+      / 
+  %li.active
+    All Products
+.row-fluid
+  .thumbnails.product_list
+    - @products.each_with_index do |product, index|
+      - if product.active
+        %li.span3
+          .thumbnail{id: "thumbnail-#{index}"}
+            = link_to product_path(product.store, product) do
+              = image_tag product.photo_url, class: "product-image"
+            %div{class: "cart-hidden-#{index}"}
+              = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => product), :class => "form-primary-button"
+          .caption
+            %h5= link_to product.title, product_path(product.store, product)
+            %p= number_to_currency(product.price_in_dollars)
+  / = paginate @products
+  :javascript
+    $(document).ready(function(){
+      $('[id^="thumbnail"]').hover(function(){
+        var className = $(this).children('[class^="cart-hidden"]').attr('class');
+        var classIndex = className.match(/\d+/);
+        $('.cart-hidden-'+classIndex).addClass("cart-visible");
+        },
+        function() {
+        var className = $(this).children('[class^="cart-hidden"]').attr('class');
+        var classIndex = className.match(/\d+/);
+        $('.cart-hidden-'+classIndex).removeClass("cart-visible");
+      });
+      $('#category-dropdown').click(function() { 
+        return false;
+      });
+    });

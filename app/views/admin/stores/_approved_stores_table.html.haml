@@ -1,0 +1,26 @@
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span2 Store Name
+          %th.span2 Store Path
+          %th.span3 Description
+          %th.span2 Pilot
+          %th.span1 Status
+          %th.span2 Actions
+      %tbody
+        - stores.each do |store|
+          %tr
+            %td= store.name.capitalize
+            %td= store.path.capitalize
+            %td= truncate(store.description.capitalize, length: 32)
+            %td
+              %a{:href => "#"} Administer
+            %td= store.status.titleize
+            %td
+              -if store.status == "online"
+                = link_to "Disable", admin_store_path(store, {store_id: store.id, toggle: "disable"}), method: :put
+              -else
+                = link_to "Enable", admin_store_path(store, {store_id: store.id, toggle: "enable"}), method: :put
+

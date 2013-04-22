@@ -1,0 +1,44 @@
+.row-fluid
+  %ul.breadcrumb
+    %li
+      = link_to "Home", "/"
+      %span.divider /
+    %li.active
+      My Account
+/ .row-fluid
+/   .tabbable
+/     %ul.nav.nav-tabs
+/       %li.active
+/         = link_to "Profile", profile_path
+/       %li
+/         = link_to "Past Orders", profile_orders_path
+/       %li
+/         = link_to "Your Stores", "#"
+.row-fluid
+  %ul.profile
+    %li
+      .span8
+        %h3.span3.header Full Name
+        %h3.span5= @user.full_name
+    %li
+      .span8
+        %p.span3.header Email
+        %p.span5= @user.email
+    %li
+      .span8
+        %p.span3.header Display Name
+        %p.span5= @user.display_name
+    / %li
+    /   .span8
+    /     %p.span3.header Phone
+    /     %p.span5= @customer.try(:phone)
+    / %li
+    /   .span8
+    /     %p.span3.header Receive SMS Alerts
+    /     %p.span5= @customer.try(:receive_sms?)
+    %li
+      .span8
+        = link_to "Update Profile", edit_profile_path
+    %li
+      .span8
+        = link_to "Create a Store", create_new_store_path

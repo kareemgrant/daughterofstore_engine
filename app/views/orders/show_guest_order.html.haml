@@ -1,0 +1,62 @@
+.row-fluid
+  %h2 Thank you for shopping at #{@order.store.name}!
+.row-fluid
+  .span12.tab_above
+    .page-header.order_detail
+      %h3
+        Customer email: #{@order.consumer.email} | Order number: #{@order.id}
+      .details
+        %p.date
+          Order Placed on
+          %span.date
+            = (@order.created_at).to_date.strftime("%B %-d, %Y")
+          at
+          / %span
+          /   = (@order.created_at).to_time.strftime("%I:%M %P")
+          /   , GMT
+          / = link_to "view all past orders", orders_path
+      .status
+        %p.state
+          = @order.current_status.capitalize
+          - if @order.current_status != "pending"
+            %span.date
+              = "on #{(@order.updated_at).to_date.strftime("%B %-d %Y")}"
+              - if @order.current_status == "cancelled" || @order.current_status == "shipped"
+                = "at #{(@order.created_at).to_time.strftime("%I:%M %P")}, GMT"
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span1 Product
+          %th.span5 Description
+          %th.span2 Quantity
+          %th.span2 Price
+          %th.span2 Subtotal
+      %tbody
+        - @order.line_items.each do |line_item|
+          %tr
+            %td
+              = image_tag line_item.product.photo_url
+            %td.description
+              %span.name
+                = link_to line_item.product.title, product_path(line_item.product, line_item)
+              %p
+                = line_item.product.description
+            %td
+              = line_item.quantity
+            %td
+              = number_to_currency(line_item.product.price_in_dollars)
+            %td
+              = number_to_currency(line_item.total_price)
+    %table.table.total.table-bordered
+      %tbody
+        %tr
+          %td.span8
+          %td.span2 Shipping
+          %td.span2 $0.00
+        %tr.total
+          %td.span8
+          %td.span2 Total
+          %td.span2= number_to_currency(@order.total_price)
+ 

@@ -1,0 +1,21 @@
+%header
+  .navbar.navbar-fixed-top
+    .navbar
+      .navbar-inner
+        .container
+          - if current_store
+            %a.brand{:href => "/"}= current_store.name
+          - else
+            %a.brand{:href => "/"} Shopmazing
+          %ul.nav
+            -# %li= link_to "My Cart", cart_path(current_store, current_cart)
+            - if current_user  
+              %li
+                / %p Welcome #{current_user.full_name}
+              %li= link_to "My Account", profile_path
+              %li= link_to "Logout", logout_path
+            - else
+              %li= link_to "Log In", new_session_path
+              %li= link_to "Sign Up", new_user_path
+            - if current_store && current_cart && current_cart.line_items.count > 0
+              %li= link_to "Check Out", checkout_path(current_store), :method => :get, :class => "primary-link"

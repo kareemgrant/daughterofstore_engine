@@ -1,0 +1,5 @@
+%h3 #{current_store.name} - Categories
+
+%ul
+  - @categories.each do |c|
+    %li= link_to c.name, categories_path(current_store, c)

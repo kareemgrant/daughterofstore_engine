@@ -1,0 +1,17 @@
+.row-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        = link_to "Your Stores", store_admin_stores_path(current_store, current_store.id)
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span4 Store
+          %th.span4 Role
+      %tbody
+        - @stores.each do |store|
+          %tr
+            %td= link_to store.name, store_admin_path 
+            %td Add Role

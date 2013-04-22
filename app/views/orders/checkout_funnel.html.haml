@@ -1,0 +1,23 @@
+.row
+  .single-form.span8
+    %a.brand.brand-dark{:href => "/"} Shopmazing
+    = simple_form_for :sessions, :url => sessions_path do |f|
+      .dual-option-form-left
+        %h4= "Returning Visitors"
+        = f.error_notification
+        = f.input :email, label: false, input_html: { placeholder: "Email" }
+        = f.input :password, label: false, input_html: { placeholder: "Password" }
+        = f.button :submit, :value => "Continue Checkout", :class => "form-primary-button"
+        = f.error :base
+
+      .dual-option-form-right
+        %h4= "New Customers"
+        %p.form-light= "2 ways to check out"
+        .number-list
+          .number
+            1
+          = link_to "Create An Account", new_user_path, class: "number-list-link"
+        .number-list
+          .number
+            2
+          = link_to "Checkout As Guest", checkout_path(current_store, {:guest => true}), class: "number-list-link"

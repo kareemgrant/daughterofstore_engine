@@ -1,0 +1,16 @@
+#signup
+  .row-fluid
+    .span6.offset3
+      %h2.text-center Create Your Store
+      = link_to "Already registered? Log in here", login_path, :class => 'text-center'
+      = simple_form_for :store do |f|
+        = f.error_notification
+        = f.input :name
+        =f.simple_fields_for :users do |u|
+          = u.input :full_name
+          = u.input :email
+          = u.input :display_name
+          = u.input :password
+          = u.input :password_confirmation
+        = f.button :submit, :value => "Register", :class => "btn-primary"
+        = f.error :base

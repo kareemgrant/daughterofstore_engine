@@ -1,0 +1,8 @@
+= simple_form_for @store do |f|
+    %h4= "Create Your Store"
+    = f.error_notification
+    = f.input :name, label: false, input_html: { placeholder: "Store name" }
+    = f.input :path, label: false, input_html: { placeholder: "Path" }
+    = f.input :description, label: false, input_html: { placeholder: "Description" }
+    = f.button :submit, :value => "Create Store", :class => "form-primary-button"
+    = f.error :base

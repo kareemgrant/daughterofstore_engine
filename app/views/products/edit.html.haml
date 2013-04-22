@@ -1,0 +1,20 @@
+.row-fluid
+  .span12
+    .page-header
+      %h1 Administration Portal
+.row-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li
+        %a{"data-toggle" => "tab", :href => "#"} Dashboard
+      %li.active
+        %a{"data-toggle" => "tab", :href => "#"} Manage Products
+      %li
+        %a{"data-toggle" => "tab", :href => "#"} Manage Categories
+      %li
+        %a{"data-toggle" => "tab", :href => "#"} Admin Profile
+.row-fluid
+  .span12
+    .span6
+      %h3 Edit Existing Product
+= render 'form'

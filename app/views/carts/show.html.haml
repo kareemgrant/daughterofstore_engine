@@ -1,0 +1,62 @@
+.row-fluid
+  %ul.breadcrumb
+    %li
+      = link_to "Home", "/"
+      %span.divider /
+    %li.active
+      Cart
+.row-fluid
+  .span12
+    .page-header
+      %h1
+        Shopping Cart
+.row-fluid
+  .span12
+    %table.table.table-striped.cart-detail
+      %thead
+        %tr
+          %th.span1 Product
+          %th.span4 Description
+          %th.span3 Quantity
+          %th.span2 Price
+          %th.span2 Subtotal
+      %tbody
+        - @cart.line_items.each do |line_item|
+          - if line_item.quantity > 0
+            %tr
+              %td
+                = image_tag line_item.product.photo_url
+              %td.description
+                %span.name
+                  = link_to line_item.product.title, product_path(line_item.product)
+                %p
+                  = line_item.product.description
+                .remove_product
+                  = button_to "Delete item from cart", line_item_path(line_item), :method => :delete, confirm: "Are you sure?", :class => "btn btn-link"
+              %td
+                %form.form-inline
+                  %span.uneditable-input.input-small{:type => "text"}= line_item.quantity
+                  = link_to increase_quantity_cart_path(current_store, line_item.product_id), :method => :put, :class => "btn btn-small", :id => "+" do
+                    %i.icon-plus
+                  = link_to decrease_quantity_cart_path(current_store, line_item.product_id), :method => :put, :class => "btn btn-small", :id => "-" do
+                    %i.icon-minus
+              %td
+                = number_to_currency(line_item.product.price_in_dollars)
+              %td
+                = number_to_currency(line_item.total_price)
+          - else
+            - line_item.destroy
+    %table.table.total.table-bordered.cart-detail
+      %tbody
+        %tr
+          %td.span8
+          %td.span2 Shipping
+          %td.span2 $0.00
+        %tr.total
+          %td.span8
+          %td.span2 Total
+          %td.span2= number_to_currency(@cart.total_price)
+  .pull-left
+    = button_to "Continue Shopping", products_path(current_store), :method => :get, :class => "btn"
+  .pull-right
+    = button_to "Checkout", checkout_path(current_store), :method => :get, :class => "btn btn-inverse"

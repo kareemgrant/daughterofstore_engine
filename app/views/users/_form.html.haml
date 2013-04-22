@@ -1,0 +1,19 @@
+= form_for @user do |f|
+  %h4= "Create An Account"
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@user.errors.count, "error")
+        prohibited this user from being created:
+      %ul
+        - @user.errors.full_messages.each do |msg|
+          %li= msg
+          - if @user.errors.messages[:email]
+            = link_to 'Sign In?', new_session_path
+
+  = f.text_field :full_name, placeholder: "Full Name"
+  = f.text_field :email, placeholder: "Email"
+  = f.text_field :display_name, placeholder: "Display name (optional)"
+  = f.password_field :password, placeholder: "Password"
+  = f.password_field :password_confirmation, placeholder: "Confirm password"
+  = f.submit "Register", :class => "form-primary-button"

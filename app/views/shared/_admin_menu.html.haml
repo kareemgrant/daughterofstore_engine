@@ -1,0 +1,14 @@
+#admin
+  .row-fluid
+    .span12
+      .page-header
+        %h1 Administration Portal
+  .row-fluid
+    .tabbable
+      %ul.nav.nav-tabs
+        = admin_header_link 'Dashboard', admin_dashboard_path
+        = admin_header_link 'Manage Orders', admin_orders_path
+        = admin_header_link 'Manage Products', admin_products_path
+        = admin_header_link 'Manage Categories', admin_categories_path
+        = admin_header_link 'Edit Store Details', admin_edit_path
+        = admin_header_link 'Admin Profile', "#"

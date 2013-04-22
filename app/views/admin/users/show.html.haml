@@ -1,0 +1,31 @@
+.row-fluid
+  %ul.breadcrumb
+    %li
+      = link_to "Home", "/"
+      %span.divider /
+    %li.active
+      My Account
+.row-fluid
+  .tabbable
+    %ul.nav.nav-tabs
+      %li.active
+        = link_to "Profile", admin_user_path(@user)
+      %li
+        = link_to "Past Orders", orders_path
+.row-fluid
+  %ul.profile
+    %li
+      .span8
+        %p.span3.header Full Name
+        %p.span5= @user.full_name
+    %li
+      .span8
+        %p.span3.header Email
+        %p.span5= @user.email
+    %li
+      .span8
+        %p.span3.header Display Name
+        %p.span5= @user.display_name
+    %li
+      .span8
+        = link_to "Update Profile", edit_admin_user_path(@user)

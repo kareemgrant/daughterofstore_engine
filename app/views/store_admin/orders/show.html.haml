@@ -1,0 +1,93 @@
+- provide(:title, 'Admin Order Detail')
+.row-fluid
+  .span12.tab_above
+    .page-header.order_detail
+      %h1
+        Order Number:
+        \#{@order.id}
+      .details
+        %p.date
+          Order Placed on
+          %span.date
+            = (@order.created_at).to_date.strftime("%B %-d, %Y")
+          at
+          %span
+            = (@order.created_at).to_time.strftime("%I:%M %P")
+            , GMT
+          = link_to "view all past orders", store_admin_orders_path
+      .details
+        %p.customer
+          Customer:
+          - if @order.consumer.user
+            %span.cust_name
+              = @order.consumer.user.full_name
+          - else
+            %span.cust_name
+              Purchased as a guest
+
+          Customer Email:
+          %span.cust_name
+            = @order.consumer.email
+      .status
+        %p.state
+          = @order.current_status
+          %span.date
+            = (@order.updated_at).to_date.strftime("%B %-d, %Y")
+.row-fluid
+  .span12
+    %table.table.table-striped.table-bordered.cart-detail
+      %thead
+        %tr
+          %th.span1 Product
+          %th.span4 Description
+          %th.span3 Quantity
+          %th.span2 Price
+          %th.span2 Subtotal
+      %tbody
+        - @order.line_items.each do |line_item|
+          %tr
+            %td
+              = image_tag line_item.product.photo_url
+            %td.description
+              %span.name
+                = link_to line_item.product.title, product_path(line_item.product)
+              %p
+                = line_item.product.description
+              .remove_product
+                = link_to "Delete product from order", line_item_path(line_item), method: "Delete", confirm: "Are you sure?"
+            %td
+              %form.form-inline
+                %span.uneditable-input.input-small{:type => "text"}= line_item.quantity
+                - if @order.current_status == "pending" || @order.current_status == "paid"
+                  = link_to store_admin_add_quantity_to_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "+" do
+                    %i.icon-plus
+                  = link_to store_admin_decrease_quantity_from_order_path(line_item), :method => :put, :class => "btn btn-small", :id => "-" do
+                    %i.icon-minus
+            %td
+              = number_to_currency(line_item.product.price_in_dollars)
+            %td
+              = number_to_currency(line_item.total_price)
+    %table.table.total.table-bordered
+      %tbody
+        %tr
+          %td.span8
+          %td.span2 Shipping
+          %td.span2 $0.00
+        %tr.total
+          %td.span8
+          %td.span2 Total
+          %td.span2= number_to_currency(@order.total_price)
+.row-fluid
+  .span12
+    .well.status-change
+      %span.transition.inline
+        - if @order.current_status == "pending" || @order.current_status == "shipped" || @order.current_status == "paid"
+          %span
+            Change Order Status To:
+        %span
+          - if @order.current_status == "pending"
+            = link_to "Cancel", store_admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
+          - elsif @order.current_status == "shipped"
+            = link_to "Mark as returned", store_admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"
+          - elsif @order.current_status == "paid"
+            = link_to "Mark as shipped", store_admin_order_path(@order.store, @order), :method => :put, :class => "btn btn-inverse"

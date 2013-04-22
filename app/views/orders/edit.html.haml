@@ -1,0 +1,14 @@
+%h1
+  Update order #{@order.id}
+= form_for @order do |f|
+  - if @order.errors.any?
+    .error_messages
+      %h2 Form is invalid
+      %ul
+        - @order.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = f.label :status
+    %br/
+    = f.text_field :status
+  .actions= f.submit "Update Order"
