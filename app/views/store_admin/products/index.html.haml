@@ -4,17 +4,6 @@
     .span12
       %h2 
         = "Welcome, #{current_user.full_name}"
-  %ul#admin-tabs
-    %li.dashboard.active
-      = link_to "Dashboard", store_admin_path
-    %li.orders
-      = link_to "Orders", store_admin_orders_path
-    %li.products
-      = link_to "Products", store_admin_products_path
-    %li.categories
-      = link_to "Categories", store_admin_categories_path
-    %li
-      =link_to "Admins", store_admin_members_path(current_store)
 
   :javascript
     $(document).ready(function(){
