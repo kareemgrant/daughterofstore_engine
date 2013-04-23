@@ -1,9 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :title, :description, :price_in_dollars, :active, :created_at, :updated_at, :price, :slug,
-  :category_ids, :photo, :photo_file_name, :photo_content_type,
-  :photo_file_size, :photo_updated_at, :store, :store_id, :photo_url, :created_at, :updated_at, :price, :slug
-  # extend FriendlyId
-  # friendly_id :title, use: :slugged
+  :category_ids, :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at, :store_id, :photo_url
 
   validates_uniqueness_of :title
   validates_presence_of :title, :description, :price_in_dollars, :store_id

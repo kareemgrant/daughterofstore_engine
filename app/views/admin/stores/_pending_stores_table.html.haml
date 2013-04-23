@@ -15,9 +15,9 @@
             %td= truncate(store.description.capitalize, length: 32)
             %td
               - if store.status == "pending"
-                = link_to "Approve", admin_store_path(store, toggle: "approve"), :method => :put
+                = button_to "Approve", admin_store_path(store, toggle: "approve"), method: :put, class: "btn btn-link" 
                 |
-                = link_to "Decline", admin_store_path(store, toggle: "decline"), :method => :put
+                = button_to "Decline", admin_store_path(store, toggle: "decline"), method: :put, class: "btn btn-link" 
               - else
                 = link_to "Approve", admin_store_path(store, toggle: "approve"), :method => :put
 
