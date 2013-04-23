@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  # layout 'session'
-  layout 'profile' #, only: [:show, :edit]
+  layout 'profile'
 
   def index
     @users = User.all
