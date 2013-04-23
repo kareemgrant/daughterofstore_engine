@@ -1,6 +1,5 @@
 class Admin::StoresController < Admin::BaseController
 
-
   layout 'super_admin'
 
   def index
@@ -26,7 +25,6 @@ class Admin::StoresController < Admin::BaseController
   end
 
   def update
-
     @store = Store.find_by_path(params[:id])
 
     if params[:toggle] == "approve"
