@@ -1,52 +1,9 @@
 - provide(:title, 'Admin Dashboard')
 %section#right-pane
   .row.admin-header
-    .span12
+    .span8
       %h2 
         = "Welcome, #{current_user.full_name}"
-
-  %section.dashboard
-    .row
-      .span2.widget
-        %h4 Pending
-        %h2.widget-count
-          - pending = []
-          - @orders.each do |order|
-            - if order.current_status == "pending"
-              - pending << order
-          = pending.count
-      .span2.widget
-        %h4 Shipped
-        %h2.widget-count
-          - shipped = []
-          - @orders.each do |order|
-            - if order.current_status == "shipped"
-              - shipped << order
-          = shipped.count
-      .span2.widget
-        %h4 Paid
-        %h2.widget-count
-          - paid = []
-          - @orders.each do |order|
-            - if order.current_status == "paid"
-              - paid << order
-          = paid.count
-      .span2.widget
-        %h4 Cancelled
-        %h2.widget-count
-          - cancelled = []
-          - @orders.each do |order|
-            - if order.current_status == "cancelled"
-              - cancelled << order
-          = cancelled.count      
-      .span2.widget
-        %h4 Returned
-        %h2.widget-count
-          - returned = []
-          - @orders.each do |order|
-            - if order.current_status == "returned"
-              - returned << order
-          = returned.count
 
   %ul#admin-tabs
     %li.dashboard.active
@@ -69,7 +26,7 @@
       }
     })
 
-  #admin-tab.span12
+  #admin-tab.span8
     %table.table.table-striped.table-bordered.cart-detail
       %thead
         %tr

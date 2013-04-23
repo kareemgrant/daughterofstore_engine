@@ -1,25 +1,27 @@
 - provide(:title, 'Admin Add New Product')
-.row-fluid
-  .span12
-    .page-header
-      %h1 Administration Portal
 
-.row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li
-        = link_to "Dashboard", store_admin_path
-      %li
-        = link_to "Past Orders", store_admin_orders_path
-      %li.active
-        = link_to "Manage Products", store_admin_products_path
-      %li
-        = link_to "Manage Categories", store_admin_categories_path
-      %li
-        = link_to "Manage Admins", store_admin_members_path
+.content 
+  .row-fluid
+    .span12
+      .page-header
+        %h1 Administration Portal
 
-.row-fluid
-  .span12
-    .span6
-      %h3 Add New Product
-= render 'form'
+  -# .row-fluid
+  -#   .tabbable
+  -#     %ul.nav.nav-tabs
+  -#       %li
+  -#         = link_to "Dashboard", store_admin_path
+  -#       %li
+  -#         = link_to "Past Orders", store_admin_orders_path
+  -#       %li.active
+  -#         = link_to "Manage Products", store_admin_products_path
+  -#       %li
+  -#         = link_to "Manage Categories", store_admin_categories_path
+  -#       %li
+  -#         = link_to "Manage Admins", store_admin_members_path
+
+  .row-fluid
+    .span12
+      .span6
+        %h3 Add New Product
+  = render 'form'

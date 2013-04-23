@@ -12,7 +12,7 @@
         %li.span3
           .thumbnail{id: "thumbnail-#{index}"}
             = link_to product_path(product.store, product) do
-              = image_tag product.photo_url, class: "product-image"
+              = image_tag product.photo.url, class: "product-image"
             %div{class: "cart-hidden-#{index}"}
               = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => product), :class => "form-primary-button"
           .caption

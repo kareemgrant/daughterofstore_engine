@@ -300,6 +300,15 @@ ul.profile {
     }
   }
 }
+
+/****************************
+Styles to account side nav
+****************************/
+
+.content {
+  margin-left: 350px;
+}
+
 /****************************
 Footnotes debug style
 ****************************/
@@ -364,6 +373,7 @@ body {
   left:0;
   z-index:1030;
   margin-bottom:0;
+
   .navbar {
     height: 100%;
   }
