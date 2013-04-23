@@ -69,6 +69,7 @@
     })
 
   #admin-tab.span12
+    = button_to "Add Product", new_store_admin_product_path(current_store), method: :get
     %table.table.table-striped.table-bordered.cart-detail
       %thead
         %tr
