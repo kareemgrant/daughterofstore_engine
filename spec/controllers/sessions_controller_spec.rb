@@ -28,17 +28,10 @@
 #       end
 #     end
 
-#     context "no user matches email address" do
-#       it_behaves_like "a user that fails to login"
-#     end
-
 #     context "user with email address" do
 
 #       let!(:user) { User.create full_name: "Walter White", email: "breaking@bad.com", password: "meth" }
 
-#       context "when the user provides an incorrect password" do
-#         it_behaves_like "a user that fails to login"
-#       end
 
 #       context "when the user provides a correct password" do
 #         it "redirects to user to the root url" do

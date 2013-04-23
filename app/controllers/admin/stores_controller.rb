@@ -26,7 +26,6 @@ class Admin::StoresController < Admin::BaseController
   end
 
   def update
-    binding.pry
 
     @store = Store.find_by_path(params[:id])
 
