@@ -8,9 +8,6 @@
         = f.input :full_name
         = f.input :email
         = f.input :display_name
-        = f.simple_fields_for :phone_number do |p|
-          = p.input :phone
-          = p.input :receive_sms, label: "Receive SMS?", as: :radio_buttons, :item_wrapper_class => 'inline'
         = f.input :password
         = f.input :password_confirmation
         = f.error :base

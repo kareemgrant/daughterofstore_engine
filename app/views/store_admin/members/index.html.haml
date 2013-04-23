@@ -12,8 +12,9 @@
         .span6
           %h3 Store Admins
         .span6.header-button
-          = link_to "Add New Store Admin", new_store_admin_member_path(current_store, role: "admin"), 
+          = link_to "Add New Store Admin", new_store_admin_member_path(current_store, role: "admin"),
             method: :get, :class => "admin-primary-button pull-right"
+
     .row-fluid
       .span12#store-admin-table
         %table.table.table-striped.table-bordered.cart-detail
@@ -29,7 +30,7 @@
                 %td= admin.full_name
                 %td= admin.email
                 %td Admin
-                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: admin.id), 
+                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: admin.id),
                     method: :delete, data: { confirm: 'Are you sure?' }
 
     :javascript

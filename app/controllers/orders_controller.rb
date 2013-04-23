@@ -6,13 +6,13 @@ class OrdersController < ApplicationController
   before_filter :signed_in?, only: ['show', 'index']
 
   def index
-    @orders = Order.find_all_by_user_id(current_user)
+    # @orders = Order.find_all_by_user_id(current_user)
   end
 
   def new
-    @order = Order.new
-    @billing_address = @order.build_billing_address
-    @shipping_address = @order.build_shipping_address
+    # @order = Order.new
+    # @billing_address = @order.build_billing_address
+    # @shipping_address = @order.build_shipping_address
   end
 
   def create
