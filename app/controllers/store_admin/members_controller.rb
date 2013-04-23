@@ -1,6 +1,6 @@
 class StoreAdmin::MembersController < ApplicationController
 
-  before_filter :require_admin #, :get_store_users
+  before_filter :require_admin
   layout 'admin'
 
   def index
@@ -22,7 +22,6 @@ class StoreAdmin::MembersController < ApplicationController
     @user = User.find_by_email(params[:invite][:email])
     if @user
       @user.assign_role(current_store.id, params[:invite][:role])
-
       logger.debug("Sending Email to existing user")
     else
 

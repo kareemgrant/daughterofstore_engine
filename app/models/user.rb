@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
                   :full_name,
                   :password,
                   :password_confirmation,
-                  :phone_number_attributes,
                   :store_id,
                   :store_name
 
@@ -16,24 +15,9 @@ class User < ActiveRecord::Base
   validates :display_name, :length => { :minimum => 2,
     :maximum => 32 }, :allow_blank => true
 
-  has_one :phone_number
-  has_one :consumer
   has_many :user_store_roles
   has_many :stores, :through => :user_store_roles
 
-  accepts_nested_attributes_for :phone_number
-
-  def phone
-    phone_number ? phone_number.phone : nil
-  end
-
-  def receive_sms?
-    phone_number ? phone_number.receive_sms : false
-  end
-
-  def can_receive_messages?
-    phone.present? && receive_sms?
-  end
 
   def assign_super_admin
     self.super_admin = true

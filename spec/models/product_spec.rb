@@ -1,79 +1,93 @@
 require 'spec_helper'
 
-describe Product do
+describe 'Products:' do
 
-  context "missing title" do
-    let(:product){Product.new description: "ipsum mormon", price_in_dollars: 12.95}
-
-    it "is invalid" do
-      expect(product).to be_invalid
-    end
-
-    it "has errors" do
-      expect(product).to have(1).errors_on(:title)
-    end
-  end
-  context "missing description" do
-    let(:product){Product.new title: "cheeseburgers", price_in_dollars: 99.95}
-
-    it "is invalid " do
-      expect(product).to be_invalid
-    end
-
-    it "has errors" do
-      expect(product).to have(1).errors_on(:description)
-    end
+  before :each do
+    Store.create(name: 'test store', description: 'store for testing', path: 'test_store')
   end
 
-  context "missing price" do
-    let(:product){Product.new title: "cheeseburgers", description: "I love cheesburgers"}
-
-    it "is invalid" do
-      expect(product).to be_invalid
+  context 'when a product is created' do
+    it 'it is valid when all required attributes are given' do
+      product = Product.new(title: 'title', description: 'description', price_in_dollars: 2, store_id: 1)
+      expect(product.valid?).to eq true
     end
 
-    it "has errors" do
-      expect(product).to have(1).errors_on(:price)
-    end
-  end
-
-  context "happy path" do
-    let(:product){Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13}
-
-    it "is valid" do
-      expect(product).to be_valid
+    it 'it is invalid without a title' do
+      product = Product.new(description: 'description', price_in_dollars: 2, store_id: 1)
+      expect(product.valid?).to eq false
     end
 
-    it "has 0 errors" do
-      expect(product).to have(0).errors
+    it 'it is invalid when the title is duplicated' do
+      Product.create(title: 'title', description: 'description', price_in_dollars: 2, store_id: 1)
+      product = Product.new(title: 'title', description: 'description', price_in_dollars: 2, store_id: 1)
+      expect(product.valid?).to eq false
+    end
+
+    it 'it is invalid without a description' do
+      product = Product.new(title: 'title', price_in_dollars: 2, store_id: 1)
+      expect(product.valid?).to eq false
+    end
+
+    it 'it is invalid without a price_in_dollars in dollars' do
+      product = Product.new(title: 'title', description: 'description', store_id: 1)
+      expect(product.valid?).to eq false
+    end
+
+    it 'it is invalid when give a price_in_dollars less than $1' do
+      product = Product.new(title: 'title', description: 'description', price_in_dollars: 0, store_id: 1)
+      expect(product.valid?).to eq false
+    end
+
+    it 'it is invalid without a Product id' do
+      product = Product.new(title: 'title', description: 'description', price_in_dollars: 2)
+      expect(product.valid?).to eq false
     end
   end
 
-  context "validates uniqueness" do
-    let!(:product){Product.create title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13}
-    let!(:product2){Product.create title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13}
+  context '.status' do
+    it 'returns active when a product is active' do
+      product = Product.new(title: 'title', description: 'description', price_in_dollars: 2, store_id: 1, active: true)
+      expect(product.status).to eq 'active'
 
-    it "validates uniqueness of title" do
-      expect(product2).to have(1).error
+    end
+
+    it 'returns retired when a product is retired' do
+      product = Product.new(title: 'title', description: 'description', price_in_dollars: 2, store_id: 1, active: false)
+      expect(product.status).to eq 'retired'
     end
   end
 
-  it "returns whether or not a product is active" do
-    product = Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13, active: false
-    expect(product.status).to eq("retired")
+  context '.price_in_dollars' do
+    it 'returns the products price in dollars' do
+      product = Product.new(title: 'title', description: 'description', price: 500, store_id: 1)
+      expect(product.price_in_dollars).to eq 5
+    end
   end
 
-  it "renders the name in a readable format" do
-    product = Product.new title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13, active: false
-    expect(product.to_s).to eq "mormon cheeseburgers"
+  context '.price_in_dollars=' do
+    it 'sets the price of the item to a new price in cents' do
+      product = Product.new(title: 'title', description: 'description', price: 500, store_id: 1)
+      product.price_in_dollars=10
+      expect(product.price).to eq 1000
+    end
   end
 
-  it "joins categories" do
-    product = Product.create(title: "mormon cheeseburgers", description: "ipsum mormon", price_in_dollars: 10.13)
-    category1 = Category.create(name: "cheeseburger")
-    category2 = Category.create(name: "yum")
-    pc1 = ProductCategory.create(product_id: product.id, category_id: category1.id)
-    pc2 = ProductCategory.create(product_id: product.id, category_id: category2.id)
-    expect(product.categories_list).to eq("cheeseburger, yum")
+  context '.to_s' do
+    it 'returns the title of the product it is called on' do
+      product = Product.new(title: 'title', description: 'description', price: 500, store_id: 1)
+      expect(product.to_s).to eq 'title'
+    end
   end
+
+  context '.categories_list' do
+    it 'shows a comma separated list of categories the product belongs to' do
+      product = Product.create(title: 'title', description: 'description', price: 5, store_id: 1)
+      category1 = Category.create(name: 'test1')
+      ProductCategory.create(product_id: product.id, category_id: category1.id)
+      category2 = Category.create(name: 'test2')
+      ProductCategory.create(product_id: product.id, category_id: category2.id)
+      expect(product.categories_list).to eq 'test1, test2'
+    end
+  end
+
 end
