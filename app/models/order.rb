@@ -1,6 +1,21 @@
 class Order < ActiveRecord::Base
-  attr_accessible :total_price, :stripe_card_token, :store, :email, :store_id, :billing_address_attributes, :shipping_address_attributes, :random_order_id
-  attr_accessor :stripe_card_token, :email, :card_number, :card_month, :card_code, :card_year
+
+  attr_accessible
+    :total_price,
+    :stripe_card_token,
+    :email,
+    :store_id,
+    :billing_address_attributes,
+    :shipping_address_attributes,
+    :random_order_id
+
+  attr_accessor
+    :stripe_card_token,
+    :email,
+    :card_number,
+    :card_month,
+    :card_code,
+    :card_year
 
   has_many :events, class_name: "OrderEvent"
   has_one :shipping_address
@@ -11,18 +26,6 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :billing_address, :shipping_address
 
-  # Needs Rewrite
-  def self.create_from_cart(cart, order_details, consumer)
-    order = new(order_details)
-    order.add_line_items(cart)
-    order.total_price = order.total_price_from_cart(cart)
-    order.consumer = consumer
-
-    order.save_with_payment
-    order
-  end
-
-  # Needs Rewrite
   def save_with_payment
     if valid?
       Stripe::Charge.create(amount: self.total_price * 100, currency: "usd",
@@ -54,11 +57,6 @@ class Order < ActiveRecord::Base
 
   def self.returned
     Order.all.select{|o| o.returned?}
-  end
-
-  def total_price_from_cart(cart)
-    self.total_price = cart.total_price
-    total_price
   end
 
   STATUSES = %w[pending cancelled paid shipped returned]
