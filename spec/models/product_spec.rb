@@ -7,7 +7,7 @@ describe 'Products:' do
   end
 
   context 'when a product is created' do
-    it 'it is valid when all required attributes are given' do
+    it 'it is valid if all required attributes are given' do
       product = Product.new(title: 'title', description: 'description', price_in_dollars: 2, store_id: 1)
       expect(product.valid?).to eq true
     end
