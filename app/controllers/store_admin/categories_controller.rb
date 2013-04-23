@@ -4,7 +4,6 @@ class StoreAdmin::CategoriesController < ApplicationController
   layout 'admin'
 
   def index
-    # @categories = Category.all
      @categories = current_store.categories
      @orders = current_store.orders
   end

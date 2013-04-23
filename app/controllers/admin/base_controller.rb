@@ -1,4 +1,4 @@
 class Admin::BaseController < ApplicationController
   # layout 'admin'
-  before_filter :require_super_admin, :except => 'user_sessions#create'
+  before_filter :require_super_admin
 end
