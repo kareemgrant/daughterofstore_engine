@@ -1,15 +1,15 @@
 - provide(:title, 'Admin Edit Product')
 
 %section#right-pane 
-  .row-fluid
+  .row.admin-header
     .span12
-      .page-header
-        %h1 Administration Portal
+      %h3
+        #{current_store.name.titleize}'s Products
 
   .row-fluid
     .span8
       .span6
-        %h3 Edit Existing Product
+        %h4 Edit Existing Product
   -# = render 'form'
   = simple_form_for [:store_admin, @product],
     :url => store_admin_product_path(current_store, @product), 

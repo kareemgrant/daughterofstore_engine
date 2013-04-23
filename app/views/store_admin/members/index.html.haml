@@ -2,11 +2,11 @@
 %section#right-pane
   .row.admin-header
     .span12
-      %h2 
-        = "Welcome, #{current_user.full_name}"
+      %h3
+        #{current_store.name.titleize}'s Admins
 
 
-  #admin-tab.span8
+  #admin-tab.span9
     .row-fluid
       .span12
         .span6
@@ -60,4 +60,4 @@
                 %td= stocker.full_name
                 %td= stocker.email
                 %td Stocker
-                %td= link_to "edit", "#"
+                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: stocker.id), method: :delete, data: { confirm: 'Are you sure?' }

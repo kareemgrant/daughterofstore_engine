@@ -1,9 +1,9 @@
-- provide(:title, 'Admin Dashboard')
+- provide(:title, 'Admin Products')
 %section#right-pane
   .row.admin-header
     .span12
-      %h2 
-        = "Welcome, #{current_user.full_name}"
+      %h3
+        #{current_store.name.titleize}'s Products
 
   :javascript
     $(document).ready(function(){
@@ -14,7 +14,7 @@
       }
     })
 
-  #admin-tab.span8
+  #admin-tab.span9
     = button_to "Add Product", new_store_admin_product_path(current_store), method: :get
     %table.table.table-striped.table-bordered.cart-detail
       %thead
