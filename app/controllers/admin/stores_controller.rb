@@ -1,7 +1,6 @@
 class Admin::StoresController < Admin::BaseController
 
-
-  layout 'none'
+  layout 'super_admin'
 
   def index
     @all_stores = Store.all
@@ -26,8 +25,8 @@ class Admin::StoresController < Admin::BaseController
   end
 
   def update
-    binding.pry
     @store = Store.find_by_path(params[:id])
+
     if params[:toggle] == "approve"
       @store.update_attributes({status: "online"}) if @store.status == "pending" || @store.status == "declined"
       redirect_to admin_stores_path, notice: "status successfully updated"

@@ -3,12 +3,12 @@
     %table.table.table-striped.table-bordered.cart-detail
       %thead
         %tr
-          %th.span2 Store Name
+          %th.span3 Store Name
           %th.span2 Store Path
           %th.span3 Description
           %th.span2 Pilot
           %th.span1 Status
-          %th.span2 Actions
+          %th.span1 Actions
       %tbody
         - stores.each do |store|
           %tr
@@ -16,7 +16,8 @@
             %td= store.path.capitalize
             %td= truncate(store.description.capitalize, length: 32)
             %td
-              %a{:href => "#"} Administer
+              -# %a{:href => "#"} Administer
+              =link_to "Administer", store_admin_path(store)
             %td= store.status.titleize
             %td
               -if store.status == "online"

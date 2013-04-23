@@ -11,30 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130418024051) do
+ActiveRecord::Schema.define(:version => 20130423201649) do
 
   create_table "billing_addresses", :force => true do |t|
-    t.integer  "consumer_id"
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "order_id"
   end
 
   add_index "billing_addresses", ["order_id"], :name => "index_billing_addresses_on_order_id"
-
-  create_table "carts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "store_id"
-    t.string   "sid"
-  end
-
-  add_index "carts", ["sid"], :name => "index_carts_on_sid"
-  add_index "carts", ["store_id"], :name => "index_carts_on_store_id"
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -45,24 +34,14 @@ ActiveRecord::Schema.define(:version => 20130418024051) do
 
   add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
 
-  create_table "consumers", :force => true do |t|
+  create_table "customers", :force => true do |t|
+    t.string   "full_name"
     t.string   "email"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "display_name"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
-
-  create_table "line_items", :force => true do |t|
-    t.integer  "product_id"
-    t.integer  "cart_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "quantity",   :default => 1
-    t.integer  "order_id"
-  end
-
-  add_index "line_items", ["cart_id"], :name => "index_line_items_on_cart_id"
-  add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
 
   create_table "order_events", :force => true do |t|
     t.string   "status"
@@ -75,7 +54,6 @@ ActiveRecord::Schema.define(:version => 20130418024051) do
 
   create_table "orders", :force => true do |t|
     t.integer  "total_price",     :null => false
-    t.integer  "consumer_id",     :null => false
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.integer  "store_id"
@@ -83,14 +61,6 @@ ActiveRecord::Schema.define(:version => 20130418024051) do
   end
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
-
-  create_table "phone_numbers", :force => true do |t|
-    t.string   "phone"
-    t.boolean  "receive_sms"
-    t.integer  "user_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
 
   create_table "product_categories", :force => true do |t|
     t.integer  "product_id"
@@ -133,13 +103,12 @@ ActiveRecord::Schema.define(:version => 20130418024051) do
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "shipping_addresses", :force => true do |t|
-    t.integer  "consumer_id"
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "order_id"
   end
 

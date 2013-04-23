@@ -16,5 +16,3 @@ user4.save
 UserStoreRole.create({user_id: 5, store_id: 1, role: 'admin'})
 UserStoreRole.create({user_id: 6, store_id: 2, role: 'stocker'})
 UserStoreRole.create({user_id: 7, store_id: 3, role: 'admin'})
-
-

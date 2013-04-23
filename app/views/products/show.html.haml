@@ -10,14 +10,17 @@
     .span7
       = image_tag "http://placehold.it/600x600&text=[img]"
     .prod_desc.span5
-      %h3.pull-left 
+      %h3#product-title.pull-left
         =@product.title.titleize
-      %h3.pull-right 
+      %h3.pull-right
         =number_to_currency(@product.price_in_dollars)
       %p.pull-left= @product.description
       %span.amount
       - if @product.active
-        = button_to "Add to Cart", line_items_path(:store_id => current_store, :product_id => @product), :class => "form-primary-button"
+        = form_for Bid.new do |f|
+          = f.text_field 'amount'
+          = f.submit 'Bid'
+
       %hr.pull-left.full-line
       - @product.categories.each do |category|
         = link_to category.name, category_path(current_store, category), class: "category pull-left"
