@@ -1,7 +1,6 @@
 class Order < ActiveRecord::Base
 
-  attr_accessible
-    :total_price,
+  attr_accessible :total_price,
     :stripe_card_token,
     :email,
     :store_id,
@@ -9,8 +8,7 @@ class Order < ActiveRecord::Base
     :shipping_address_attributes,
     :random_order_id
 
-  attr_accessor
-    :stripe_card_token,
+  attr_accessor :stripe_card_token,
     :email,
     :card_number,
     :card_month,

@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  helper_method :current_user, :admin_user, :current_store,
+  helper_method :current_user, :admin_user, :current_store
 
 
   def not_authenticated

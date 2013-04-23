@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:sessions][:password])
       session[:user_id] = @user.id
       flash[:notice] = "Welcome to Shopmazing!"
-      stores_path
+      redirect_to stores_path
     else
       flash[:alert] = "Invalid email or password"
       redirect_to new_session_path
