@@ -14,7 +14,7 @@
         .span6.header-button
           = link_to "Add New Store Admin", new_store_admin_member_path(current_store, role: "admin"), method: :get, :class => "admin-primary-button pull-right"
     .row-fluid
-      .span12
+      .span12#store-admin-table
         %table.table.table-striped.table-bordered.cart-detail
           %thead
             %tr
@@ -46,7 +46,7 @@
         .span6.header-button
           = link_to "Add New Stocker", new_store_admin_member_path(current_store, {:role => "stocker"}), method: :get, :class => "admin-primary-button pull-right"
     .row-fluid
-      .span12
+      .span12#store-admin-table
         %table.table.table-striped.table-bordered.cart-detail
           %thead
             %tr

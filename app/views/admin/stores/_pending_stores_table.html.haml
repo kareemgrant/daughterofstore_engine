@@ -5,8 +5,8 @@
         %tr
           %th.span2 Store Name
           %th.span2 Store Path
-          %th.span4 Description
-          %th.span4 Actions
+          %th.span3 Description
+          %th.span3 Actions
       %tbody
         - stores.each do |store|
           %tr
@@ -15,9 +15,9 @@
             %td= truncate(store.description.capitalize, length: 32)
             %td
               - if store.status == "pending"
-                = button_to "Approve", admin_store_path(store, toggle: "approve"), method: :put, class: "btn btn-link" 
+                = link_to "Approve", admin_store_path(store, toggle: "approve"), method: :put
                 |
-                = button_to "Decline", admin_store_path(store, toggle: "decline"), method: :put, class: "btn btn-link" 
+                = link_to "Decline", admin_store_path(store, toggle: "decline"), method: :put
               - else
                 = link_to "Approve", admin_store_path(store, toggle: "approve"), :method => :put
 

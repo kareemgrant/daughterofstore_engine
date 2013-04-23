@@ -9,11 +9,22 @@ body { padding-top: 60px; background: #f1f1f1; }
     line-height: 0;
     margin-bottom: 20px;
   }
-
 }
 body {
   padding-top: 60px;
   padding-bottom: 40px;
+  font-size: 13px;
+}
+a {
+  color: #005580;
+  &:hover {
+    color: #005580;
+  };
+
+  &:visited {
+    color: #005580;
+  }
+
 }
 #signup, #login {
   margin-top: 30px;
@@ -36,7 +47,7 @@ body {
       background-color: #333; 
     }
   }
-
+  
   li a {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -760,9 +771,17 @@ p.form-light {
   padding: 1.3em;
   border-radius: 3px;
   box-shadow: 10px 9px 5px -9px #d4d4d4;
-}
-#admin-tab table {
-  margin-top: 1em;
+
+  #admin-tab, #store-admin-table table {
+    margin-top: 1em;
+    th {
+      font-size: 11px;
+    }
+
+    td {
+      font-size: 11px;
+    }
+  }
 }
 #admin-tabs {
   list-style-type: none;
