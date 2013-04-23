@@ -1,4 +1,8 @@
 class PaymentOption < ActiveRecord::Base
+  attr_accessible :auction_id, :type
+
   belongs_to :auction
-  # attr_accessible :title, :body
+
+  validates_presence_of :auction_id
+  validates_presence_of :type
 end

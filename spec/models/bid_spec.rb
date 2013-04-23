@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Bid do
+describe 'Bid:' do
 
   context 'When a bid is created' do
     it 'it is valid if all required attributes are given' do
