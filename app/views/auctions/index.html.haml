@@ -1,0 +1,14 @@
+%h1 Current Auctions
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @auctions.each do |auction|
+    %tr
+      %td= image_tag auction.product.photo.url
+      %td= link_to "#{auction.product.title}", auction
+      %td= link_to "#{auction.product.description[0..29]}...", auction
+%br
