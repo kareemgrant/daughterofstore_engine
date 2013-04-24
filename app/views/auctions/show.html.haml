@@ -1,10 +1,55 @@
-%p#notice= notice
+- provide(:title, 'Auction Detail ')
+%section
+  .row.admin-header
+    .span10.offset1
+      %h4 Spacely's Sprockets
+  .row.fluid
+    .span10.offset1
+      #auction-block
+        .row-fluid
+          .span12
+            .span8
+              %h3 Rocket Skateboard
 
-.row
-  .large-12.columns
-    .span6
-      =image_tag @auction.product.photo.url
+              .row-fluid
+                .span4
+                  Current Bid
+                .span8
+                  $700.00
 
-%br
+              .row-fluid
+                .span4
+                  Time Left
+                .span8
+                  2 Days, 17 hours
 
-= link_to 'Back to Auctions', auctions_path
+              .row-fluid
+                .span4
+                  Number of Bids
+                .span8
+                  27
+
+              .row-fluid
+                .span8
+                  = simple_form_for @auction do |f|
+                    = f.error_notification
+                    = f.input :starting_bid
+                    = f.button :submit, "Bid", :class => "admin-primary-button pull-right"
+
+
+            .span4
+              =image_tag @auction.product.photo.url
+              =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
+              =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
+              =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
+
+-# %p#notice= notice
+
+-# .row
+-#   .large-12.columns
+-#     .span6
+-#       =image_tag @auction.product.photo.url
+
+-# %br
+
+-# = link_to 'Back to Auctions', auctions_path

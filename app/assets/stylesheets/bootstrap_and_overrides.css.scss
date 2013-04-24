@@ -15,6 +15,9 @@ body {
   padding-bottom: 40px;
   font-size: 11px;
 }
+body#public {
+  padding-top: 50px;
+}
 a {
   color: #005580;
   &:hover {
@@ -322,11 +325,15 @@ ul.profile {
 }
 
 /****************************
-Styles to account side nav
+Auction Styles
 ****************************/
-
-.content {
-  margin-left: 350px;
+#auction-block {
+  clear: left;
+  margin-left: 0;
+  background: #fff;
+  padding: 2.0em;
+  border-radius: 3px;
+  box-shadow: 10px 9px 5px -9px #d4d4d4;
 }
 
 /****************************

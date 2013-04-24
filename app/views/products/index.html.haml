@@ -7,13 +7,13 @@
     All Products
 .row-fluid
   .thumbnails.product_list
-    - @products.each_with_index do |product, index|
-      - if product.active
-        %li.span3
-          .thumbnail{id: "thumbnail-#{index}"}
-            = link_to product_path(product.store, product) do
-              = image_tag product.photo.url, class: "product-image"
-          .caption
-            %h5= link_to product.title, product_path(product.store, product)
-            %p= number_to_currency(product.price_in_dollars)
+    -# - @products.each_with_index do |product, index|
+    -#   - if product.active
+    -#     %li.span3
+    -#       .thumbnail{id: "thumbnail-#{index}"}
+    -#         = link_to product_path(product.store, product) do
+    -#           = image_tag product.photo.url, class: "product-image"
+    -#       .caption
+    -#         %h5= link_to product.title, product_path(product.store, product)
+    -#         %p= number_to_currency(product.price_in_dollars)
   / = paginate @products
