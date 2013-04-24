@@ -5,6 +5,33 @@
       %h3
         #{current_store.name.titleize}'s Products
 
+  #admin-tab.span9
+    .row-fluid
+      .span12
+        .span6
+        .span6.header-button
+          = link_to "Add New Product", new_store_admin_product_path(current_store), method: :get,
+            :class => "admin-primary-button pull-right"
+
+    .row-fluid
+      .span12#store-admin-table
+        %table.table.table-striped.table-bordered.cart-detail
+          %thead
+            %tr
+              %th.span1 Product
+              %th.span3 Title
+              %th.span4 Description
+              %th.span2 Price
+              %th.span2 Action
+          %tbody
+            - @products.each do |product|
+              %tr
+                %td= image_tag product.photo.url
+                %td= product.title
+                %td= product.description
+                %td= number_to_currency(product.price_in_dollars)
+                %td= link_to "edit", edit_store_admin_product_path(current_store,product)
+
   :javascript
     $(document).ready(function(){
       var something = window.location.toString().split('/')[5];
@@ -13,22 +40,3 @@
         $('.dashboard').removeClass('active');
       }
     })
-
-  #admin-tab.span9
-    = button_to "Add Product", new_store_admin_product_path(current_store), method: :get
-    %table.table.table-striped.table-bordered.cart-detail
-      %thead
-        %tr
-          %th.span1 Product
-          %th.span3 Title
-          %th.span4 Description
-          %th.span2 Price
-          %th.span2 Action
-      %tbody
-        - @products.each do |product|
-          %tr
-            %td= image_tag product.photo.url
-            %td= product.title
-            %td= product.description
-            %td= number_to_currency(product.price_in_dollars)
-            %td= link_to "edit", edit_store_admin_product_path(current_store,product)

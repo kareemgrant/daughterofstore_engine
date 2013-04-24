@@ -13,15 +13,15 @@
             %th.span2 Order Total
             %th.span3 Status
         %tbody
-          - @orders.each do |order|
-            %tr
-              %td
-                = link_to order.id, order_path(order.store, order)
-              %td
-                = order.store.name
-              %td
-                = (order.created_at).to_date.strftime("%B %-d, %Y")
-              %td
-                = number_to_currency(order.total_price)
-              %td
-                = order.current_status
+          -# - @orders.each do |order|
+          -#   %tr
+          -#     %td
+          -#       = link_to order.id, order_path(order.store, order)
+          -#     %td
+          -#       = order.store.name
+          -#     %td
+          -#       = (order.created_at).to_date.strftime("%B %-d, %Y")
+          -#     %td
+          -#       = number_to_currency(order.total_price)
+          -#     %td
+          -#       = order.current_status
