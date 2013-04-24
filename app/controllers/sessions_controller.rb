@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:sessions][:password])
       session[:user_id] = @user.id
       flash[:notice] = "Welcome to Shopmazing!"
-      redirect_to stores_path
+      redirect_to profile_path
     else
       flash[:alert] = "Invalid email or password"
       redirect_to new_session_path
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:notice] = "Logout Successful!"
-    redirect_to :back
+    redirect_to root_path
   end
 
 end
