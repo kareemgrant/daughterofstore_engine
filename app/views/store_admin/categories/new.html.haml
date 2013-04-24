@@ -1,25 +1,14 @@
 - provide(:title, 'Admin Add New Category')
-.row-fluid 
-  .span12
-    .page-header
-      %h1 Administration Portal
 
-.row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li
-        = link_to "Dashboard", store_admin_path
-      %li
-        = link_to "Orders", store_admin_orders_path
-      %li
-        = link_to "Products", store_admin_products_path
-      %li.active
-        = link_to "Categories", store_admin_categories_path
-      %li
-        =link_to "Admins", store_admin_members_path(current_store)
+%section#right-pane 
+  .row.admin-header
+    .span12
+      %h3
+        #{current_store.name.titleize}'s Categories
 
-.row-fluid
-  .span12
-    .span6
-      %h3 Add New Category
-= render 'form'
+
+  .row-fluid
+    .span12
+      .span6
+        %h3 Add New Category
+  = render 'form'

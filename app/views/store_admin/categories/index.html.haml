@@ -5,6 +5,30 @@
       %h3
         #{current_store.name.titleize}'s Categories
 
+  #admin-tab.span9
+    .row-fluid
+      .span12
+        .span6
+        .span6.header-button
+          = link_to "Add New Category", new_store_admin_category_path(current_store), method: :get,
+            :class => "admin-primary-button pull-right"
+
+    .row-fluid
+      .span12#store-admin-table
+        %table.table.table-striped.table-bordered.cart-detail
+          %thead
+            %tr
+              %th.span7 Name
+              %th.span5 Action
+          %tbody
+            - @categories.each do |category|
+              %tr
+                %td= category.name
+                %td
+                  = link_to "Edit", edit_store_admin_category_path(current_store, category)
+                  |
+                  = link_to "Delete", store_admin_category_path(current_store, category), method: :delete, data: { confirm: 'Are you sure?' }
+
   :javascript
     $(document).ready(function(){
       var something = window.location.toString().split('/')[5];
@@ -13,18 +37,3 @@
         $('.dashboard').removeClass('active');
       }
     })
-
-  #admin-tab.span9
-    %table.table.table-striped.table-bordered.cart-detail
-      %thead
-        %tr
-          %th.span7 Name
-          %th.span5 Action
-      %tbody
-        - @categories.each do |category|
-          %tr
-            %td= category.name
-            %td
-              = link_to "Edit", edit_store_admin_category_path(current_store, category)
-              |
-              = link_to "Delete", store_admin_category_path(current_store, category), method: :delete, data: { confirm: 'Are you sure?' }

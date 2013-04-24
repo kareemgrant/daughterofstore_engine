@@ -13,10 +13,9 @@ class StoresController < ApplicationController
 
   def create
     @store = Store.new(params[:store])
-    if @store.save
-      current_user.store_id = @store.id
-      current_user.save
 
+    if @store.save
+      current_user.assign_role(@store.id, 'admin')
       flash[:notice] = "Cheeers"
       redirect_to store_admin_path(@store)
     else

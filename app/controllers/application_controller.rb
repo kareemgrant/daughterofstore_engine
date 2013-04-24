@@ -63,4 +63,7 @@ class ApplicationController < ActionController::Base
      not_authenticated unless current_user && current_user.is_super_admin?
   end
 
+  def require_current_user
+    not_authenticated unless current_user
+  end
 end
