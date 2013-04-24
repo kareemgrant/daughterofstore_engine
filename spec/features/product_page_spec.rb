@@ -9,10 +9,16 @@ describe "Product Page" do
      end
   }
 
+  let!(:auction) { Auction.create(store_id: store.id,
+                                  duration: 3,
+                                  starting_bid: 0,
+                                  shipping_options: 'International',
+                                  active: true) }
+
   let!(:product){Product.create title:            "product1",
                                  description:      "somedescription",
                                  price_in_dollars: 8.99,
-                                 store_id:         store.id }
+                                 auction_id:         auction.id }
 
 
   context "Given a user visits a product page" do
