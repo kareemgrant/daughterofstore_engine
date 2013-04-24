@@ -334,7 +334,62 @@ Auction Styles
   padding: 2.0em;
   border-radius: 3px;
   box-shadow: 10px 9px 5px -9px #d4d4d4;
+
+  .left-pane {
+    padding-right: 25px;
+  }
+
+  ul.thumbnails {
+    margin-top: 10px;
+  }
+
+  h2 {
+    margin-bottom: 20px;
+  }
+
+  h4.content {
+    padding-bottom: 3px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  p.list-label {
+    font-weight: bold;
+  }
+
+  .product-desc, .similar-products, .shipping-payment {
+    margin-top: 25px;
+  }
+
+  #bid-form {
+
+    margin-top: 20px; 
+
+    .auction-primary-button {
+      text-align: center;
+      float: none;
+      display: inline;
+      background: #ede483;
+      padding: 0.5em 1em 0.5em 1em;
+      border-radius: 3px;
+      color: #09313c;
+      text-transform: uppercase;
+      font-family: 'Questrial', sans-serif;
+      -webkit-transition: all 1s ease-in-out;
+      -moz-transition: all 1s ease-in-out;
+      -o-transition: all 1s ease-in-out;
+      transition: all 1s ease-in-out;
+      margin-left: 10px;
+    }
+
+    input[type="text"] {
+      height: 36px;
+    }
+
+  }
+
 }
+
+
 
 /****************************
 Footnotes debug style

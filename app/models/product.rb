@@ -14,7 +14,7 @@ class Product < ActiveRecord::Base
 
     has_attached_file :photo,
                       styles: { large: '600x600>', thumb: '100x100>'},
-                      default_url: 'http://placehold.it/300/300'
+                      default_url: 'http://placehold.it/100/100'
 
   validates_uniqueness_of :title
   validates_presence_of :title, :description, :price_in_dollars, :auction_id

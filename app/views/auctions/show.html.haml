@@ -1,6 +1,6 @@
 - provide(:title, 'Auction Detail ')
 %section
-  .row.admin-header
+  .row.auction-block
     .span10.offset1
       %h4 Spacely's Sprockets
   .row.fluid
@@ -8,37 +8,105 @@
       #auction-block
         .row-fluid
           .span12
-            .span8
-              %h3 Rocket Skateboard
+            .span8.left-pane
+              %h2 Rocket Skateboard
 
               .row-fluid
                 .span4
-                  Current Bid
+                  %p.list-label
+                    Current Bid
                 .span8
-                  $700.00
+                  %p
+                    $700.00
 
               .row-fluid
                 .span4
-                  Time Left
+                  %p.list-label
+                    Time Left
                 .span8
-                  2 Days, 17 hours
+                  %p
+                    2 Days, 17 hours
 
               .row-fluid
                 .span4
-                  Number of Bids
+                  %p.list-label
+                    Number of Bids
                 .span8
-                  27
+                  %p
+                    27
 
               .row-fluid
-                .span8
-                  = simple_form_for @auction do |f|
+                .span12
+                  = simple_form_for @auction, html: { class: 'form-inline', id: 'bid-form'} do |f|
                     = f.error_notification
-                    = f.input :starting_bid
-                    = f.button :submit, "Bid", :class => "admin-primary-button pull-right"
+                    = f.input_field :starting_bid, label: false, class: 'span3'
+                    = f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
+
+              .row-fluid.product-desc
+                .span12
+                  %h4.content Product Description
+                  %p 
+                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+
+              .row-fluid.similar-products
+                .span12
+                  %h4.content Similar Products
+
+                  %ul.thumbnails
+                    %li.span2
+                      %a
+                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    %li.span2
+                      %a
+                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    %li.span2
+                      %a
+                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    %li.span2
+                      %a
+                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    %li.span2
+                      %a
+                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    %li.span2
+                      %a
+                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+
+            .span4
+              =image_tag @auction.product.photo.url, size: "300x300", class: "img-rounded"
+
+              %ul.thumbnails
+                %li.span4
+                  %a
+                    =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                %li.span4
+                  %a
+                    =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                %li.span4
+                  %a
+                    =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+
+              .row-fluid.shipping_payment
+                .span12
+                  %h4.content Shipping and Payment
+                  %p 
+                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+
+-# %p#notice= notice
+
+-# .row
+-#   .large-12.columns
+-#     .span6
+-#       =image_tag @auction.product.photo.url
+                    = f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
 
 
             .span4
-              =image_tag @auction.product.photo.url
+              =image_tag @auction.product.photo.url, size: "300x300"
               =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
               =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
               =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
