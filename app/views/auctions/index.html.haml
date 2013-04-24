@@ -1,0 +1,12 @@
+%h1 Listing auctions
+
+%table
+  %tr
+    %th
+    %th
+
+  - @auctions.each do |auction|
+    %tr
+      %td= link_to "#{auction.product.title}", auction
+      %td= link_to 'Show', auction
+%br

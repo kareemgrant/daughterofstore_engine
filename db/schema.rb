@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423220941) do
+ActiveRecord::Schema.define(:version => 20130424005406) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
@@ -116,12 +116,11 @@ ActiveRecord::Schema.define(:version => 20130423220941) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "slug"
-    t.integer  "store_id"
     t.string   "photo_url"
+    t.integer  "auction_id"
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug"
-  add_index "products", ["store_id"], :name => "index_products_on_store_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
