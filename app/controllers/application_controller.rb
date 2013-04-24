@@ -66,4 +66,5 @@ class ApplicationController < ActionController::Base
   def require_current_user
     not_authenticated unless current_user
   end
+
 end

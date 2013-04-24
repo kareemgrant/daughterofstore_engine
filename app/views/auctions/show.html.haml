@@ -9,15 +9,14 @@
         .row-fluid
           .span12
             .span8.left-pane
-              %h2 Rocket Skateboard
+              %h2= @auction.product.title
 
               .row-fluid
                 .span4
                   %p.list-label
                     Current Bid
-                .span8
-                  %p
-                    $700.00
+                .span8#highest_bid
+                  %p= @auction.highest_bid
 
               .row-fluid
                 .span4
@@ -37,15 +36,15 @@
 
               .row-fluid
                 .span12
-                  = simple_form_for @auction, html: { class: 'form-inline', id: 'bid-form'} do |f|
+                  = simple_form_for @bid, :url => auction_bids_path(params[:id]), html: { class: 'form-inline', id: 'bid-form'} do |f|
                     = f.error_notification
-                    = f.input_field :starting_bid, label: false, class: 'span3'
+                    = f.input_field :amount, input_html: { minvalue: @auction.highest_bid }, label: false, class: 'span3'
                     = f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
 
               .row-fluid.product-desc
                 .span12
                   %h4.content Product Description
-                  %p 
+                  %p
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
@@ -91,7 +90,7 @@
               .row-fluid.shipping_payment
                 .span12
                   %h4.content Shipping and Payment
-                  %p 
+                  %p
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
                     blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah

@@ -12,4 +12,9 @@ class Auction < ActiveRecord::Base
   validates_presence_of :starting_bid
   validates_presence_of :shipping_options
 
+  def highest_bid
+    bid = Bid.where(auction_id: self.id).order('amount DESC').first
+    bid ? bid.amount : 0
+  end
+
 end
