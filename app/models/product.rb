@@ -8,22 +8,22 @@ class Product < ActiveRecord::Base
                   :price,
                   :slug,
                   :category_ids,
-                  :photo,
-                  :photo_file_name,
-                  :photo_content_type,
-                  :photo_file_size,
-                  :photo_updated_at,
-                  :store_id
+                  :photo_url,
+                  :auction_id
 
+
+    has_attached_file :photo,
+                      styles: { large: '600x600>', thumb: '100x100>'},
+                      default_url: 'http://placehold.it/100/100'
 
   validates_uniqueness_of :title
-  validates_presence_of :title, :description, :price_in_dollars, :store_id
+  validates_presence_of :title, :description, :price_in_dollars, :auction_id
   validates :price, :numericality => {:greater_than => 1,
-    :message => "price must be greater than zero"}
+  :message => "price must be greater than zero"}
+
+  belongs_to :auction
   has_many :product_categories
   has_many :categories, through: :product_categories
-  belongs_to :store
-  has_attached_file :photo
 
   def status
     active ? "active" : "retired"

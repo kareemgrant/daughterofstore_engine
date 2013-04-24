@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423201649) do
+ActiveRecord::Schema.define(:version => 20130424005406) do
+
+  create_table "auctions", :force => true do |t|
+    t.integer  "store_id"
+    t.integer  "starting_bid"
+    t.string   "shipping_options"
+    t.integer  "duration"
+    t.boolean  "active"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "auctions", ["store_id"], :name => "index_auctions_on_store_id"
+
+  create_table "bids", :force => true do |t|
+    t.integer  "auction_id"
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "bids", ["auction_id"], :name => "index_bids_on_auction_id"
+  add_index "bids", ["user_id"], :name => "index_bids_on_user_id"
 
   create_table "billing_addresses", :force => true do |t|
     t.string   "street"
@@ -62,6 +85,15 @@ ActiveRecord::Schema.define(:version => 20130423201649) do
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
 
+  create_table "payment_options", :force => true do |t|
+    t.integer  "auction_id"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "payment_options", ["auction_id"], :name => "index_payment_options_on_auction_id"
+
   create_table "product_categories", :force => true do |t|
     t.integer  "product_id"
     t.integer  "category_id"
@@ -84,12 +116,11 @@ ActiveRecord::Schema.define(:version => 20130423201649) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.string   "slug"
-    t.integer  "store_id"
     t.string   "photo_url"
+    t.integer  "auction_id"
   end
 
   add_index "products", ["slug"], :name => "index_products_on_slug"
-  add_index "products", ["store_id"], :name => "index_products_on_store_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"

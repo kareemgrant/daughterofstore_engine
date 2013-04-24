@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :user_store_roles
   has_many :stores, :through => :user_store_roles
+  has_many :bids
 
 
   def assign_super_admin
