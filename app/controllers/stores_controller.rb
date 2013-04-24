@@ -16,8 +16,8 @@ class StoresController < ApplicationController
 
     if @store.save
       current_user.assign_role(@store.id, 'admin')
-      flash[:notice] = "Cheeers"
-      redirect_to store_admin_path(@store)
+      flash[:notice] = "Your store is pending approval"
+      redirect_to profile_path
     else
       flash[:notice] = "There was a problem"
       render "new"
