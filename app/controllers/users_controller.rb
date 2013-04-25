@@ -17,7 +17,8 @@ class UsersController < ApplicationController
       # UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
       flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".html_safe
-      redirect_to profile_path
+      destination = session.delete(:return_to) || profile_path
+      redirect_to destination
     else
       flash.now[:alert] = "You entered invalid information"
       render :new
