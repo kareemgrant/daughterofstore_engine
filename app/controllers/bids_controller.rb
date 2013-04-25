@@ -7,11 +7,10 @@ class BidsController < ApplicationController
         redirect_to auction_path(params[:auction_id]),
         notice: "You are currently the highest bidder!"
       else
-        redirect_to auction_path(params[:auction_id]), notice: 'Bid Failed!'
+        redirect_to auction_path(params[:auction_id]), notice: 'Your bid must be higher than the current bid'
       end
     else
       redirect_to login_path(return_to: auction_path(params[:auction_id])), notice: "You must log in to bid."
     end
   end
-
 end

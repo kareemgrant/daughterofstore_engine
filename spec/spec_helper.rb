@@ -2,6 +2,7 @@
 require 'factory_girl_rails'
 require 'rspec-rails'
 require 'simplecov'
+require 'time'
 SimpleCov.start do
   add_filter '/spec'
 end

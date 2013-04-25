@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424005406) do
+ActiveRecord::Schema.define(:version => 20130425044214) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
     t.integer  "starting_bid"
     t.string   "shipping_options"
-    t.integer  "duration"
-    t.boolean  "active"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.boolean  "active",           :default => true
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+    t.datetime "expiration_date"
   end
 
   add_index "auctions", ["store_id"], :name => "index_auctions_on_store_id"
@@ -56,15 +56,6 @@ ActiveRecord::Schema.define(:version => 20130424005406) do
   end
 
   add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
-
-  create_table "customers", :force => true do |t|
-    t.string   "full_name"
-    t.string   "email"
-    t.string   "display_name"
-    t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
 
   create_table "order_events", :force => true do |t|
     t.string   "status"

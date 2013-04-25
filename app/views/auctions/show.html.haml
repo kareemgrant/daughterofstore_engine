@@ -23,31 +23,27 @@
                   %p.list-label
                     Time Left
                 .span8
-                  %p
-                    2 Days, 17 hours
+                  %p#timeleft= @auction.time_left
 
               .row-fluid
                 .span4
                   %p.list-label
                     Number of Bids
-                .span8
-                  %p
-                    27
+                .span8#number_of_bids
+                  %p= @auction.number_of_bids
+
 
               .row-fluid
                 .span12
                   = simple_form_for @bid, :url => auction_bids_path(params[:id]), html: { class: 'form-inline', id: 'bid-form'} do |f|
                     = f.error_notification
-                    = f.input_field :amount, input_html: { minvalue: @auction.highest_bid }, label: false, class: 'span3'
+                    = f.input_field :amount, label: false, class: 'span3'
                     = f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
 
               .row-fluid.product-desc
                 .span12
                   %h4.content Product Description
-                  %p
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+                  %p= @auction.product.description
 
               .row-fluid.similar-products
                 .span12
@@ -120,3 +116,8 @@
 -# %br
 
 -# = link_to 'Back to Auctions', auctions_path
+
+/ :javascript
+/   var newYear = new Date();
+/   newYear = new Date(newYear.getFullYear() + 1, 1 - 1, 1);
+/   jQuery('#timeleft').countdown({until: newYear , format: 'dHM'});

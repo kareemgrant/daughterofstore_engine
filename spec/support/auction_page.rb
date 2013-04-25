@@ -17,4 +17,8 @@ class AuctionPage
     @page.find(:css, "#highest_bid").text
   end
 
+  def number_of_bids
+    @page.find(:css, "#number_of_bids").text
+  end
+
 end
