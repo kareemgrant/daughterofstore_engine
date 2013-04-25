@@ -55,6 +55,7 @@ group :development, :test do
   gem 'pry-remote'
   gem 'letter_opener'
   gem 'faker'
+  gem 'ruby-growl'
 end
 
 group :development do 
