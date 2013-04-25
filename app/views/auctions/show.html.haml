@@ -15,8 +15,11 @@
                 .span4
                   %p.list-label
                     Current Bid
-                .span8#highest_bid
+                .span1#highest_bid
                   %p= @auction.highest_bid
+                -if current_user == @auction.highest_bidder
+                  .span7#highest_bidder
+                    %span.label.label-info Highest Bidder
 
               .row-fluid
                 .span4

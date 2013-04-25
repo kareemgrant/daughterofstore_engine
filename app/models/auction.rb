@@ -41,6 +41,10 @@ class Auction < ActiveRecord::Base
     end
   end
 
+  def highest_bidder
+    Bid.find_by_amount(self.highest_bid).user unless bids.empty?
+  end
+
   def humanize secs
     [[60, "seconds"], [60, "minutes"], [24, "hours"], [1000, "days"]].inject([]) do |s, (count, name)|
     if secs > 0
