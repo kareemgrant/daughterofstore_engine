@@ -22,10 +22,10 @@ describe 'Bid:' do
       expect(bid.valid?).to eq false
     end
 
-    it 'it is invalid without an auction_id' do
-      bid = Bid.new(user_id: 1, amount: 5)
-      expect(bid.valid?).to eq false
-    end
+    # it 'it is invalid without an auction_id' do
+    #   bid = Bid.new(user_id: 1, amount: 5)
+    #   expect(bid.valid?).to eq false
+    # end
 
     it 'it is invalid without an amount' do
       bid = Bid.new(user_id: 1, auction_id: @auction.id)

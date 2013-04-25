@@ -25,4 +25,11 @@ class AuctionPage
     @page.find(:css, "#highest_bidder").text
   end
 
+  def login(user)
+    @page.visit "/sessions/new"
+    @page.fill_in 'sessions_email', with: user.email
+    @page.fill_in 'sessions_password', with: user.password
+    @page.click_button 'Log In'
+  end
+
 end

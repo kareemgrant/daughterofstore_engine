@@ -2,25 +2,30 @@ require 'spec_helper'
 
 describe "User Auction Page:" do
 
-  let!(:store) { Store.where(name:             "store1",
-                             path:             "storeuno",
-                             description:      "somedescription").first_or_create do |store|
-       store.update_attribute(:status, 'online')
+  let!(:store) { Store.where(name:        "store1",
+                             path:        "storeuno",
+                             description: "somedescription").first_or_create do |store|
+       store.update_attribute(:status,    'online')
      end
   }
 
-  let!(:auction) { Auction.create(store_id: store.id,
-                                  expiration_date: Time.now + 3600,
-                                  starting_bid: 0,
+  let!(:auction) { Auction.create(store_id:         store.id,
+                                  expiration_date:  Time.now + 3600,
+                                  starting_bid:     0,
                                   shipping_options: 'International',
-                                  active: true) }
+                                  active:           true)
+                 }
 
   let!(:product) {Product.create title:            "product1",
                                  description:      "somedescription",
                                  price_in_dollars: 8.99,
-                                 auction_id:         auction.id }
+                                 auction_id:       auction.id
+                  }
 
-  let!(:user) {User.create(full_name: "Professor X", email: "admin@example.com", password: "password")}
+  let!(:user) {User.create(full_name: "Professor X",
+                           email: "admin@example.com",
+                           password: "password")
+              }
 
 
   context "when an auction exists" do
@@ -34,12 +39,9 @@ describe "User Auction Page:" do
   context "when a user is logged in" do
 
     before do
-      visit '/sessions/new'
-      fill_in 'sessions_email', with: user.email
-      fill_in 'sessions_password', with: user.password
-      click_button 'Log In'
-      visit auction_path(auction.id)
       @auction_page = AuctionPage.new(page)
+      @auction_page.login(user)
+      visit auction_path(auction.id)
     end
 
     it "it allows a user to place a bid" do
@@ -69,18 +71,16 @@ describe "User Auction Page:" do
       fill_in('sessions_email', with: 'admin@example.com')
       fill_in('sessions_password', with: 'password')
       click_button 'Log In'
+
       expect(current_path).to eq auction_path(auction.id)
     end
   end
 
   context "given the highest bidder visits the auction page" do
     before do
-      visit '/sessions/new'
-      fill_in 'sessions_email', with: user.email
-      fill_in 'sessions_password', with: user.password
-      click_button 'Log In'
-      visit auction_path(auction.id)
       @auction_page = AuctionPage.new(page)
+      @auction_page.login(user)
+      visit auction_path(auction.id)
     end
 
     it "displays the badge 'You are the highest bidder'" do
