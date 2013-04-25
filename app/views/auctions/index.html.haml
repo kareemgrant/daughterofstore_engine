@@ -7,8 +7,9 @@
     %th
 
   - @auctions.each do |auction|
+    - product = auction.product
     %tr
-      %td= image_tag auction.product.photo.url
-      %td= link_to "#{auction.product.title}", auction
-      %td= link_to "#{auction.product.description[0..29]}...", auction
+      %td= image_tag product.photo.url
+      %td= link_to "#{product.title}", auction
+      %td= link_to "#{product.description[0..29]}...", auction
 %br
