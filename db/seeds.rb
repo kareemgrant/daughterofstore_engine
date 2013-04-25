@@ -1,6 +1,7 @@
 store1 = Store.create(name: "Xmen", path: "xmen", description: "all things xmen", status: "pending")
 store2 = Store.create(name: "Avengers", path: "avengers", description: "all things avengers", status: "online")
 store3 = Store.create(name: "Justice League", path: "justice-league", description: "all things justice league", status: "online")
+store4 = Store.create(name: "Spacely Sprockets", path: "spacely-sprockets", description: "For those who like rusty stuff from junkyards", status: "online")
 
 user1 = User.create(full_name: "Professor X", email: "admin@example.com", password: "password")
 user2 = User.create(full_name: "Wolverine", email: "wolverine@example.com", password: "password")
@@ -17,9 +18,11 @@ UserStoreRole.create({user_id: 2, store_id: 1, role: 'admin'})
 UserStoreRole.create({user_id: 3, store_id: 2, role: 'stocker'})
 UserStoreRole.create({user_id: 4, store_id: 3, role: 'admin'})
 
-Auction.create(store_id: store1.id, expiration_date: Time.new(2012, 04, 30), starting_bid: 0, shipping_options: 'International', active: true)
-Auction.create(store_id: store1.id, expiration_date: Time.new(2013, 04, 27), starting_bid: 0, shipping_options: 'International', active: true)
-Product.create(auction_id: 1, title: 'Product 1', description: 'This is a description', price: 1000, active: true)
-Product.create(auction_id: 2, title: 'Product 2', description: 'This is a description 2.', price: 1000, active: true)
+Auction.create(store_id: store4.id, expiration_date: Time.new(2012, 04, 30), starting_bid: 0, shipping_options: 'International', active: true)
+Auction.create(store_id: store4.id, expiration_date: Time.new(2013, 04, 27), starting_bid: 0, shipping_options: 'International', active: true)
+
+Product.create(auction_id: 1, title: 'Rusty Rocket Ship', description: 'This old lady was the prototype for Apollo 11. I stole her from NASA after they threw in a junkyard. I bet this baby is worth millions', price: 1000, active: true)
+Product.create(auction_id: 2, title: 'Rusty Bicycle', description: 'My grandaddy rode this bad boy to and from school, uphill both ways, in the snow.', price: 1000, active: true)
 
 PaymentOption.create(auction_id: 1, type: 'credit card')
+PaymentOption.create(auction_id: 2, type: 'cash')
