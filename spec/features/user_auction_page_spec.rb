@@ -73,4 +73,21 @@ describe "User Auction Page:" do
     end
   end
 
+  context "given the highest bidder visits the auction page" do
+    before do
+      visit '/sessions/new'
+      fill_in 'sessions_email', with: user.email
+      fill_in 'sessions_password', with: user.password
+      click_button 'Log In'
+      visit auction_path(auction.id)
+      @auction_page = AuctionPage.new(page)
+    end
+
+    it "displays the badge 'You are the highest bidder'" do
+      @auction_page.place_bid(7.99)
+
+      expect(@auction_page.highest_bidder).to eq "Highest Bidder"
+    end
+  end
+
 end
