@@ -21,7 +21,6 @@ gem 'stripe'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'haml-rails'
-gem "rolify",        :git => "git://github.com/EppO/rolify.git"
 
 
 group :assets do

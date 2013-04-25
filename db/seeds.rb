@@ -20,5 +20,6 @@ UserStoreRole.create({user_id: 4, store_id: 3, role: 'admin'})
 Auction.create(store_id: store1.id, expiration_date: Time.new(2012, 04, 30), starting_bid: 0, shipping_options: 'International', active: true)
 Auction.create(store_id: store1.id, expiration_date: Time.new(2013, 04, 27), starting_bid: 0, shipping_options: 'International', active: true)
 Product.create(auction_id: 1, title: 'Product 1', description: 'This is a description', price: 1000, active: true)
-Product.create(auction_id: 2, title: 'Product 2', description: 'This is a description', price: 1000, active: true)
+Product.create(auction_id: 2, title: 'Product 2', description: 'This is a description 2.', price: 1000, active: true)
+
 PaymentOption.create(auction_id: 1, type: 'credit card')
