@@ -25,6 +25,10 @@ class Auction < ActiveRecord::Base
     active
   end
 
+  def store_name
+    Store.find_by_id(store_id).name
+  end
+
   def check_status
     update_attributes(active: false) if expiration_date < Time.now.utc
   end
