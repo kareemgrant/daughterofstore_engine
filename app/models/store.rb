@@ -11,7 +11,6 @@ class Store < ActiveRecord::Base
   has_many :products
   has_many :orders
   has_many :categories
-  has_many :carts
   has_many :user_store_roles
   has_many :users, :through => :user_store_roles
 

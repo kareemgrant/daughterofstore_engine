@@ -1,9 +1,20 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title, :description, :price_in_dollars, :active, :created_at, :updated_at, :price, :slug,
-  :category_ids, :photo, :photo_file_name, :photo_content_type,
-  :photo_file_size, :photo_updated_at, :store, :store_id, :photo_url, :created_at, :updated_at, :price, :slug
-  # extend FriendlyId
-  # friendly_id :title, use: :slugged
+  attr_accessible :title,
+                  :description,
+                  :price_in_dollars,
+                  :active,
+                  :created_at,
+                  :updated_at,
+                  :price,
+                  :slug,
+                  :category_ids,
+                  :photo,
+                  :photo_file_name,
+                  :photo_content_type,
+                  :photo_file_size,
+                  :photo_updated_at,
+                  :store_id
+
 
   validates_uniqueness_of :title
   validates_presence_of :title, :description, :price_in_dollars, :store_id
@@ -11,13 +22,8 @@ class Product < ActiveRecord::Base
     :message => "price must be greater than zero"}
   has_many :product_categories
   has_many :categories, through: :product_categories
-  has_many :line_items
   belongs_to :store
-  has_attached_file :photo #,
-
-
-
-  before_destroy :ensure_not_referenced_by_any_line_item
+  has_attached_file :photo
 
   def status
     active ? "active" : "retired"
@@ -39,15 +45,4 @@ class Product < ActiveRecord::Base
     self.categories.join(", ")
   end
 
-
-  private
-
-  def ensure_not_referenced_by_any_line_item
-    if line_items.empty?
-      true
-    else
-      errors.add(:base, 'Line Items present')
-      false
-    end
-  end
 end

@@ -2,29 +2,21 @@
 %section#right-pane
   .row.admin-header
     .span12
-      %h2 
-        = "Welcome, #{current_user.full_name}"
+      %h3
+        #{current_store.name.titleize}'s Admins
 
-  %ul#admin-tabs
-    %li.dashboard.active
-      = link_to "Dashboard", store_admin_path
-    %li.orders
-      = link_to "Orders", store_admin_orders_path
-    %li.products
-      = link_to "Products", store_admin_products_path
-    %li.categories
-      = link_to "Categories", store_admin_categories_path
-    %li.members
-      =link_to "Admins", store_admin_members_path(current_store)
-  #admin-tab.span12
+
+  #admin-tab.span9
     .row-fluid
       .span12
         .span6
           %h3 Store Admins
         .span6.header-button
-          = link_to "Add New Store Admin", new_store_admin_member_path(current_store, role: "admin"), method: :get, :class => "admin-primary-button pull-right"
+          = link_to "Add New Store Admin", new_store_admin_member_path(current_store, role: "admin"),
+            method: :get, :class => "admin-primary-button pull-right"
+
     .row-fluid
-      .span12
+      .span12#store-admin-table
         %table.table.table-striped.table-bordered.cart-detail
           %thead
             %tr
@@ -38,7 +30,8 @@
                 %td= admin.full_name
                 %td= admin.email
                 %td Admin
-                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: admin.id), method: :delete, data: { confirm: 'Are you sure?' }
+                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: admin.id),
+                    method: :delete, data: { confirm: 'Are you sure?' }
 
     :javascript
       $(document).ready(function(){
@@ -55,8 +48,9 @@
           %h3 Stockers
         .span6.header-button
           = link_to "Add New Stocker", new_store_admin_member_path(current_store, {:role => "stocker"}), method: :get, :class => "admin-primary-button pull-right"
+
     .row-fluid
-      .span12
+      .span12#store-admin-table
         %table.table.table-striped.table-bordered.cart-detail
           %thead
             %tr
@@ -70,4 +64,4 @@
                 %td= stocker.full_name
                 %td= stocker.email
                 %td Stocker
-                %td= link_to "edit", "#"
+                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: stocker.id), method: :delete, data: { confirm: 'Are you sure?' }

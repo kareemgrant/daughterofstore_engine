@@ -1,22 +1,15 @@
-.row-fluid
-  %ul.breadcrumb
-    %li
-      = link_to "Home", "/"
-      %span.divider /
-    %li.active
-      My Account
-.row-fluid
-  .tabbable
-    = simple_form_for @user do |f|
-      = f.error_notification
-      = f.input :full_name
-      = f.input :email
-      = f.input :display_name
-      = f.simple_fields_for :phone_number do |p|
-        = p.input :phone
-        = p.input :receive_sms, label: "Receive SMS?", as: :radio_buttons, :item_wrapper_class => 'inline'
-      = f.input :password
-      = f.input :password_confirmation
-      = f.error :base
-      %div
-        = f.button :submit, :value => "Update Profile", :class => "btn-primary"
+- provide(:title, 'Edit User Profile')
+%section#right-pane
+  .row.admin-header
+    .span9
+      %h3 Edit Your Profile
+      = simple_form_for @user do |f|
+        = f.error_notification
+        = f.input :full_name
+        = f.input :email
+        = f.input :display_name
+        = f.input :password
+        = f.input :password_confirmation
+        = f.error :base
+        %div
+          = f.button :submit, :value => "Update Profile", :class => "btn-primary"

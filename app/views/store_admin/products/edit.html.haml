@@ -1,40 +1,28 @@
 - provide(:title, 'Admin Edit Product')
-.row-fluid
-  .span12
-    .page-header
-      %h1 Administration Portal
 
-.row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li
-        = link_to "Dashboard", store_admin_path
-      %li
-        = link_to "Past Orders", store_admin_orders_path
-      %li.active
-        = link_to "Manage Products", store_admin_products_path
-      %li
-        = link_to "Manage Categories", store_admin_categories_path
-      %li
-        = link_to "Manage Admins", store_admin_members_path
+%section#right-pane 
+  .row.admin-header
+    .span12
+      %h3
+        #{current_store.name.titleize}'s Products
 
-.row-fluid
-  .span12
-    .span6
-      %h3 Edit Existing Product
--# = render 'form'
-= simple_form_for [:store_admin, @product],
-  :url => store_admin_product_path(current_store, @product), 
-  :method => :put, :html => {:multipart => true} do |f|
+  .row-fluid
+    .span8
+      .span6
+        %h4 Edit Existing Product
+  -# = render 'form'
+  = simple_form_for [:store_admin, @product],
+    :url => store_admin_product_path(current_store, @product), 
+    :method => :put, :html => {:multipart => true} do |f|
 
-  = f.error_notification
-  = f.input :title, input_html: {class: "span6"}
-  = f.input :description, input_html: {class: "span6", rows: 10}
-  = f.input :price_in_dollars
-  = f.input :active, as: :radio_buttons
-  = f.association :categories, as: :check_boxes, :item_wrapper_class => 'inline'
-  = f.input :photo, as: :file, label: "Upload pic"
-  .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
-  = f.error :base
+    = f.error_notification
+    = f.input :title, input_html: {class: "span6"}
+    = f.input :description, input_html: {class: "span6", rows: 10}
+    = f.input :price_in_dollars
+    = f.input :active, as: :radio_buttons
+    = f.association :categories, as: :check_boxes, :item_wrapper_class => 'inline'
+    = f.input :photo, as: :file, label: "Upload pic"
+    .form-actions
+      = f.button :submit, :class => 'btn-primary'
+      = submit_tag 'Cancel', :type => :reset, :class => "btn btn-danger"
+    = f.error :base

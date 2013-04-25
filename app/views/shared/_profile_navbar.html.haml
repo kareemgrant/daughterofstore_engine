@@ -8,8 +8,16 @@
             =link_to 'Profile', profile_path, class: "admin_header_link dashboard active"
           %li
             =link_to 'Purchases', profile_orders_path, class: "admin_header_link orders"
+
           - if current_user.stores.count > 0
             %li
-              =link_to 'Stores', stores_path, class: "admin_header_link products"
-        
+              =link_to 'Your Stores', "#"
+
+          - if current_user.is_super_admin?
+            %li
+              =link_to 'Platform Admin', admin_home_path, class: "admin_header_link"
+
+          %li
+            =link_to 'Logout', logout_path, class: "admin_header_link"
+
         =link_to "Create New Store", create_new_store_path, class: "admin-primary-button admin-cta"

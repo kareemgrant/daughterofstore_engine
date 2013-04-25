@@ -1,63 +1,36 @@
-- provide(:title, 'Admin Dashboard')
+- provide(:title, 'Admin Products')
 %section#right-pane
   .row.admin-header
     .span12
-      %h2 
-        = "Welcome, #{current_user.full_name}"
-  %section.dashboard
-    .row
-      .span2.widget
-        %h4 Pending
-        %h2.widget-count
-          - pending = []
-          - @orders.each do |order|
-            - if order.current_status == "pending"
-              - pending << order
-          = pending.count
-      .span2.widget
-        %h4 Shipped
-        %h2.widget-count
-          - shipped = []
-          - @orders.each do |order|
-            - if order.current_status == "shipped"
-              - shipped << order
-          = shipped.count
-      .span2.widget
-        %h4 Paid
-        %h2.widget-count
-          - paid = []
-          - @orders.each do |order|
-            - if order.current_status == "paid"
-              - paid << order
-          = paid.count
-      .span2.widget
-        %h4 Cancelled
-        %h2.widget-count
-          - cancelled = []
-          - @orders.each do |order|
-            - if order.current_status == "cancelled"
-              - cancelled << order
-          = cancelled.count      
-      .span2.widget
-        %h4 Returned
-        %h2.widget-count
-          - returned = []
-          - @orders.each do |order|
-            - if order.current_status == "returned"
-              - returned << order
-          = returned.count
+      %h3
+        #{current_store.name.titleize}'s Products
 
-  %ul#admin-tabs
-    %li.dashboard.active
-      = link_to "Dashboard", store_admin_path
-    %li.orders
-      = link_to "Orders", store_admin_orders_path
-    %li.products
-      = link_to "Products", store_admin_products_path
-    %li.categories
-      = link_to "Categories", store_admin_categories_path
-    %li
-      =link_to "Admins", store_admin_members_path(current_store)
+  #admin-tab.span9
+    .row-fluid
+      .span12
+        .span6
+        .span6.header-button
+          = link_to "Add New Product", new_store_admin_product_path(current_store), method: :get,
+            :class => "admin-primary-button pull-right"
+
+    .row-fluid
+      .span12#store-admin-table
+        %table.table.table-striped.table-bordered.cart-detail
+          %thead
+            %tr
+              %th.span1 Product
+              %th.span3 Title
+              %th.span4 Description
+              %th.span2 Price
+              %th.span2 Action
+          %tbody
+            - @products.each do |product|
+              %tr
+                %td= image_tag product.photo.url
+                %td= product.title
+                %td= product.description
+                %td= number_to_currency(product.price_in_dollars)
+                %td= link_to "edit", edit_store_admin_product_path(current_store,product)
 
   :javascript
     $(document).ready(function(){
@@ -67,21 +40,3 @@
         $('.dashboard').removeClass('active');
       }
     })
-
-  #admin-tab.span12
-    %table.table.table-striped.table-bordered.cart-detail
-      %thead
-        %tr
-          %th.span1 Product
-          %th.span3 Title
-          %th.span4 Description
-          %th.span2 Price
-          %th.span2 Action
-      %tbody
-        - @products.each do |product|
-          %tr
-            %td= image_tag product.photo_url
-            %td= product.title
-            %td= product.description
-            %td= number_to_currency(product.price_in_dollars)
-            %td= link_to "edit", edit_store_admin_product_path(current_store,product)

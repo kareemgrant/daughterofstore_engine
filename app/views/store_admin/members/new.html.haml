@@ -1,27 +1,16 @@
-- provide(:title, 'Add New Member')
-.row-fluid
-  .span12
-    .page-header
-      %h1 Administration Portal
+- provide(:title, 'Add New Admin')
 
-.row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li
-        = link_to "Dashboard", store_admin_path
-      %li
-        = link_to "Past Orders", store_admin_orders_path
-      %li.active
-        = link_to "Manage Products", store_admin_products_path
-      %li
-        = link_to "Manage Categories", store_admin_categories_path
-      %li
-        = link_to "Manage Admins", store_admin_members_path
+%section#right-pane
+  .row.admin-header
+    .span12
+      %h3
+        #{current_store.name.titleize}'s Admins
 
-= simple_form_for :invite, :url => store_admin_members_path do |f|
-  = f.error_notification 
-  = f.input :email, label: false, input_html: { placeholder: "Email" }
-  = f.hidden_field :role, value: @role
-  = f.button :submit, :value => "Add New Member", :class => "form-primary-button"
-  = f.error :base
+  .single-form
+    = simple_form_for :invite, :url => store_admin_members_path do |f|
+      = f.error_notification 
+      = f.input :email, label: false, input_html: { placeholder: "Email" }
+      = f.hidden_field :role, value: @role
+      = f.button :submit, :value => "Add New Admin", :class => "form-primary-button"
+      = f.error :base
 

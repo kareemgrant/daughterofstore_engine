@@ -13,12 +13,11 @@ class StoresController < ApplicationController
 
   def create
     @store = Store.new(params[:store])
-    if @store.save
-      current_user.store_id = @store.id
-      current_user.save
 
-      flash[:notice] = "Cheeers"
-      redirect_to store_admin_path(@store)
+    if @store.save
+      current_user.assign_role(@store.id, 'admin')
+      flash[:notice] = "Your store is pending approval"
+      redirect_to profile_path
     else
       flash[:notice] = "There was a problem"
       render "new"
