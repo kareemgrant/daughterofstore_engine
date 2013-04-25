@@ -44,7 +44,7 @@ StoreEngine::Application.configure do
     :bucket => "store-engine"
   }
 
-  #ActionMailer Config
+  # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'localhost:3000'}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -60,4 +60,15 @@ StoreEngine::Application.configure do
   # config.action_mailer.perform_deliveries = true
   # config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.default :charset => "utf-8"
+
+
+  # Bullet configuration to identify n+1 queries
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.growl = true
+    Bullet.rails_logger = true
+  end
 end

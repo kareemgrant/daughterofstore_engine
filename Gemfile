@@ -21,6 +21,7 @@ gem 'stripe'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'haml-rails'
+gem 'newrelic_rpm'
 
 
 group :assets do
@@ -54,9 +55,11 @@ group :development, :test do
   gem 'pry-remote'
   gem 'letter_opener'
   gem 'faker'
+  gem 'ruby-growl'
 end
 
 group :development do 
+  gem 'bullet'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
