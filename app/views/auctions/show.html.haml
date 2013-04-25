@@ -17,7 +17,7 @@
                     Current Bid
                 .span1#highest_bid
                   %p= @auction.highest_bid
-                -if current_user == @auction.highest_bidder
+                -if current_user == @auction.highest_bidder && current_user != nil
                   .span7#highest_bidder
                     %span.label.label-info Highest Bidder
 
