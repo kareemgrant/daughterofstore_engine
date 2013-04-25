@@ -34,12 +34,12 @@
 
 
               .row-fluid
-              .span12
-              - if @auction.active?
-                = simple_form_for @bid, :url => auction_bids_path(params[:id]), html: { class: 'form-inline', id: 'bid-form'} do |f|
-                  = f.error_notification
-                  = f.input_field :amount, label: false, class: 'span3'
-                  = f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
+                .span12
+                - if @auction.active?
+                  = simple_form_for @bid, :url => auction_bids_path(params[:id]), html: { class: 'form-inline', id: 'bid-form'} do |f|
+                    = f.error_notification
+                    = f.input_field :amount, label: false, class: 'span3'
+                    = f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
 
               .row-fluid.product-desc
                 .span12

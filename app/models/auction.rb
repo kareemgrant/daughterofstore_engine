@@ -33,7 +33,7 @@ class Auction < ActiveRecord::Base
     if self.active?
       humanize((expiration_date - Time.now))
     else
-      "Auction has expired"
+      "Auction Has Ended"
     end
   end
 
