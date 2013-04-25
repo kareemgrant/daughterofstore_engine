@@ -1,9 +1,3 @@
-GIT
-  remote: git://github.com/EppO/rolify.git
-  revision: 1a7c1af51962291b43db22f33f707e80b51343ee
-  specs:
-    rolify (3.3.0.rc4)
-
 GEM
   remote: https://rubygems.org/
   specs:
