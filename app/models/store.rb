@@ -8,7 +8,8 @@ class Store < ActiveRecord::Base
   validates_presence_of :name, :path, :description
   validates :status, presence: true, inclusion: { in: %w(online offline pending declined) }
 
-  has_many :products
+  has_many :auctions
+  has_many :products, through: :auctions
   has_many :orders
   has_many :categories
   has_many :user_store_roles

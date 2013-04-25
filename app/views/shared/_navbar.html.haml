@@ -7,7 +7,9 @@
             %a.brand{:href => "/"}= current_store.name
           - else
             %a.brand{:href => "/"} Shopmazing
-          %ul.nav
+
+
+          %ul.nav.pull-right
             - if current_user  
               %li
                 / %p Welcome #{current_user.full_name}
@@ -16,3 +18,6 @@
             - else
               %li= link_to "Log In", new_session_path
               %li= link_to "Sign Up", new_user_path
+
+          %form.navbar-search.pull-right
+            %input.search-query{:type => 'type', :placeholder => 'Search'}
