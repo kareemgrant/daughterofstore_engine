@@ -43,7 +43,7 @@ group :development, :test do
   gem 'heroku'
   gem 'pry'
   gem 'simplecov'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', require: false
   gem 'cane'
   gem 'reek'
   gem 'erb2haml'
