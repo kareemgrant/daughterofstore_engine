@@ -21,6 +21,7 @@ gem 'stripe'
 gem 'figaro'
 gem 'twilio-ruby'
 gem 'haml-rails'
+gem 'newrelic_rpm'
 
 
 group :assets do

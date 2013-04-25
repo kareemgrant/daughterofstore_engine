@@ -134,6 +134,7 @@ GEM
     mime-types (1.22)
     multi_json (1.7.2)
     netrc (0.7.7)
+    newrelic_rpm (3.6.0.83)
     nokogiri (1.5.9)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)
@@ -277,6 +278,7 @@ DEPENDENCIES
   kaminari
   launchy
   letter_opener
+  newrelic_rpm
   paperclip (~> 3.0)
   pg
   pry
