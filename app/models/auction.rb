@@ -30,7 +30,17 @@ class Auction < ActiveRecord::Base
   end
 
   def time_left
-    expiration_date - Time.now
+    humanize((expiration_date - Time.now))
   end
+
+  def humanize secs
+    [[60, "seconds"], [60, "minutes"], [24, "hours"], [1000, "days"]].inject([]) do |s, (count, name)|
+    if secs > 0
+      secs, n = secs.divmod(count)
+      s.unshift "#{n.to_i} #{name}"
+    end
+    s
+  end.join(' ')
+end
 
 end
