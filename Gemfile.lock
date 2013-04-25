@@ -286,7 +286,6 @@ DEPENDENCIES
   rails-footnotes (>= 3.7.9)
   rake
   reek
-  rolify!
   rspec-rails
   sass-rails (~> 3.2.3)
   shoulda-context
