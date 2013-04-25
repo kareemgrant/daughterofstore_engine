@@ -22,6 +22,7 @@ gem 'figaro'
 gem 'twilio-ruby'
 gem 'haml-rails'
 gem 'newrelic_rpm'
+gem 'resque'
 
 
 group :assets do
