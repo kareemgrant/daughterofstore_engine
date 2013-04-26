@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".html_safe
       redirect_to profile_path
     else
-      flash.now[:alert] = "You entered invalid information"
+      flash.now[:alert] = "You entered invalid information, please try again"
       render :new
     end
   end

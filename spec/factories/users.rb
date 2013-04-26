@@ -6,6 +6,10 @@ FactoryGirl.define do
     password      "password"
     sequence(:email) { |n| "ironman#{n}@example.com" }
 
+    factory :super_admin do
+      super_admin   true
+    end
+
     factory :invalid_user do
       full_name     nil
     end
