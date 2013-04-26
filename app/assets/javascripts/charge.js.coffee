@@ -11,7 +11,7 @@ charge =
         false
       else
         true
-  
+
   processCard: ->
     card =
       number: $('#card_number').val()
@@ -19,7 +19,7 @@ charge =
       expMonth: $('#card_month').val()
       expYear: $('#card_year').val()
     Stripe.createToken(card, charge.handleStripeResponse)
-  
+
   handleStripeResponse: (status, response) ->
     if status == 200
       $('#order_stripe_card_token').val(response.id)
