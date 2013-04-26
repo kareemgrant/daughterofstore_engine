@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425044214) do
+ActiveRecord::Schema.define(:version => 20130426153430) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
@@ -48,15 +48,6 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
 
   add_index "billing_addresses", ["order_id"], :name => "index_billing_addresses_on_order_id"
 
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "store_id"
-  end
-
-  add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
-
   create_table "order_events", :force => true do |t|
     t.string   "status"
     t.integer  "order_id"
@@ -75,6 +66,15 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
   end
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
+
+  create_table "payment_options", :force => true do |t|
+    t.integer  "auction_id"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "payment_options", ["auction_id"], :name => "index_payment_options_on_auction_id"
 
   create_table "product_categories", :force => true do |t|
     t.integer  "product_id"
