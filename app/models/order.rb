@@ -15,6 +15,8 @@ class Order < ActiveRecord::Base
     :card_code,
     :card_year
 
+  accepts_nested_attributes_for :billing_address, :shipping_address
+
   has_many :events, class_name: "OrderEvent"
   has_one :shipping_address
   has_one :billing_address
@@ -22,7 +24,8 @@ class Order < ActiveRecord::Base
   belongs_to :store
   validates_presence_of :total_price
 
-  accepts_nested_attributes_for :billing_address, :shipping_address
+  before_save :update_stripe
+
 
   def save_with_payment
     if valid?
