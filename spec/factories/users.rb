@@ -5,5 +5,9 @@ FactoryGirl.define do
     display_name  "Iron Man"
     password      "password"
     sequence(:email) { |n| "ironman#{n}@example.com" }
+
+    factory :invalid_user do
+      full_name     nil
+    end
   end
 end

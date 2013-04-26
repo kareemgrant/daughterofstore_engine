@@ -62,7 +62,7 @@ class Store < ActiveRecord::Base
   end
 
   def convert_to_url
-    self.path = path.parameterize
+    self.path = path.parameterize if path
   end
 
 end
