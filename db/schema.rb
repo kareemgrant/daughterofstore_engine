@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426153430) do
+ActiveRecord::Schema.define(:version => 20130426163956) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
@@ -75,16 +75,6 @@ ActiveRecord::Schema.define(:version => 20130426153430) do
   end
 
   add_index "payment_options", ["auction_id"], :name => "index_payment_options_on_auction_id"
-
-  create_table "product_categories", :force => true do |t|
-    t.integer  "product_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "product_categories", ["category_id"], :name => "index_product_categories_on_category_id"
-  add_index "product_categories", ["product_id"], :name => "index_product_categories_on_product_id"
 
   create_table "products", :force => true do |t|
     t.string   "title",                                :null => false
@@ -153,7 +143,8 @@ ActiveRecord::Schema.define(:version => 20130426153430) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
-    t.boolean  "guest"
+    t.string   "customer_id"
+    t.string   "last_4_digits"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
