@@ -76,15 +76,6 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
 
   add_index "orders", ["store_id"], :name => "index_orders_on_store_id"
 
-  create_table "payment_options", :force => true do |t|
-    t.integer  "auction_id"
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "payment_options", ["auction_id"], :name => "index_payment_options_on_auction_id"
-
   create_table "product_categories", :force => true do |t|
     t.integer  "product_id"
     t.integer  "category_id"

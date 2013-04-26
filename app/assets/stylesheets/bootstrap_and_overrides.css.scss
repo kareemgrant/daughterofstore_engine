@@ -13,10 +13,12 @@ body { padding-top: 60px; background: #f1f1f1; }
 body {
   padding-top: 7px;
   padding-bottom: 40px;
+<<<<<<< HEAD
   font-size: 15px;
 }
 body#public {
   padding-top: 50px;
+  font-size: 13px;
 }
 a {
   color: #005580;
@@ -50,7 +52,7 @@ a {
       background-color: #333; 
     }
   }
-  
+
   li a {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -219,7 +221,7 @@ a {
 }
 
 table.cart-detail {
-  
+
   td.description {
     span.name {
       font-weight: bold;
@@ -229,7 +231,7 @@ table.cart-detail {
       font-weight: normal;
       margin-top: 10px;
     }
-    
+
     .remove_product {
       margin-top: 10px;
     }

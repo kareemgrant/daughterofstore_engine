@@ -3,8 +3,9 @@ class UsersController < ApplicationController
 
   before_filter :require_current_user, only: [:show, :edit, :update]
 
-  def index
-    @users = User.all
+  def show
+    @user = User.find(current_user.id)
+    render :layout => 'profile'
   end
 
   def new
@@ -20,15 +21,11 @@ class UsersController < ApplicationController
       destination = session.delete(:return_to) || profile_path
       redirect_to destination
     else
-      flash.now[:alert] = "You entered invalid information"
+      flash.now[:alert] = "You entered invalid information, please try again"
       render :new
     end
   end
 
-  def show
-    @user = User.find(current_user.id)
-    render :layout => 'profile'
-  end
 
   def edit
     @user = User.find(current_user.id)
