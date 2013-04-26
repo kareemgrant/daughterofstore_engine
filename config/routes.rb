@@ -39,13 +39,10 @@ StoreEngine::Application.routes.draw do
     resources :products, :only => [:index, :show]
     resources :orders, :except => [:edit, :update, :destroy]
 
-    resources :categories, :only => [:index, :show]
-
     namespace :store_admin, :path => "/admin" do
       match "/" => "dashboards#show"
       resources :products, :except => :destroy
       resources :members
-      resources :categories, :except => :show
       resources :stores, :only => [:index, :edit, :update]
       resources :orders, :except => :destroy
     end
