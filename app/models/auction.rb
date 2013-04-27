@@ -53,6 +53,7 @@ class Auction < ActiveRecord::Base
     end
     s
   end.join(' ')
+
 end
 
 end
