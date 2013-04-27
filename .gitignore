@@ -21,3 +21,10 @@ coverage/
 .DS_Store
 .swm
 .idea
+zeus.json
+*.sw[nop]
+.bundle
+.sass-cache/
+log/*.log
+tags
+tmp/**/*
