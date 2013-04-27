@@ -21,4 +21,3 @@ class Bid < ActiveRecord::Base
 end
 
 
- # self.errors.add(:base, "Bid amount too low") if self.amount < self.auction.highest_bid

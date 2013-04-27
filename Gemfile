@@ -40,21 +40,24 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "shoulda-context"
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'unicorn'
   gem 'heroku'
   gem 'pry'
   gem 'simplecov'
-  gem 'capybara'
-  gem 'fabrication'
-  gem 'factory_girl_rails'
-  gem 'launchy'
+  gem 'factory_girl_rails', require: false
   gem 'cane'
   gem 'reek'
   gem 'erb2haml'
   gem 'html2haml'
   gem 'pry-remote'
   gem 'letter_opener'
+  gem 'guard-rspec'
+end
+
+group :test do 
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'capybara'
   gem 'faker'
   gem 'ruby-growl'
 end

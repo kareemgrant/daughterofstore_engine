@@ -99,7 +99,7 @@ describe 'Auction:' do
       auction = Auction.create(store_id: 1,
                             starting_bid: 0,
                             shipping_options: 'International',
-                            expiration_date: Time.new(2013, 4, 27),
+                            expiration_date: Time.new(2014, 4, 27),
                             active: true
                            )
       user1 = User.create(full_name: "somedude1",

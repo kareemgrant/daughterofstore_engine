@@ -1,64 +1,60 @@
-# require 'spec_helper'
+require 'spec_helper'
 
-# describe SessionsController do
+describe SessionsController do
 
-#   describe "GET 'new'" do
-#     it "returns http success" do
-#       get 'new'
-#       response.should be_success
-#     end
+  describe 'GET #new' do
+    it "renders the :new template" do
+      get :new
+      expect(response).to render_template :new
+    end
+  end
 
-#     it 'renders the new template' do
-#       get 'new'
-#       expect(response).to render_template :new
-#     end
-#   end
+  describe 'POST #create' do
+    context "with valid attributes" do
+      before do
+        @user = create(:user)
+        post :create, sessions: { email: @user.email, password: @user.password }
+      end
 
-#   describe 'POST #create' do
+      it "creates new user session" do
+        expect(response).to redirect_to auctions_path
+      end
 
-#     shared_examples "a user that fails to login" do
-#       it "asks the user to login again" do
-#         post :create, session: { email: "breaking@bad.com" }
-#         expect(response).to render_template :new
-#       end
+      it "sets the session[:user_id] to @user.id" do
+        expect(session[:user_id]).to eq @user.id
+      end
+    end
 
-#       it "does not set up the user session" do
-#         post :create, session: { email: "breaking@bad.com" }
-#         expect(session[:user_id]).to be_nil
-#       end
-#     end
+    context "with invalid attributes" do
+      before do
+        @user = create(:user)
+      end
 
-#     context "user with email address" do
+      it "does not create a new user session" do
+        post :create, sessions: { email: @user.email }
+        expect(response).to render_template :new
+      end
 
-#       let!(:user) { User.create full_name: "Walter White", email: "breaking@bad.com", password: "meth" }
+      it "does not set the session[:user_id] to @user.id" do
+        post :create, sessions: { email: @user.email }
+        expect(session[:user_id]).to be_nil
+      end
+    end
+  end
 
+  describe 'DELETE #destroy' do
+    before do
+      @user = create(:user)
+      session[:user_id] = @user.id
+      delete :destroy, id: @user
+    end
 
-#       context "when the user provides a correct password" do
-#         it "redirects to user to the root url" do
-#           post :create, session: { email: "breaking@bad.com", password: "meth" }
-#           expect(response).to redirect_to root_path
-#         end
+    it "clears the session[:user_id] value" do
+      expect(session[:user_id]).to be_nil
+    end
 
-#         it "sets up the user session" do
-#           post :create, session: { email: "breaking@bad.com", password: "meth" }
-#           expect(session[:user_id]).to eq user.id
-#         end
-#       end
-#     end
-#   end
-
-#   describe 'DELETE #destroy' do
-
-#     it "clears the session user id" do
-#       session[:user_id] = 567
-
-#       post :destroy
-#       expect(session[:user_id]).to be_nil
-#     end
-
-#     it "redirects to the root url" do
-#       post :destroy
-#       expect(response).to redirect_to root_path
-#     end
-#   end
-# end
+    it "redirects back to the root_path" do
+      expect(response).to redirect_to root_path
+    end
+  end
+end
