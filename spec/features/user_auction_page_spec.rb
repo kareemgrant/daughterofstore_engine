@@ -63,6 +63,7 @@ describe "User Auction Page:" do
   end
 
   context "when a user is not logged in" do
+
     it "it prompts the user to login when they attempt to bid and redirects back to the auction page" do
       visit auction_path(auction.id)
       @auction_page = AuctionPage.new(page)
@@ -77,6 +78,7 @@ describe "User Auction Page:" do
   end
 
   context "given the highest bidder visits the auction page" do
+
     before do
       @auction_page = AuctionPage.new(page)
       @auction_page.login(user)
