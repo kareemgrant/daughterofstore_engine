@@ -18,7 +18,11 @@ describe 'Account Creation:' do
   end
 
   context 'when a user has an account but is not logged in' do
-    let!(:user) { User.create(full_name: 'Logan Sears', email: 'lsears322@gmail.com', display_name: 'Logan', password: 'password')}
+    let!(:user) { User.create(full_name: 'Logan Sears',
+                              email: 'lsears322@gmail.com',
+                              display_name: 'Logan',
+                              password: 'password')
+                }
 
     it 'they can login to their account' do
       visit '/'
