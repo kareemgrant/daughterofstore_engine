@@ -33,27 +33,8 @@ class Auction < ActiveRecord::Base
     update_attributes(active: false) if expiration_date < Time.now.utc
   end
 
-  def time_left
-    if self.active?
-      humanize((expiration_date - Time.now))
-    else
-      "Auction Has Ended"
-    end
-  end
-
   def highest_bidder
     Bid.find_by_amount(self.highest_bid).user unless bids.empty?
   end
-
-  def humanize secs
-    [[60, "seconds"], [60, "minutes"], [24, "hours"], [1000, "days"]].inject([]) do |s, (count, name)|
-    if secs > 0
-      secs, n = secs.divmod(count)
-      s.unshift "#{n.to_i} #{name}"
-    end
-    s
-  end.join(' ')
-
-end
 
 end
