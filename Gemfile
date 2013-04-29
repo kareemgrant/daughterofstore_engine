@@ -52,6 +52,7 @@ group :development, :test do
   gem 'pry-remote'
   gem 'letter_opener'
   gem 'guard-rspec'
+  gem 'letter_opener'
 end
 
 group :test do 

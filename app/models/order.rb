@@ -4,8 +4,8 @@ class Order < ActiveRecord::Base
     :stripe_card_token,
     :email,
     :store_id,
-    :billing_address_attributes,
-    :shipping_address_attributes,
+    # :billing_address_attributes,
+    # :shipping_address_attributes,
     :random_order_id
 
   attr_accessor :stripe_card_token,
@@ -15,11 +15,11 @@ class Order < ActiveRecord::Base
     :card_code,
     :card_year
 
-  accepts_nested_attributes_for :billing_address, :shipping_address
+  # accepts_nested_attributes_for :billing_address, :shipping_address
 
   has_many :events, class_name: "OrderEvent"
-  has_one :shipping_address
-  has_one :billing_address
+  # has_one :shipping_address
+  # has_one :billing_address
 
   belongs_to :store
   validates_presence_of :total_price

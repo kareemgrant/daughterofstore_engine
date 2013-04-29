@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      # UserMailer.signup_confirmation_email(@user).deliver
+      UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
       flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".html_safe
       destination = session.delete(:return_to) || profile_path
