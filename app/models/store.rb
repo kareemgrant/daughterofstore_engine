@@ -32,7 +32,7 @@ class Store < ActiveRecord::Base
 
   def is_admin?(user)
     if user
-      user.super_admin || UserStoreRole.exists?(store_id: self.id, user_id: user.id, role: "admin")
+      user.is_super_admin? || UserStoreRole.exists?(store_id: id, user_id: user.id, role: "admin")
     end
   end
 

@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
 
   def current_store
-    if current_user && current_user.super_admin
+    if current_user && current_user.is_super_admin?
       @store ||= Store.where(path: params[:store_id]).first
     else
       @store ||= Store.online.where(path: params[:store_id]).first

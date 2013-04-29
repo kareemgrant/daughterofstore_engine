@@ -1,0 +1,22 @@
+= form_for [:store_admin, @auction] do |f|
+  %h4= "Start An Account"
+  - if @auction.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@auction.errors.count, "error")
+        prohibited this auction from being created:
+      %ul
+        - @auction.errors.full_messages.each do |msg|
+          %li= msg
+
+  = f.text_field :expiration_date,  placeholder: "Expiration Date"
+  = f.text_field :starting_bid,     placeholder: "Starting Bid"
+  = f.text_field :shipping_options, placeholder: "Shipping Options"
+
+  = f.fields_for :product do |builder|
+    = builder.text_field :title,       placeholder: "Product Title"
+    = builder.text_field :description, placeholder: "Product Description"
+
+  = f.hidden_field :store_id, value: current_store.id
+
+  = f.submit "Start Auction", :class => "form-primary-button"

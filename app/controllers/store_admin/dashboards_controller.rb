@@ -1,5 +1,4 @@
 class StoreAdmin::DashboardsController < ApplicationController
-
   before_filter :require_admin
   layout 'admin'
 

@@ -11,7 +11,7 @@
 
           - if current_user.stores.count > 0
             %li
-              =link_to 'Your Stores', "#"
+              =link_to 'Your Stores', store_admin_stores_path(current_user)
 
           - if current_user.is_super_admin?
             %li
