@@ -8,19 +8,17 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-          - if @user.errors.messages[:email]
-            = link_to 'Sign In?', new_session_path
+
 
   = f.text_field :full_name, placeholder: "Full Name"
   = f.text_field :email, placeholder: "Email"
   = f.text_field :display_name, placeholder: "Display name (optional)"
   = f.password_field :password, placeholder: "Password"
   = f.password_field :password_confirmation, placeholder: "Confirm password"
-  = f.hidden_field :stripe_card_token
-  %br 
-  %br 
+  = f.hidden_field :stripe_token
+
   %h4 Your Credit Card Details
-  = text_field_tag :card_number, nil, name: nil, placeholder: "Credit card number"
+  = text_field_tag :card_number, nil, name: nil, placeholder: "Credit Card Number"
   = text_field_tag :card_code, nil, name: nil, placeholder: "Security code (CVV)"
   = label_tag :card_month, "Card Expiration"
   = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}

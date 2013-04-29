@@ -4,9 +4,9 @@ jQuery ->
 
 charge =
   setupForm: ->
-    $('#new_order').submit ->
+    $('#new_user').submit ->
       $('input[type=submit]').attr('disabled', true)
-      if $('#card_number').length
+      if $('#card_number').val()
         charge.processCard()
         false
       else
@@ -22,8 +22,8 @@ charge =
 
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#order_stripe_card_token').val(response.id)
-      $('#new_order')[0].submit()
+      $('#user_stripe_token').val(response.id)
+      $('#new_user')[0].submit()
     else
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)

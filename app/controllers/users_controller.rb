@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  layout 'session'
+  layout 'signup'
 
   before_filter :require_current_user, only: [:show, :edit, :update]
 

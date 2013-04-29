@@ -24,7 +24,6 @@ class Order < ActiveRecord::Base
   belongs_to :store
   validates_presence_of :total_price
 
-  before_save :update_stripe
 
 
   def save_with_payment

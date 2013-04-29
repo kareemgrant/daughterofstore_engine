@@ -6,9 +6,10 @@ class User < ActiveRecord::Base
                   :password,
                   :password_confirmation,
                   :store_id,
-                  :store_name
+                  :store_name,
+                  :stripe_token
 
-  attr_accessor :store_name, :stripe_card_token
+  attr_accessor :store_name, :stripe_token
 
   before_save :update_stripe
 
@@ -32,11 +33,12 @@ class User < ActiveRecord::Base
   end
 
   def assign_role(store_id, role)
-    UserStoreRole.find_or_initialize_by_user_id_and_store_id(user_id: self.id, store_id: store_id).update_attributes(role: role)
+    UserStoreRole.find_or_initialize_by_user_id_and_store_id(user_id: self.id,
+                                                             store_id: store_id).update_attributes(role: role)
   end
 
   def stripe_description
-    "#{full_name} #{description}"
+    "#{full_name} #{email}"
   end
 
   def update_stripe
@@ -71,6 +73,5 @@ class User < ActiveRecord::Base
     self.stripe_token = nil
     false
   end
-
 
 end
