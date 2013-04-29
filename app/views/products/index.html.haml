@@ -1,19 +1,15 @@
-/ %h1= current_store.name
-%ul.breadcrumb
-  %li
-    %span.divider
-      / 
-  %li.active
-    All Products
-.row-fluid
-  .thumbnails.product_list
-    -# - @products.each_with_index do |product, index|
-    -#   - if product.active
-    -#     %li.span3
-    -#       .thumbnail{id: "thumbnail-#{index}"}
-    -#         = link_to product_path(product.store, product) do
-    -#           = image_tag product.photo.url, class: "product-image"
-    -#       .caption
-    -#         %h5= link_to product.title, product_path(product.store, product)
-    -#         %p= number_to_currency(product.price_in_dollars)
-  / = paginate @products
+%h1= "Auctions Matching '#{params[:search]}'"
+
+%table
+  %tr
+    %th
+    %th
+    %th
+
+  - @products.each do |product|
+    - auction = product.auction
+    %tr
+      %td= image_tag product.photo.url
+      %td= link_to "#{product.title}", auction
+      %td= link_to "#{product.description[0..29]}...", auction
+%br
