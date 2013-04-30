@@ -9,7 +9,8 @@ class Product < ActiveRecord::Base
                   :slug,
                   :category_ids,
                   :photo_url,
-                  :auction_id
+                  :auction_id,
+                  :photo
 
 
     has_attached_file :photo,

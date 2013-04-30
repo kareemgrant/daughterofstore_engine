@@ -15,8 +15,6 @@ class CreateAuctionPage
     @page.click_on 'Start Auction'
 
     @page.fill_in 'auction_expiration_date', with: '05/25/2013'
-    # @page.select('April', :from => 'auction_expiration_date_2i')
-    # @page.select('30', :from => 'auction_expiration_date_3i')
     @page.fill_in  'Starting Bid',        with: 8.99
     @page.choose('International')
 

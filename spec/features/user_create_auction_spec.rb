@@ -29,8 +29,8 @@ describe "Create Auctions" do
       auction = Auction.last
       product = Product.last
 
-      expect(page).to have_content product.title
-      expect(page).to have_content @store.name
+      expect(page).to have_content    product.title
+      expect(page).to have_content    @store.name
       expect(auction.store_id).to     eq @store.id
       expect(product.auction_id).to   eq auction.id
     end
