@@ -4,13 +4,8 @@ describe 'Payment Option:' do
 
   context 'When a payment option is created' do
     it 'it is valid if all required attributes are given' do
-      payment_option = PaymentOption.new(auction_id: 1, type: 'credit card')
+      payment_option = PaymentOption.new(auction_id: 1, payment_type: 'credit card')
       expect(payment_option.valid?).to eq true
-    end
-
-    it 'it is invalid without an auction_id' do
-      payment_option = PaymentOption.new(type: 'credit card')
-      expect(payment_option.valid?).to eq false
     end
 
     it 'it is invalid without a type' do
