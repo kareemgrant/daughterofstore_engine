@@ -17,21 +17,6 @@ describe 'Auction:' do
       auction = Auction.new(store_id: 1, shipping_options: 'International', expiration_date: Time.now + 3600, active: true)
       expect(auction.valid?).to eq false
     end
-
-    it 'it is invalid without shipping_options' do
-      auction = Auction.new(store_id: 1, starting_bid: 0, expiration_date: Time.now + 3600, active: true)
-      expect(auction.valid?).to eq false
-    end
-
-    it 'it is invalid without an expiration_date' do
-      auction = Auction.new(store_id: 1, starting_bid: 0, shipping_options: 'International', active: true)
-      expect(auction.valid?).to eq false
-    end
-
-    it 'it is invalid if the active field is empty' do
-      auction = Auction.new(store_id: 1, starting_bid: 0, shipping_options: 'International', expiration_date: Time.now + 3600, active: nil)
-      expect(auction.valid?).to eq false
-    end
   end
 
 

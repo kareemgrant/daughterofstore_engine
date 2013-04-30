@@ -18,7 +18,6 @@ describe "User Auction Page:" do
 
   let!(:product) {Product.create title:            "product1",
                                  description:      "somedescription",
-                                 price_in_dollars: 8.99,
                                  auction_id:       auction.id
                   }
 

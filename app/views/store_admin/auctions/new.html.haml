@@ -1,0 +1,30 @@
+= simple_form_for [:store_admin, @auction] do |f|
+  %h4= "Start An Account"
+  - if @auction.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@auction.errors.count, "error")
+        prohibited this auction from being created:
+      %ul
+        - @auction.errors.full_messages.each do |msg|
+          %li= msg
+
+  / .add-on.icon-calendar
+  = f.input :expiration_date, :as => :ui_date_picker
+  = f.input :starting_bid,     placeholder: "Starting Bid"
+  = f.collection_radio_buttons :shipping_options, [['domestic', 'Domestic'], ['international','International'], ['none','None']], :first, :last
+
+  = f.simple_fields_for :product do |builder|
+    = builder.input :title,       placeholder: "Product Title"
+    = builder.input :description, placeholder: "Product Description"
+
+  = f.hidden_field :store_id, value: current_store.id
+
+  = f.submit "Start Auction", :class => "form-primary-button"
+
+
+:javascript
+  $(document).ready(function(){
+    $('input.ui-date-picker').datepicker();
+    $('input.ui-datetime-picker').datetimepicker();
+  });
