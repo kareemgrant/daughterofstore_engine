@@ -29,3 +29,4 @@ zeus.json
 log/*.log
 tags
 tmp/**/*
+/public/source_maps

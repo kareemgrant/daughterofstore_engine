@@ -7,10 +7,15 @@ class User < ActiveRecord::Base
                   :password_confirmation,
                   :store_id,
                   :store_name,
-                  :stripe_token
+                  :stripe_token,
+                  :card_number,
+                  :card_code,
+                  :card_month,
+                  :card_year
 
-  attr_accessor :store_name, :stripe_token
+  attr_accessor :store_name, :stripe_token, :card_number, :card_code, :card_month, :card_year
 
+  before_save :generate_token, if: :card_number_exists?
   before_save :update_stripe, if: :stripe_token_exists?
 
   validates_uniqueness_of :email
@@ -39,6 +44,23 @@ class User < ActiveRecord::Base
 
   def stripe_description
     "#{full_name} #{email}"
+  end
+
+  def generate_token
+    card_token = Stripe::Token.create(
+      :card => {
+      :number => card_number,
+      :exp_month => card_month.to_i,
+      :exp_year => card_year.to_i,
+      :cvc => card_code.to_i
+    },
+    )
+    self.stripe_token = card_token.id
+
+  rescue Stripe::StripeError => e
+    logger.error "StripeError: " + e.message
+    errors.add :base, "#{e.message}."
+    false
   end
 
   def update_stripe
@@ -78,6 +100,10 @@ class User < ActiveRecord::Base
 
   def stripe_token_exists?
     stripe_token.present?
+  end
+
+  def card_number_exists?
+    card_number.present?
   end
 
 end

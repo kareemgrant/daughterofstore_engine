@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user].merge(params[:date]))
     if @user.save
       UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
