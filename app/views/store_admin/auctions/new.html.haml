@@ -9,9 +9,8 @@
         - @auction.errors.full_messages.each do |msg|
           %li= msg
 
-
-  = f.input :expiration_date, :as => :ui_date_picker
-  = f.input :starting_bid,     placeholder: "Starting Bid"
+  = f.input :selected_expiration_date, as: :ui_date_picker
+  = f.input :starting_bid, placeholder: "Starting Bid"
   = f.collection_radio_buttons :shipping_options, [['domestic', 'Domestic'], ['international','International'], ['none','None']], :first, :last
 
   - %w[cash check credit].each_with_index do |option, index|

@@ -1,5 +1,7 @@
 class Auction < ActiveRecord::Base
-  attr_accessible :expiration_date,
+  attr_accessor :selected_expiration_date
+
+  attr_accessible :selected_expiration_date,
                   :active,
                   :starting_bid,
                   :shipping_options,
@@ -22,6 +24,7 @@ class Auction < ActiveRecord::Base
                    inclusion: {in: %w(domestic international none)}
 
   validate :future_expiration_date
+  validate :starting_bid
 
   def highest_bid
     bid = Bid.where(auction_id: self.id).order('amount DESC').first
@@ -60,5 +63,9 @@ class Auction < ActiveRecord::Base
 
   def future_expiration_date
     errors.add(:base, "Please enter a future expiraton date.") if !expiration_date.future?
+  end
+
+  def starting_bid
+    errors.add(:base, "Please enter a valid starting bid.") if starting_bid <= 0
   end
 end
