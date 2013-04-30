@@ -7,6 +7,8 @@
             %a.brand{:href => "/"}= current_store.name
           - else
             %a.brand{:href => "/"} Shopmazing
+          %a.brand{:href => "/auctions"} Auctions
+
 
 
           %ul.nav.pull-right
@@ -19,5 +21,6 @@
               %li= link_to "Log In", new_session_path
               %li= link_to "Sign Up", new_user_path
 
-          %form.navbar-search.pull-right
-            %input.search-query{:type => 'type', :placeholder => 'Search'}
+          = form_tag( '/products', :method => 'get', :class => 'navbar-search') do
+            = text_field_tag :search, params[:search], :placeholder => 'Search', :class => 'search-query'
+            = submit_tag 'Search', :style => "position: absolute; left: -9999px; width: 1px; height: 1px;"

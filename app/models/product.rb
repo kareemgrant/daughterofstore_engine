@@ -24,6 +24,10 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, through: :product_categories
 
+  searchable do
+    text :title, :description
+  end
+
   def status
     active ? "active" : "retired"
   end
