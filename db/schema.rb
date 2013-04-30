@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425044214) do
+ActiveRecord::Schema.define(:version => 20130430032017) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
@@ -78,9 +78,9 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
 
   create_table "payment_options", :force => true do |t|
     t.integer  "auction_id"
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "payment_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "payment_options", ["auction_id"], :name => "index_payment_options_on_auction_id"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.boolean  "active",             :default => true
-    t.integer  "price",                                :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

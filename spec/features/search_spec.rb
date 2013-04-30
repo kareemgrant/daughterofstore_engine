@@ -25,13 +25,11 @@ describe 'Search:' do
     let!(:product1) {Product.create(auction_id: 1,
                                     title: 'Rusty Rocket Ship',
                                     description: 'This old lady was the prototype for Apollo 11. I stole her from NASA after they threw in a junkyard. I bet this baby is worth millions',
-                                    price: 1000,
                                     active: true)}
 
     let!(:product2) {Product.create(auction_id: 2,
                                     title: 'Rusty Bicycle',
                                     description: 'My grandaddy rode this bad boy to and from school, uphill both ways, in the snow.',
-                                    price: 1000,
                                     active: true)}
 
     it 'they are directed to an auction index page showing all products that match the search criteria' do
