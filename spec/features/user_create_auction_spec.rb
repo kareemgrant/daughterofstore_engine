@@ -33,9 +33,9 @@ describe "Create Auctions" do
       expect(page).to have_content    @store.name
       expect(page).to have_content    auction.shipping_options.capitalize
 
-      expect(page).to have_content 'credit'
-      expect(page).to have_content 'cash'
-      expect(page).to have_content 'check'
+      expect(page).to have_content 'Credit'
+      expect(page).to have_content 'Cash'
+      expect(page).to have_content 'Check'
 
       expect(auction.store_id).to     eq @store.id
       expect(auction.product.id).to   eq product.id

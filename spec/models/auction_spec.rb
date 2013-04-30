@@ -126,12 +126,4 @@ describe 'Auction:' do
       expect(date_object).to eq parsed_date
     end
   end
-
-  describe ".build_auction" do
-    it "creates a new auction" do
-      params = {store_id: 1, starting_bid: 8, shipping_options: 'domestic'}
-      acution = Auction.build_auction(parmas)
-    end
-  end
-
 end

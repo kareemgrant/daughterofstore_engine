@@ -104,6 +104,8 @@
                     = @auction.shipping_options.capitalize
                   %p
                     Payment Options:
+                    - @auction.payment_options.each do |option|
+                      = option.payment_type.capitalize
 
 
 -# %p#notice= notice

@@ -8,11 +8,6 @@ describe 'Payment Option:' do
       expect(payment_option.valid?).to eq true
     end
 
-    it 'it is invalid without an auction_id' do
-      payment_option = PaymentOption.new(payment_type: 'credit card')
-      expect(payment_option.valid?).to eq false
-    end
-
     it 'it is invalid without a type' do
       payment_option = PaymentOption.new(auction_id: 1)
       expect(payment_option.valid?).to eq false

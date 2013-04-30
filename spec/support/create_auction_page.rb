@@ -18,6 +18,9 @@ class CreateAuctionPage
     @page.fill_in 'Starting Bid',            with: 8.99
 
     @page.choose('International')
+    @page.check('Check')
+    @page.check('Cash')
+    @page.check('Credit')
 
     @page.fill_in  'Product Title',       with: 'Xtreme Knitter'
     @page.fill_in  'Product Description', with: 'Knitting to the Xtreme!'

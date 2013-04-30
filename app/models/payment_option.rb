@@ -3,6 +3,5 @@ class PaymentOption < ActiveRecord::Base
 
   belongs_to :auction
 
-  validates_presence_of :auction_id
   validates_presence_of :payment_type
 end
