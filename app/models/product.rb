@@ -17,9 +17,7 @@ class Product < ActiveRecord::Base
                       default_url: 'http://placehold.it/100/100'
 
   validates_uniqueness_of :title
-  validates_presence_of :title, :description, :auction_id
-  # validates :price, :numericality => {:greater_than => 1,
-  # :message => "price must be greater than zero"}
+  validates_presence_of :title, :description
 
   belongs_to :auction
   has_many :product_categories

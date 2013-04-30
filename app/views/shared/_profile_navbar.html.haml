@@ -11,8 +11,7 @@
 
           - if current_user.stores.count > 0
             %li
-              =link_to 'Your Stores', store_admin_stores_path(current_user)
-
+              =link_to 'Your Stores', store_admin_stores_path(current_user.stores)
           - if current_user.is_super_admin?
             %li
               =link_to 'Platform Admin', admin_home_path, class: "admin_header_link"

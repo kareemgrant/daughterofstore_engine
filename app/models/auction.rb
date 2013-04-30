@@ -12,7 +12,9 @@ class Auction < ActiveRecord::Base
   validates_presence_of :store_id
   # validates_presence_of :expiration_date
   validates_presence_of :starting_bid
-  validates_presence_of :shipping_options
+
+  # validates :shipping_options, presence: true,
+  #                  inclusion: {in: %w(international domestic none)}
 
   def highest_bid
     bid = Bid.where(auction_id: self.id).order('amount DESC').first

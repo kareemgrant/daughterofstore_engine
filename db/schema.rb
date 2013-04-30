@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425044214) do
+ActiveRecord::Schema.define(:version => 20130429171557) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.boolean  "active",             :default => true
-    t.integer  "price",                                :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

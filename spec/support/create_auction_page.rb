@@ -14,9 +14,12 @@ class CreateAuctionPage
   def create
     @page.click_on 'Start Auction'
 
-    @page.fill_in  'Expiration Date',     with: DateTime.new(2013, 05, 01)
+    @page.fill_in 'auction_expiration_date', with: '05/25/2013'
+    # @page.select('April', :from => 'auction_expiration_date_2i')
+    # @page.select('30', :from => 'auction_expiration_date_3i')
     @page.fill_in  'Starting Bid',        with: 8.99
-    @page.fill_in  'Shipping Options',    with: 'International'
+    @page.choose('International')
+
     @page.fill_in  'Product Title',       with: 'Xtreme Knitter'
     @page.fill_in  'Product Description', with: 'Knitting to the Xtreme!'
 

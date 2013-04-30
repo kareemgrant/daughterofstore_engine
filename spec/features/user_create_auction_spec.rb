@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "Create Auctions" do
   before(:each) do
-    @user = User.create(full_name: "Roger",
-                        email:     "store@owner.com",
-                        password:  "password")
+    @user = User.create(full_name:     "Roger",
+                        email:         "store@owner.com",
+                        password:      "password")
 
     @store = Store.create(name:        "bikeshop",
                           path:        "bikeshop",
@@ -29,6 +29,8 @@ describe "Create Auctions" do
       auction = Auction.last
       product = Product.last
 
+      expect(page).to have_content product.title
+      expect(page).to have_content @store.name
       expect(auction.store_id).to     eq @store.id
       expect(product.auction_id).to   eq auction.id
     end
