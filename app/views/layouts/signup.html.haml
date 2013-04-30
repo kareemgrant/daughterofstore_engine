@@ -8,5 +8,5 @@
     = csrf_meta_tags
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
   %body
-    = render :partial => "shared/flash_messages", :locals => {:flash => flash}
+    = render :partial => "shared/signup_flash_messages", :locals => {:flash => flash}
     = yield

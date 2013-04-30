@@ -29,4 +29,26 @@ describe User do
     expect(user.stores.class).to eq Array
   end
 
+  describe '.update_stripe' do
+
+    context "with a non-existing user" do
+      before do
+        successful_stripe_response = StripeHelper::Response.new("success")
+        Stripe::Customer.stub(:create).and_return(successful_stripe_response)
+        @user = User.new(email: "test@testign.com", stripe_token: 12345, full_name: 'tester', password: 'password')
+      end
+
+      it "creates a new user with successful stripe response" do
+        @user.save!
+        new_user = User.last
+        new_user.customer_id.should eq("youAreSuccessful")
+        new_user.last_4_digits.should eq("4242")
+        new_user.stripe_token.should be_nil
+      end
+
+    end
+
+
+  end
+
 end

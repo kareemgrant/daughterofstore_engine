@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :store_name, :stripe_token
 
-  before_save :update_stripe
+  before_save :update_stripe, if: :stripe_token_exists?
 
   validates_uniqueness_of :email
   validates_presence_of :full_name, :email, :password
@@ -72,6 +72,12 @@ class User < ActiveRecord::Base
     errors.add :base, "#{e.message}."
     self.stripe_token = nil
     false
+  end
+
+  private
+
+  def stripe_token_exists?
+    stripe_token.present?
   end
 
 end

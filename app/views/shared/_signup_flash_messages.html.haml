@@ -1,0 +1,8 @@
+- if @user.errors.any?
+  .alert.alert-error.span8.offset3
+    %p
+      #{pluralize(@user.errors.count, "problem")} with your registration:
+      .errors
+      - @user.errors.full_messages.each do |msg|
+        %li= msg 
+

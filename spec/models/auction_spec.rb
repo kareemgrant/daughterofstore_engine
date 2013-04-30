@@ -99,16 +99,11 @@ describe 'Auction:' do
       auction = Auction.create(store_id: 1,
                             starting_bid: 0,
                             shipping_options: 'International',
-                            expiration_date: Time.new(2013, 4, 27),
+                            expiration_date: Time.new(2014, 4, 27),
                             active: true
                            )
-      user1 = User.create(full_name: "somedude1",
-                          email:     "somedude1@email.com",
-                          password:  "password")
-      user2 = User.create(full_name: "somedude2",
-                          email:     "somedude2@email.com",
-                          password:  "password")
-
+      user1 = create(:user)
+      user2 = create(:user)
       user1.bids.create(auction_id: auction.id, amount: 5)
       user2.bids.create(auction_id: auction.id, amount: 9)
       expect(auction.highest_bidder).to eq user2
