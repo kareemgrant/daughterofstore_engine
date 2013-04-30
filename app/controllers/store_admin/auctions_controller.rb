@@ -10,7 +10,7 @@ class StoreAdmin::AuctionsController < ApplicationController
   def create
     @auction = Auction.new(params[:auction])
     date = Auction.parse_expiration_date(params[:auction][:selected_expiration_date])
-    @auction.expiration_date = date.utc
+    @auction.expiration_date = date
 
     if @auction.save
       redirect_to auction_path(@auction), notice: "Auction Sucessfully Created!"

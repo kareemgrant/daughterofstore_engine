@@ -24,7 +24,9 @@ class Auction < ActiveRecord::Base
                    inclusion: {in: %w(domestic international none)}
 
   validate :future_expiration_date
-  validate :starting_bid
+  validates_presence_of :expiration_date
+
+  validates :starting_bid, presence: true, :numericality => { greater_than_or_equal_to: 0 }
 
   def highest_bid
     bid = Bid.where(auction_id: self.id).order('amount DESC').first
@@ -52,20 +54,22 @@ class Auction < ActiveRecord::Base
   end
 
   def self.parse_expiration_date(string_date)
-    date = nil
-    string_date.split("/").map {|n| n.to_i}.tap do |month, day, year|
-      date = DateTime.new(year, month, day, Time.now.hour, Time.now.min, Time.now.sec)
+    if string_date != ''
+      date = nil
+      string_date.split("/").map {|n| n.to_i}.tap do |month, day, year|
+        date = DateTime.new(year, month, day, Time.now.hour, Time.now.min, Time.now.sec)
+      end
+      date.utc
+    else
+      nil
     end
-    date
   end
 
   private
 
   def future_expiration_date
-    errors.add(:base, "Please enter a future expiraton date.") if !expiration_date.future?
-  end
-
-  def starting_bid
-    errors.add(:base, "Please enter a valid starting bid.") if starting_bid <= 0
+    if expiration_date && !expiration_date.future?
+      errors.add(:base, "Please enter a future expiraton date.")
+    end
   end
 end
