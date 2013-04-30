@@ -100,9 +100,11 @@
                 .span12
                   %h4.auction_content Shipping and Payment
                   %p
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
-                    blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah
+                    Shipping Options:
+                    = @auction.shipping_options.capitalize
+                  %p
+                    Payment Options:
+
 
 -# %p#notice= notice
 

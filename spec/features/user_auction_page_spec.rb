@@ -12,7 +12,7 @@ describe "User Auction Page:" do
   let!(:auction) { Auction.create(store_id:         store.id,
                                   expiration_date:  Time.now + 3600,
                                   starting_bid:     0,
-                                  shipping_options: 'International',
+                                  shipping_options: 'international',
                                   active:           true)
                  }
 

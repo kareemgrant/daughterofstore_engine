@@ -6,7 +6,7 @@ describe 'Auction:' do
     it 'it is valid if all required attributes are given' do
       auction = Auction.new(store_id: 1,
                             starting_bid: 0,
-                            shipping_options: 'International',
+                            shipping_options: 'international',
                             expiration_date: Time.now + 3600,
                             active: true)
       expect(auction.valid?).to eq true
@@ -14,7 +14,7 @@ describe 'Auction:' do
 
     it 'it is invalid without a store_id' do
       auction = Auction.new(starting_bid: 0,
-                            shipping_options: 'International',
+                            shipping_options: 'international',
                             expiration_date: Time.now + 3600,
                             active: true)
       expect(auction.valid?).to eq false
@@ -22,7 +22,7 @@ describe 'Auction:' do
 
     it 'it is invalid without a starting_bid' do
       auction = Auction.new(store_id: 1,
-                            shipping_options: 'International',
+                            shipping_options: 'international',
                             expiration_date: Time.now + 3600,
                             active: true)
       expect(auction.valid?).to eq false
@@ -35,7 +35,7 @@ describe 'Auction:' do
     it "returns the highest bid if there are bids" do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
-                               shipping_options: 'International',
+                               shipping_options: 'international',
                                expiration_date: Time.now + 3600,
                                active: true)
       bid1 = Bid.create(user_id: 1, auction_id: auction.id, amount: 5)
@@ -48,7 +48,7 @@ describe 'Auction:' do
     it "returns 0 if there are no bids" do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
-                               shipping_options: 'International',
+                               shipping_options: 'international',
                                expiration_date: Time.now + 3600,
                                active: true)
 
@@ -60,7 +60,7 @@ describe 'Auction:' do
     it 'returns the total number of bids for an auction' do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
-                               shipping_options: 'International',
+                               shipping_options: 'international',
                                expiration_date: Time.now + 3600,
                                active: true
                                )
@@ -74,7 +74,7 @@ describe 'Auction:' do
     it 'returns 0 if there are no bids for an auction' do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
-                               shipping_options: 'International',
+                               shipping_options: 'international',
                                expiration_date: Time.now + 3600,
                                active: true
                                )
@@ -87,7 +87,7 @@ describe 'Auction:' do
     it "sets auction status to inactive" do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
-                               shipping_options: 'International',
+                               shipping_options: 'international',
                                expiration_date: Time.now + 3600,
                                active: true
                               )
@@ -101,7 +101,7 @@ describe 'Auction:' do
     it "returns the user with the highest bid" do
       auction = Auction.create(store_id: 1,
                             starting_bid: 0,
-                            shipping_options: 'International',
+                            shipping_options: 'international',
                             expiration_date: Time.new(2014, 4, 27),
                             active: true
                            )

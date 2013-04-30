@@ -16,6 +16,7 @@ class CreateAuctionPage
 
     @page.fill_in 'auction_expiration_date', with: '05/25/2013'
     @page.fill_in  'Starting Bid',        with: 8.99
+
     @page.choose('International')
 
     @page.fill_in  'Product Title',       with: 'Xtreme Knitter'
