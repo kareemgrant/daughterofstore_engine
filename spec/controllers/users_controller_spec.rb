@@ -87,12 +87,12 @@ describe UsersController do
       context "with valid attributes" do
         it "saves the new user in the database" do
           expect{
-            post :create, user: attributes_for(:user)
+            post :create, user: attributes_for(:user), date: { card_year: "2014", card_month: "4", card_code: "234"}
           }.to change(User, :count).by(1)
         end
 
         it "redirects to home page" do
-          post :create, user: attributes_for(:user)
+          post :create, user: attributes_for(:user), date: { card_year: "2014", card_month: "4", card_code: "234"}
           expect(response).to redirect_to profile_path
         end
       end
@@ -100,7 +100,7 @@ describe UsersController do
       context "with invalid attributes" do
         it "does not save the new user in the database" do
           expect{
-            post :create, user: attributes_for(:invalid_user)
+            post :create, user: attributes_for(:invalid_user), date: { card_year: "2014", card_month: "4", card_code: "234"}
             expect(response).to render_template :new
           }.to_not change(User, :count)
         end
