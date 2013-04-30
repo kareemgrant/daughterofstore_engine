@@ -45,10 +45,41 @@ describe User do
         new_user.last_4_digits.should eq("4242")
         new_user.stripe_token.should be_nil
       end
+    end
+  end
 
+  describe '.is_super_admin?' do
+    before do
+      @user = create(:super_admin)
     end
 
+    it "should confirm the user is a super admin" do
+      expect(@user.is_super_admin?).to be
+    end
+  end
 
+  describe '.assign_super_admin' do
+    before do
+      @user = create(:user)
+    end
+
+    it "should assign make the user into a super_admin" do
+      @user.assign_super_admin
+      expect(@user).to be_super_admin
+    end
+  end
+
+  describe '.assign_role' do
+    before do
+      @user = create(:user)
+      @store = create(:store)
+    end
+
+    it "should assign the user as an admin of the Avengers store" do
+      @user.assign_role(@store.id, 'admin')
+      expect(@user.stores).to match_array [@store]
+
+    end
   end
 
 end
