@@ -28,3 +28,4 @@ zeus.json
 log/*.log
 tags
 tmp/**/*
+solr/data
