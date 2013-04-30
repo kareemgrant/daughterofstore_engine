@@ -24,6 +24,7 @@ gem 'haml-rails'
 gem 'newrelic_rpm'
 gem 'resque'
 gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 
 group :assets do
@@ -65,7 +66,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails-footnotes', '>= 3.7.9'
-  gem 'sunspot_solr'
 end
 
 
