@@ -23,7 +23,7 @@ UserStoreRole.create({user_id: 3, store_id: 2, role: 'stocker'})
 UserStoreRole.create({user_id: 4, store_id: 3, role: 'admin'})
 
 Auction.create(store_id: store4.id, expiration_date: Time.new(2012, 04, 30), starting_bid: 0, shipping_options: 'International', active: true)
-Auction.create(store_id: store4.id, expiration_date: Time.new(2013, 04, 27), starting_bid: 0, shipping_options: 'International', active: true)
+Auction.create(store_id: store4.id, expiration_date: (Time.now + 86400), starting_bid: 0, shipping_options: 'International', active: true)
 
 Product.create(auction_id: 1, title: 'Rusty Rocket Ship', description: 'This old lady was the prototype for Apollo 11. I stole her from NASA after they threw in a junkyard. I bet this baby is worth millions', price: 1000, active: true)
 Product.create(auction_id: 2, title: 'Rusty Bicycle', description: 'My grandaddy rode this bad boy to and from school, uphill both ways, in the snow.', price: 1000, active: true)

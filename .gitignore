@@ -30,3 +30,4 @@ log/*.log
 tags
 tmp/**/*
 /public/source_maps
+solr/data

@@ -17,7 +17,7 @@ describe SessionsController do
       end
 
       it "creates new user session" do
-        expect(response).to redirect_to profile_path
+        expect(response).to redirect_to auctions_path
       end
 
       it "sets the session[:user_id] to @user.id" do

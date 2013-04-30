@@ -62,7 +62,7 @@ feature "User login" do
     fill_in "Password", with: @user.password
     click_button submit
 
-    expect(current_path).to eq profile_path
+    expect(current_path).to eq auctions_path
 
     within '.alert' do
       expect(page).to have_content 'Welcome back to Shopmazing!'

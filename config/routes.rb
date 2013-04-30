@@ -6,6 +6,7 @@ StoreEngine::Application.routes.draw do
   resources :shipping_address
   resources :sessions, :only => [:new, :create, :destroy]
   resources :stores, :only => [:index, :create]
+  resources :products, :only => [:index, :show]
 
   resources :auctions, :only => [:index, :show] do
     resources :bids, :only =>   [:create]
@@ -29,14 +30,12 @@ StoreEngine::Application.routes.draw do
 
   scope "/:store_id" do
 
-    get "/", to: "products#index", :as => :store_home
-    match "/" => "products#index", :as => :home
+    #get "/", to: "products#index", :as => :store_home
+    #match "/" => "products#index", :as => :home
 
     match 'checkout' => 'orders#new', as: 'checkout'
     match 'checkout/type' => 'orders#type', as: 'checkout_type'
 
-
-    resources :products, :only => [:index, :show]
     resources :orders, :except => [:edit, :update, :destroy]
 
     namespace :store_admin, :path => "/admin" do

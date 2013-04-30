@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:sessions][:password])
       session[:user_id] = @user.id
       flash[:notice] = "Welcome back to Shopmazing!"
-      destination = session.delete(:return_to) || profile_path
+      destination = session.delete(:return_to) || auctions_path
       redirect_to destination
     else
       flash[:alert] = "Invalid email or password"
