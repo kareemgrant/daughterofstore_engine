@@ -4,11 +4,11 @@ class StoreAdmin::AuctionsController < ApplicationController
   def new
     @auction = Auction.new
     @auction.build_product
-    @payment_options = PaymentOption.new
-    #@auction.payment_options.build
+    @auction.payment_options.build
   end
 
   def create
+    fail
     @auction = Auction.new(params[:auction])
     date = Auction.parse_expiration_date(params[:auction][:expiration_date])
     @auction.expiration_date = date.utc

@@ -4,8 +4,8 @@ class Auction < ActiveRecord::Base
                   :starting_bid,
                   :shipping_options,
                   :store_id,
-                  :product_attributes #,
-                  #:payment_options_attributes
+                  :product_attributes,
+                  :payment_options_attributes
 
   belongs_to :store
   has_one    :product
@@ -13,7 +13,7 @@ class Auction < ActiveRecord::Base
   has_many   :payment_options
 
   accepts_nested_attributes_for :product, :allow_destroy => true
-  # accepts_nested_attributes_for :payment_options, :allow_destroy => true
+  accepts_nested_attributes_for :payment_options, :allow_destroy => true
 
   validates_presence_of :store_id
   validates_presence_of :starting_bid
