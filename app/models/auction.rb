@@ -18,7 +18,7 @@ class Auction < ActiveRecord::Base
 
   def highest_bid
     bid = Bid.where(auction_id: self.id).order('amount DESC').first
-    bid ? bid.amount : 0
+    bid ? bid.amount : starting_bid
   end
 
   def number_of_bids
