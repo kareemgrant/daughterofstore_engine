@@ -7,7 +7,7 @@ describe 'Auction:' do
       auction = Auction.new(store_id: 1,
                             starting_bid: 0,
                             shipping_options: 'international',
-                            expiration_date: Time.now + 3600,
+                            expiration_date: DateTime.now + 1,
                             active: true)
       expect(auction.valid?).to eq true
     end
@@ -15,7 +15,7 @@ describe 'Auction:' do
     it 'it is invalid without a store_id' do
       auction = Auction.new(starting_bid: 0,
                             shipping_options: 'international',
-                            expiration_date: Time.now + 3600,
+                            expiration_date: DateTime.now + 1,
                             active: true)
       expect(auction.valid?).to eq false
     end
@@ -23,7 +23,7 @@ describe 'Auction:' do
     it 'it is invalid without a starting_bid' do
       auction = Auction.new(store_id: 1,
                             shipping_options: 'international',
-                            expiration_date: Time.now + 3600,
+                            expiration_date: DateTime.now + 1,
                             active: true)
       expect(auction.valid?).to eq false
     end
@@ -36,7 +36,7 @@ describe 'Auction:' do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
                                shipping_options: 'international',
-                               expiration_date: Time.now + 3600,
+                               expiration_date: DateTime.now + 1,
                                active: true)
       bid1 = Bid.create(user_id: 1, auction_id: auction.id, amount: 5)
       bid2 = Bid.create(user_id: 1, auction_id: auction.id, amount: 9)
@@ -49,7 +49,7 @@ describe 'Auction:' do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
                                shipping_options: 'international',
-                               expiration_date: Time.now + 3600,
+                               expiration_date: DateTime.now + 1,
                                active: true)
 
       expect(auction.highest_bid).to eq 0
@@ -61,7 +61,7 @@ describe 'Auction:' do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
                                shipping_options: 'international',
-                               expiration_date: Time.now + 3600,
+                               expiration_date: DateTime.now + 1,
                                active: true
                                )
       bid1 = Bid.create(user_id: 1, auction_id: auction.id, amount: 5)
@@ -75,7 +75,7 @@ describe 'Auction:' do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
                                shipping_options: 'international',
-                               expiration_date: Time.now + 3600,
+                               expiration_date: DateTime.now + 1,
                                active: true
                                )
 
@@ -88,10 +88,10 @@ describe 'Auction:' do
       auction = Auction.create(store_id: 1,
                                starting_bid: 0,
                                shipping_options: 'international',
-                               expiration_date: Time.now + 3600,
+                               expiration_date: DateTime.now + 1,
                                active: true
                               )
-      auction.expiration_date = Time.now - 3600
+      auction.expiration_date = DateTime.now - 1
       auction.check_status
       expect(auction.active?).to eq false
     end
