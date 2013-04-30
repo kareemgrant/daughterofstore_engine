@@ -4,6 +4,8 @@ class StoreAdmin::AuctionsController < ApplicationController
   def new
     @auction = Auction.new
     @auction.build_product
+    @payment_options = PaymentOption.new
+    #@auction.payment_options.build
   end
 
   def create
