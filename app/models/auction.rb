@@ -1,8 +1,6 @@
 class Auction < ActiveRecord::Base
   attr_accessible :expiration_date, :active, :starting_bid, :shipping_options, :store_id, :product_attributes
 
-
-
   belongs_to :store
   has_one :product
   has_many :bids
@@ -10,11 +8,8 @@ class Auction < ActiveRecord::Base
   accepts_nested_attributes_for :product, :allow_destroy => true
 
   validates_presence_of :store_id
-  # validates_presence_of :expiration_date
+  validate :future_expiration_date
   validates_presence_of :starting_bid
-
-  # validates :shipping_options, presence: true,
-  #                  inclusion: {in: %w(international domestic none)}
 
   def highest_bid
     bid = Bid.where(auction_id: self.id).order('amount DESC').first
@@ -39,5 +34,19 @@ class Auction < ActiveRecord::Base
 
   def highest_bidder
     Bid.find_by_amount(self.highest_bid).user unless bids.empty?
+  end
+
+  def self.parse_expiration_date(string_date)
+    date = nil
+    string_date.split("/").map {|n| n.to_i}.tap do |month, day, year|
+      date = DateTime.new(year, month, day, Time.now.hour, Time.now.min, Time.now.sec)
+    end
+    date
+  end
+
+  private
+
+  def future_expiration_date
+    errors.add(:base, "Please enter a future expiraton date.") if !expiration_date.future?
   end
 end
