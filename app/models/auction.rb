@@ -83,10 +83,4 @@ class Auction < ActiveRecord::Base
       puts 'Expiration date not entered correctly. Format is mm/dd/yyyy.'
     end
   end
-
-  def valid_expiration_date?
-    if expiration_date and !expiration_date.future?
-      errors.add(:base, 'Expiration dates must be in the future.')
-    end
-  end
 end
