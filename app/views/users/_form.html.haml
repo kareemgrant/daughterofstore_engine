@@ -1,19 +1,36 @@
 = form_for @user do |f|
   %h4= "Create An Account"
-  - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error")
-        prohibited this user from being created:
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-          - if @user.errors.messages[:email]
-            = link_to 'Sign In?', new_session_path
 
   = f.text_field :full_name, placeholder: "Full Name"
   = f.text_field :email, placeholder: "Email"
   = f.text_field :display_name, placeholder: "Display name (optional)"
   = f.password_field :password, placeholder: "Password"
   = f.password_field :password_confirmation, placeholder: "Confirm password"
+  
+  %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+
+  #credit-card{:style=>"display:none"}
+    %br
+    %br
+    %h4
+      Your Credit Card Details
+    #credit-card-errors{:style=>"display:none"}
+      #stripe-error-message.alert.alert-error.block-message.error
+      <!-- these fields are disabled before submission and are never transmitted back to rails -->
+    = f.text_field :card_number, placeholder: "Credit Card Number", input_html: {:id => "credit_number", :disabled => true}
+
+    = f.text_field :card_code, placeholder: "Security code (CVV)", input_html: {:disabled => true}
+
+    = select_month(Date.today, :add_month_numbers => true, :field_name => "card_month")
+    = select_year(Date.today, :field_name => "card_year")
+    %br
+    %br
+
+    #close-card-form
+      %a{:href => "#"} I'll add my card later
+
+
+  #edit-card
+    %a{:href => "#"} Add Credit Card Information
+
   = f.submit "Register", :class => "form-primary-button"

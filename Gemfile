@@ -50,6 +50,7 @@ group :development, :test do
   gem 'pry-remote'
   gem 'letter_opener'
   gem 'guard-rspec'
+  gem 'letter_opener'
 end
 
 group :test do
@@ -66,6 +67,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rails-footnotes', '>= 3.7.9'
+  gem 'coffee-rails-source-maps'
+  # gem 'meta_request'
 end
 
 

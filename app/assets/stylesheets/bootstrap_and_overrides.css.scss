@@ -51,7 +51,7 @@ a {
       background-color: #333; 
     }
   }
-  
+
   li a {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -220,7 +220,7 @@ a {
 }
 
 table.cart-detail {
-  
+
   td.description {
     span.name {
       font-weight: bold;
@@ -230,7 +230,7 @@ table.cart-detail {
       font-weight: normal;
       margin-top: 10px;
     }
-    
+
     .remove_product {
       margin-top: 10px;
     }
@@ -397,7 +397,14 @@ Auction Styles
 
 }
 
-
+/****************************
+Credit card form styles
+****************************/
+#edit-credit-card {
+  input[type="text"], select {
+    display: block;
+  }
+}
 
 /****************************
 Footnotes debug style
@@ -697,7 +704,7 @@ body {
 .single-form h4 {
   text-transform: uppercase;
   text-align: center;
-  padding-bottom: 1em;
+  padding-bottom: 0px;
   font-family: 'Questrial', sans-serif;
 }
 .single-form form {

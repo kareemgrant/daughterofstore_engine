@@ -21,6 +21,7 @@ coverage/
 .DS_Store
 .swm
 .idea
+
 zeus.json
 *.sw[nop]
 .bundle
@@ -28,4 +29,5 @@ zeus.json
 log/*.log
 tags
 tmp/**/*
+/public/source_maps
 solr/data

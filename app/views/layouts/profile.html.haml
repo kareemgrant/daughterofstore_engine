@@ -4,27 +4,10 @@
     %title= full_title(yield(:title))
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = stylesheet_link_tag    "application", "http://fonts.googleapis.com/css?family=Questrial|Damion"
-    = javascript_include_tag "http://code.jquery.com/jquery-1.9.1.min.js"
+    = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     = render :partial => "shared/profile_navbar"
     / .container
     = render :partial => "shared/flash_messages", :locals => {:flash => flash}
-    -# = render :partial => "shared/admin_menu"
     = yield
-    :javascript
-      $(document).ready(function(){
-        $('.over').click(function() {
-          $('.confirmation-buttons').addClass('over-up');
-          return false;
-        })
-        $('.confirmation-button').click(function() {
-          $('.confirmation-buttons').removeClass('over-up');
-        })
-        if (window.location.toString().split('?')[1].split('=')[1] == "true") {
-          $('.notification').toggleClass('notification-move');
-          setTimeout(function() {
-            $(".notification").delay(3500).toggleClass('notification-move');
-          }, 3500);
-        }
-      })

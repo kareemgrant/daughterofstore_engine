@@ -13,7 +13,14 @@
           %span.span5= @user.email
         %li
           %span.span3.header Display Name
-          %span.span5= @user.display_name
+
+          - if @user.display_name.present?
+            %span.span5= @user.display_name
+          - else
+            %span.span5 No Display Name on file
+        %li
+          %span.span3.header Credit Card: Last 4 Digits 
+          %span.span5= @user.last_4_digits
 
         %li
           .span8

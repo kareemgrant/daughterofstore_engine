@@ -31,10 +31,10 @@ slider2.png: slider2-4d93e24ff4247e82222020c53a39eff5.png
 slider2/index.png: slider2-4d93e24ff4247e82222020c53a39eff5.png
 slider3.png: slider3-b8012808ac8065f772e8764cbf16ba4e.png
 slider3/index.png: slider3-b8012808ac8065f772e8764cbf16ba4e.png
-application.js: application-42164fec89602596357c64a04a847941.js
-application/index.js: application-42164fec89602596357c64a04a847941.js
-application.css: application-f4be9123031a4b08fdfd68689dd56bb4.css
-application/index.css: application-f4be9123031a4b08fdfd68689dd56bb4.css
+application.js: application-b93ff60c09883a82f828f71a64fe59df.js
+application/index.js: application-b93ff60c09883a82f828f71a64fe59df.js
+application.css: application-c8046f43c759db79fc4b04cfc3a2f058.css
+application/index.css: application-c8046f43c759db79fc4b04cfc3a2f058.css
 FontAwesome.otf: FontAwesome-468f83b63df32064983141584a19ff17.otf
 FontAwesome/index.otf: FontAwesome-468f83b63df32064983141584a19ff17.otf
 fontawesome-webfont.eot: fontawesome-webfont-635909f146e208b3509acdf3b154bf0d.eot
