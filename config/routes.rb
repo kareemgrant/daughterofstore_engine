@@ -47,6 +47,7 @@ StoreEngine::Application.routes.draw do
       resources :categories, :except => :show
       resources :stores, :only => [:index, :edit, :update]
       resources :orders, :except => :destroy
+      resources :auctions
     end
 
   end
