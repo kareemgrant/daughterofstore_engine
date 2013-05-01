@@ -76,6 +76,8 @@ describe "User Auction Page:" do
     end
   end
 
+
+
   describe "non logged-in user attempts to submit a bid" do
 
     before do
@@ -111,13 +113,39 @@ describe "User Auction Page:" do
           click_button('Update Profile')
 
           expect(current_path).to eq auction_path(@auction.id)
+
           within '.alert' do
             expect(page).to have_content "Welcome back, your bid is ready to be submitted"
           end
+
           expect(find_field('bid_amount').value).to eq(@bid.to_s)
         end
-
       end
+
+
+      context "user has a valid credit card on file" do
+
+        before do
+          @user = create(:user_with_valid_cc)
+        end
+
+        it "logs in and is redirected back to auction page to submit a bid" do
+          expect(current_path).to eq login_path
+          @auction_page.login(@user)
+          expect(current_path).to eq auction_path(@auction.id)
+
+          within '.alert' do
+            expect(page).to have_content "Welcome back, your bid is ready to be submitted"
+          end
+
+          expect(find_field('bid_amount').value).to eq(@bid.to_s)
+        end
+      end
+
+    end
+
+    context "when user is not already registered with the site" do
+
     end
   end
 
