@@ -6,6 +6,7 @@
         %ul#admin-menu
           %li= admin_navbar_link 'Profile', profile_path, %w( admin_header_link dashboard )
           %li= admin_navbar_link 'Purchases', profile_orders_path, %w( admin_header_link orders )
+          %li= admin_navbar_link 'Your Bids', "#", %w( admin_header_link orders )
 
           - if current_user.stores.count > 0
             %li
