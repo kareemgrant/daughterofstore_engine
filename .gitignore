@@ -31,3 +31,4 @@ tags
 tmp/**/*
 /public/source_maps
 solr/data
+.zeus.sock*
