@@ -43,7 +43,7 @@ feature "User registration" do
     expect(current_path).to eq(users_path)
 
     within '.alert' do
-      expect(page).to have_content 'You entered invalid information'
+      expect(page).to have_content "Password doesn't match confirmation"
     end
   end
 end
