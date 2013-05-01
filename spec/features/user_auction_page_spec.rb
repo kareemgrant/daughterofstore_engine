@@ -47,7 +47,7 @@ describe "User Auction Page:" do
       @auction_page.place_bid(8.99)
 
       expect(page).to have_content "You are currently the highest bidder!"
-      expect(@auction_page.highest_bid).to eq '8'
+      expect(@auction_page.highest_bid).to eq '$8.00'
       expect(@auction_page.number_of_bids).to eq '1'
     end
 
@@ -56,7 +56,7 @@ describe "User Auction Page:" do
       @auction_page.place_bid(8)
 
       expect(page).to have_content "Your bid must be higher than the current bid"
-      expect(@auction_page.highest_bid).to eq '9'
+      expect(@auction_page.highest_bid).to eq '$9.00'
       expect(@auction_page.number_of_bids).to eq '1'
     end
   end

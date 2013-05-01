@@ -10,8 +10,9 @@ class Bid < ActiveRecord::Base
   validates_presence_of :auction_id
   validates_presence_of :amount
 
+
   def validate_bid_amount
-    self.errors.add(:base, "Bid amount too low") if (self.auction.nil? || (self.amount <= self.auction.highest_bid if amount))
+    self.errors.add(:base, 'Your bid must be higher than the current bid') if (self.auction.nil? || (self.amount <= self.auction.highest_bid if amount))
   end
 
   def validate_active_auction
