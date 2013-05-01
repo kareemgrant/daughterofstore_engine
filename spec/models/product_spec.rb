@@ -49,15 +49,4 @@ describe 'Products:' do
     end
   end
 
-  context '.categories_list' do
-    it 'shows a comma separated list of categories the product belongs to' do
-      product = Product.create(title: 'title', description: 'description', auction_id: 1)
-      category1 = Category.create(name: 'test1')
-      ProductCategory.create(product_id: product.id, category_id: category1.id)
-      category2 = Category.create(name: 'test2')
-      ProductCategory.create(product_id: product.id, category_id: category2.id)
-      expect(product.categories_list).to eq 'test1, test2'
-    end
-  end
-
 end
