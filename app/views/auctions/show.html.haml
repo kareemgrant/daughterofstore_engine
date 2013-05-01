@@ -16,7 +16,7 @@
                   %p.list-label
                     Current Bid
                 .span1#highest_bid
-                  %p= @auction.highest_bid
+                  %p= number_to_currency(@auction.highest_bid)
                 -if current_user == @auction.highest_bidder && current_user != nil
                   .span7#highest_bidder
                     %span.label.label-info Highest Bidder
@@ -60,27 +60,32 @@
 
               .row-fluid.similar-products
                 .span12
-                  %h4.auction_content Similar Products
+                  %h4.auction_content Other Auctions
 
                   %ul.thumbnails
-                    %li.span2
-                      %a
-                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    %li.span2
-                      %a
-                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    %li.span2
-                      %a
-                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    %li.span2
-                      %a
-                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    %li.span2
-                      %a
-                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    %li.span2
-                      %a
-                        =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    - @related_auctions.each do |auction|
+                    - product = auction.product
+                      %li.span2
+                        %a
+                          = link_to auction_path(auction) do
+                            = image_tag product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+
+
+                    / %li.span2
+                    /   %a
+                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    / %li.span2
+                    /   %a
+                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    / %li.span2
+                    /   %a
+                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    / %li.span2
+                    /   %a
+                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
+                    / %li.span2
+                    /   %a
+                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
 
             .span4
               =image_tag @auction.product.photo.url, size: "300x300", class: "img-rounded"
@@ -117,11 +122,11 @@
                     -#= f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
 
 
-            .span4
-              =image_tag @auction.product.photo.url, size: "300x300"
-              =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
-              =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
-              =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
+            / .span4
+            /   =image_tag @auction.product.photo.url, size: "300x300"
+            /   =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
+            /   =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
+            /   =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
 
 -# %p#notice= notice
 
