@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     self.super_admin
   end
 
+  def valid_credit_card?
+    self.last_4_digits
+  end
+
   def assign_role(store_id, role)
     UserStoreRole.find_or_initialize_by_user_id_and_store_id(user_id: self.id,
                                                              store_id: store_id).update_attributes(role: role)

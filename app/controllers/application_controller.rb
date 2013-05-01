@@ -67,4 +67,23 @@ class ApplicationController < ActionController::Base
     not_authenticated unless current_user
   end
 
+  def route_user(user)
+    if session[:bid_data][:auction_id]
+      if user.valid_credit_card?
+        set_redirect(auction_path([:bid][:auction_id]),
+                     "Welcome back, your bid is ready to be submitted")
+      else
+        set_redirect(profile_path,
+                     "A valid credit card must be entered before a bid can be submitted")
+      end
+    else
+      set_redirect(auctions_path, "Welcome back!")
+    end
+  end
+
+  def set_redirect(path, message)
+    flash[:notice] = message
+    redirect_to(path)
+  end
+
 end

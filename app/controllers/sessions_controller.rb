@@ -9,9 +9,9 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:sessions][:email])
     if @user && @user.authenticate(params[:sessions][:password])
       session[:user_id] = @user.id
-      flash[:notice] = "Welcome back to Shopmazing!"
-      destination = session.delete(:return_to) || auctions_path
-      redirect_to destination
+      route_user(@user)
+      # destination = session.delete(:return_to) || auctions_path
+      # redirect_to destination
     else
       flash[:alert] = "Invalid email or password"
       render :new

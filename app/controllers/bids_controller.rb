@@ -5,8 +5,14 @@ class BidsController < ApplicationController
       @bid = Bid.new(amount: params[:bid][:amount], auction_id: params[:auction_id], user_id: current_user.id)
       @bid.save ? notice_message : alert_message
     else
-      redirect_to login_path(return_to: auction_path(params[:auction_id])),
-      alert: "You must log in to bid."
+      session[:bid_data] = {amount: params[:bid][:amount],
+                            auction_id: params[:auction_id]}
+
+      flash[:alert] = "You must log in to bid."
+      redirect_to login_path
+      # redirect_to login_path(return_to: auction_path(params[:auction_id])),
+      # alert: "You must log in to bid."
+
     end
   end
 

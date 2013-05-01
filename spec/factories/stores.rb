@@ -1,13 +1,12 @@
 FactoryGirl.define do
 
   factory :store do
-    name          "Avengers"
-    path          "avengers"
     description   "All things Avengers"
-    status        "pending"
+    sequence(:name) { |n| "Avengers#{n}" }
+    sequence(:path) { |n| "avengers#{n}" }
 
-    factory :invalid_store do
-      name     nil
+    factory :approved_store do
+      status   "online"
     end
   end
 end
