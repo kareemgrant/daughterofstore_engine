@@ -9,9 +9,7 @@
           %li
             =link_to 'Orders', store_admin_orders_path(current_store), class: "admin_header_link orders"
           %li
-            =link_to 'Products', store_admin_products_path(current_store), class: "admin_header_link products"
-          %li
-            =link_to 'Start Auction', new_store_admin_auction_path(current_store)
+            =link_to 'Auctions', store_admin_auctions_path(current_store)
           %li
             =link_to 'Admins', store_admin_members_path(current_store), class: "admin_header_link members"
           %li

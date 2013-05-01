@@ -1,5 +1,10 @@
 class StoreAdmin::AuctionsController < ApplicationController
   before_filter :require_admin
+  layout 'admin'
+
+  def index
+    @auctions = Auction.includes(:product).find_all_by_store_id(current_store)
+  end
 
   def new
     @auction = Auction.new
@@ -15,7 +20,7 @@ class StoreAdmin::AuctionsController < ApplicationController
     if @auction.save
       redirect_to auction_path(@auction), notice: "Auction Sucessfully Created!"
     else
-      render :new
+      render :index
     end
   end
 end

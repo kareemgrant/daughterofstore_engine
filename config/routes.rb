@@ -7,6 +7,7 @@ StoreEngine::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :stores, :only => [:index, :create]
   resources :products, :only => [:index, :show]
+  resources :bids, :only => [:index]
 
   resources :auctions, :only => [:index, :show] do
     resources :bids, :only =>   [:create]

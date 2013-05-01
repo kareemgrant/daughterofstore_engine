@@ -1,0 +1,27 @@
+- provide(:title, 'Bid History')
+%section#right-pane
+  .row.admin-header
+    .span9
+      %h3 Your Bids 
+
+      %table.table.table-striped.table-bordered.cart-detail
+        %thead
+          %tr
+            %th.span2 Auction #
+            %th.span3 Product 
+            %th.span2 Bid Amount 
+            %th.span3 Bid Date
+            %th.span2 Auction Status 
+        %tbody
+          - @bids.each do |bid|
+            %tr
+              %td
+                = link_to bid.auction.id, auction_path(bid.auction.id)
+              %td
+                = bid.auction.product.title
+              %td
+                = number_to_currency(bid.amount)
+              %td
+                = (bid.created_at).to_date.strftime("%B %-d, %Y")
+              %td
+                = bid.auction.active

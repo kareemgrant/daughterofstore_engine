@@ -1,9 +1,9 @@
 class StoresController < ApplicationController
   layout 'session'
 
-  def index
-    @stores = Store.online
-  end
+  # def index
+  #   @stores = Store.online
+  # end
 
   def new
     @store = Store.new

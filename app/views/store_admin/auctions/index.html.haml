@@ -1,0 +1,36 @@
+- provide(:title, 'Admin Auctions')
+%section#right-pane
+  .row.admin-header
+    .span12
+      %h3
+        #{current_store.name.titleize}'s Auctions 
+
+  #admin-tab.span9
+    .row-fluid
+      .span12
+        .span6
+        .span6.header-button
+          = link_to "Create New Auction", new_store_admin_auction_path(current_store), method: :get,
+            :class => "admin-primary-button pull-right"
+
+    .row-fluid
+      .span12#store-admin-table
+        %table.table.table-striped.table-bordered.cart-detail
+          %thead
+            %tr
+              %th.span2 Product
+              %th.span2 Start Date
+              %th.span2 Expiration Date
+              %th.span2 Highest Bid
+              %th.span2 Status
+              %th.span2 Action
+          %tbody
+            - @auctions.each do |auction|
+              %tr
+                %td= link_to auction.product.title, auction_path(auction)
+                %td= (auction.created_at).to_date.strftime("%B %-d, %Y")
+                %td= (auction.expiration_date).to_date.strftime("%B %-d, %Y")
+                %td= number_to_currency(auction.highest_bid)
+                %td= "#{auction.active ? "Active" : "Closed"}"
+                %td= link_to "End Auction", "#"
+

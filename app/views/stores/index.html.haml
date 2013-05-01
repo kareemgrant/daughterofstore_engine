@@ -1,5 +1,3 @@
-%h1 Welcome to StaticPages Index
-%p Check out one of the stores on our platform
 - @stores.each do |store|
   %li
     = link_to store.name, home_path(store)
