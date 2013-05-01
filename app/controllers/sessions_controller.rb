@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
   layout 'session'
 
   def new
+    # reevalute if this is needed
     session[:return_to] = params[:return_to]
   end
 

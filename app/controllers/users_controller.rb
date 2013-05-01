@@ -17,9 +17,14 @@ class UsersController < ApplicationController
     if @user.save
       UserMailer.signup_confirmation_email(@user).deliver
       session[:user_id] = @user.id
-      flash[:notice] = "Click here to make changes to your account: #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".html_safe
-      destination = session.delete(:return_to) || profile_path
-      redirect_to destination
+
+      if session[:bid_data] && session[:bid_data][:auction_id]
+        route_user(@user)
+      else
+        flash[:notice] = "Thanks for signin up! Click here to make changes to your account:
+                        #{self.class.helpers.link_to( 'Edit Your Account', edit_profile_path) }".html_safe
+        redirect_to auctions_path
+      end
     else
       flash.now[:alert] = "You entered invalid information, please try again"
       render :new, :layout => 'signup'
