@@ -14,7 +14,7 @@ class CreateAuctionPage
   def create
     @page.click_on 'Start Auction'
 
-    @page.fill_in 'auction_expiration_date', with: '05/25/2013'
+    @page.fill_in 'auction_selected_expiration_date', with: '05/25/2013'
     @page.fill_in 'Starting Bid',            with: 8.99
 
     @page.choose('International')

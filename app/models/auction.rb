@@ -7,7 +7,8 @@ class Auction < ActiveRecord::Base
                   :shipping_options,
                   :store_id,
                   :product_attributes,
-                  :payment_options_attributes
+                  :payment_options_attributes,
+                  :expiration_date
 
   belongs_to :store
   has_one    :product
