@@ -192,11 +192,9 @@ describe "User Auction Page:" do
             expect(page).to have_content "Welcome back, your bid is ready to be submitted"
           end
 
-          expect(find_field('bid_amount').value).to eq(bid.to_s)
+          expect(find_field('bid_amount').value).to eq(@bid.to_s)
         end
-
       end
-
 
     end
   end
