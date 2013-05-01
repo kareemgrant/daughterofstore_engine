@@ -9,7 +9,8 @@
   - @auctions.each do |auction|
     - product = auction.product
     %tr
-      %td= image_tag product.photo.url
-      %td= link_to "#{product.title}", auction
-      %td= link_to "#{product.description[0..29]}...", auction
+      %td.span2= link_to image_tag(product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"), auction
+      %td.auction-title.span3= link_to "#{product.title}", auction
+      %td.auction-description.span5= link_to "#{product.description[0..29]}...", auction
+      %td.auction-bid.span2= "Current bid: $#{auction.highest_bid}"
 %br
