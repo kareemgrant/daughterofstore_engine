@@ -40,7 +40,7 @@ describe 'Search:' do
       click_button 'Search'
       expect(current_path).to eq(products_path)
       page.should have_content 'My grandaddy rode this bad boy'
-      page.should have_content 'This old lady was the prototype'
+      page.should have_content 'This old lady was the prototyp'
     end
 
     it 'they are directed to an auction index page showing all products that match the search criteria' do
