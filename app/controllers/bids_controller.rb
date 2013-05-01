@@ -1,6 +1,8 @@
 class BidsController < ApplicationController
 
   def create
+    clear_bid_session_data
+
     if current_user
       if current_user.valid_credit_card?
         @bid = Bid.new(amount: params[:bid][:amount], auction_id: params[:auction_id],
@@ -38,9 +40,13 @@ class BidsController < ApplicationController
   end
 
   def save_bid_data_in_session
-    session.delete(:bid_data) if session[:bid_data]
+    session[:bid_data] = nil if session[:bid_data]
     session[:bid_data] = {amount: params[:bid][:amount],
                           auction_id: params[:auction_id]}
+  end
+
+  def clear_bid_session_data
+    session[:bid_data] = nil if session[:bid_data]
   end
 
 end
