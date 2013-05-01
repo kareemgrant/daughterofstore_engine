@@ -13,6 +13,7 @@ class StoreAdmin::AuctionsController < ApplicationController
     @auction.expiration_date = date
 
     if @auction.save
+      Resque.enqueue_at(date, AuctionWinner, @auction.id)
       redirect_to auction_path(@auction), notice: "Auction Sucessfully Created!"
     else
       render :new

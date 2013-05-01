@@ -1,4 +1,8 @@
+require 'resque/server'
+
 StoreEngine::Application.routes.draw do
+
+  mount Resque::Server.new, at: "/resque"
 
   resources :static_pages, :only => :index
   resources :users, :except => [:index, :destroy, :show]

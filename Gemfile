@@ -26,6 +26,7 @@ gem 'resque'
 gem 'ui_datepicker-rails3'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+gem 'resque-scheduler', :require => 'resque_scheduler'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

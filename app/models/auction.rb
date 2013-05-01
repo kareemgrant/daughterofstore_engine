@@ -47,7 +47,8 @@ class Auction < ActiveRecord::Base
   end
 
   def check_status
-    update_attributes(active: false) if expiration_date < Time.now.utc
+    true
+    # update_attributes(active: false) if expiration_date < Time.now.utc
   end
 
   def highest_bidder
@@ -58,7 +59,7 @@ class Auction < ActiveRecord::Base
     if string_date != ''
       date = nil
       string_date.split("/").map {|n| n.to_i}.tap do |month, day, year|
-        date = DateTime.new(year, month, day, Time.now.hour, Time.now.min, Time.now.sec)
+        date = DateTime.new(year, month, day, Time.now.hour, Time.now.min + 2, Time.now.sec)
       end
       date.utc
     else
@@ -69,7 +70,9 @@ class Auction < ActiveRecord::Base
   private
 
   def future_expiration_date
-    if expiration_date && !expiration_date.future?
+      now = DateTime.new(2013, 5, 1, Time.now.hour, Time.now.min, Time.now.sec)
+      if expiration_date && (now > expiration_date)
+  #   if expiration_date && !expiration_date.future?
       errors.add(:base, "Please enter a future expiraton date.")
     end
   end
