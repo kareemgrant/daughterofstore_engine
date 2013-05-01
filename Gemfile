@@ -22,10 +22,12 @@ gem 'figaro'
 gem 'twilio-ruby'
 gem 'haml-rails'
 gem 'newrelic_rpm'
-gem 'resque'
+gem 'resque', '~> 1.22.0'
+gem 'redis-store', '~> 1.0.0'
 gem 'ui_datepicker-rails3'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+gem 'kaminari'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
