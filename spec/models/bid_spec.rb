@@ -7,7 +7,7 @@ describe 'Bid:' do
     @auction = Auction.create(store_id: 1,
                                expiration_date: Time.new(2014, 10, 7),
                                starting_bid: 0,
-                               shipping_options: 'International',
+                               shipping_options: 'international',
                                active: true)
   end
 

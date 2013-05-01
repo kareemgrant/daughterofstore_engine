@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130425044214) do
+ActiveRecord::Schema.define(:version => 20130430032017) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
@@ -48,15 +48,6 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
 
   add_index "billing_addresses", ["order_id"], :name => "index_billing_addresses_on_order_id"
 
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "store_id"
-  end
-
-  add_index "categories", ["store_id"], :name => "index_categories_on_store_id"
-
   create_table "order_events", :force => true do |t|
     t.string   "status"
     t.integer  "order_id"
@@ -78,22 +69,12 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
 
   create_table "payment_options", :force => true do |t|
     t.integer  "auction_id"
-    t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "payment_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "payment_options", ["auction_id"], :name => "index_payment_options_on_auction_id"
-
-  create_table "product_categories", :force => true do |t|
-    t.integer  "product_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "product_categories", ["category_id"], :name => "index_product_categories_on_category_id"
-  add_index "product_categories", ["product_id"], :name => "index_product_categories_on_product_id"
 
   create_table "products", :force => true do |t|
     t.string   "title",                                :null => false
@@ -101,7 +82,6 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
     t.boolean  "active",             :default => true
-    t.integer  "price",                                :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -162,7 +142,8 @@ ActiveRecord::Schema.define(:version => 20130425044214) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest",                    :null => false
     t.string   "full_name",                          :null => false
-    t.boolean  "guest"
+    t.string   "customer_id"
+    t.string   "last_4_digits"
   end
 
   add_index "users", ["id"], :name => "index_users_on_id"
