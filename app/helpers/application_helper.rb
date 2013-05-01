@@ -21,10 +21,10 @@ module ApplicationHelper
     html.html_safe
   end
 
-
   def admin_navbar_link(text, path, css_classes)
     css_class = css_classes.dup
     css_class << 'active' if current_page?(path)
     link_to text, path, class: css_class.join(' ')
   end
+
 end

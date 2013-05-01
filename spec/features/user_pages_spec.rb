@@ -20,7 +20,7 @@ feature "User registration" do
       click_button submit
     }.to change(User, :count).by(1)
 
-    expect(current_path).to eq(profile_path)
+    expect(current_path).to eq(auctions_path)
 
     within '.alert' do
       expect(page).to have_content 'Click here to make changes to your account'

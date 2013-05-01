@@ -93,7 +93,7 @@ describe UsersController do
 
         it "redirects to home page" do
           post :create, user: attributes_for(:user), date: { card_year: "2014", card_month: "4", card_code: "234"}
-          expect(response).to redirect_to profile_path
+          expect(response).to redirect_to auctions_path
         end
       end
 

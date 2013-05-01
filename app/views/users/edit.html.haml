@@ -20,11 +20,11 @@
             %a{href: "#"} Add Credit Card
 
 
-        #edit-credit-card{:style=>"display:none"}
+        #edit-credit-card{:style=>"display:block"}
 
           %h4 Update Your Credit Card Details
-          = f.text_field :card_number, placeholder: "Credit Card Number", input_html: {:id => "credit_number", :disabled => true}
-          = f.text_field :card_code, placeholder: "Security code (CVV)", input_html: {:disabled => true}
+          = f.text_field :card_number, placeholder: "Credit Card Number"
+          = f.text_field :card_code, placeholder: "Security code (CVV)"
           = select_month(Date.today, :add_month_numbers => true, :field_name => "card_month")
           = select_year(Date.today, :field_name => "card_year")
           %br
