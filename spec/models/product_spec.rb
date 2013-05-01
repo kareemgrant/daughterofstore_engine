@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # require 'spec_helper'
 
 # describe 'Products:' do
@@ -92,7 +91,6 @@
 #   end
 
 # end
-=======
 require 'spec_helper'
 
 describe 'Products:' do
@@ -145,4 +143,3 @@ describe 'Products:' do
   end
 
 end
->>>>>>> d02a2da60569f7fd505e7acc39b6be639a1ce034

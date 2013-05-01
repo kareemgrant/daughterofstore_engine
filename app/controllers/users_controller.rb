@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
-  layout 'signup'
+  layout 'profile'
 
   before_filter :require_current_user, only: [:show, :edit, :update]
 
   def show
     @user = User.find(current_user.id)
-    render :layout => 'profile'
   end
 
   def new
     @user = User.new
+    render :layout => 'signup'
   end
 
   def create
@@ -22,19 +22,18 @@ class UsersController < ApplicationController
       redirect_to destination
     else
       flash.now[:alert] = "You entered invalid information, please try again"
-      render :new
+      render :new, :layout => 'signup'
     end
   end
 
 
   def edit
     @user = User.find(current_user.id)
-    render :layout => 'profile'
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
+    if @user.update_attributes(params[:user].merge(params[:date]))
       flash[:notice] = "Profile updated!"
       redirect_to profile_path
     else

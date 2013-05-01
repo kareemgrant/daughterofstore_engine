@@ -397,7 +397,14 @@ Auction Styles
 
 }
 
-
+/****************************
+Credit card form styles
+****************************/
+#edit-credit-card {
+  input[type="text"], select {
+    display: block;
+  }
+}
 
 /****************************
 Footnotes debug style

@@ -12,10 +12,12 @@
         = f.input :password_confirmation
         = f.error :base
 
-        - if @user.last_4_digits
-          #edit-card-link
+        #edit-card-link
+          - if @user.last_4_digits
             Change card ending in: 
             %a{href: "#"} (#{@user.last_4_digits})
+          - else
+            %a{href: "#"} Add Credit Card
 
 
         #edit-credit-card{:style=>"display:none"}

@@ -37,19 +37,19 @@ describe UsersController do
 
     describe "PUT #update" do
       it "locates the requested @user" do
-        put :update, id: @user, user: attributes_for(:user)
+        put :update, id: @user, user: attributes_for(:user), date: { card_year: "2014", card_month: "4", card_code: "234"}
         expect(assigns(:user)).to eq(@user)
       end
 
       context "valid attributes" do
         it "changes @user's attributes" do
-          put :update, id: @user, user: attributes_for(:user, full_name: "Bruce Banner")
+          put :update, id: @user, user: attributes_for(:user, full_name: "Bruce Banner"), date: { card_year: "2014", card_month: "4", card_code: "234"}
           @user.reload
           expect(@user.full_name).to eq("Bruce Banner")
         end
 
         it "redirects to the update" do
-          put :update, id: @user, user: attributes_for(:user)
+          put :update, id: @user, user: attributes_for(:user), date: { card_year: "2014", card_month: "4", card_code: "234"}
           expect(response).to redirect_to profile_path
         end
       end
@@ -62,7 +62,7 @@ describe UsersController do
         # end
 
         it "re-renders the edit mode" do
-          put :update, id: @user, user: attributes_for(:invalid_user)
+          put :update, id: @user, user: attributes_for(:invalid_user), date: { card_year: "2014", card_month: "4", card_code: "234"}
           expect(response).to render_template :edit
         end
       end
