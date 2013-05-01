@@ -60,7 +60,7 @@
 
               .row-fluid.similar-products
                 .span12
-                  %h4.auction_content Other Auctions
+                  %h4.auction_content Other Auctions From This Seller
 
                   %ul.thumbnails
                     - @related_auctions.each do |auction|
@@ -70,22 +70,6 @@
                           = link_to auction_path(auction) do
                             = image_tag product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
 
-
-                    / %li.span2
-                    /   %a
-                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    / %li.span2
-                    /   %a
-                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    / %li.span2
-                    /   %a
-                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    / %li.span2
-                    /   %a
-                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
-                    / %li.span2
-                    /   %a
-                    /     =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2", class: "img-rounded"
 
             .span4
               =image_tag @auction.product.photo.url, size: "300x300", class: "img-rounded"
@@ -111,35 +95,3 @@
                     Payment Options:
                     - @auction.payment_options.each do |option|
                       = option.payment_type.capitalize
-
-
--# %p#notice= notice
-
--# .row
--#   .large-12.columns
--#     .span6
--#       =image_tag @auction.product.photo.url
-                    -#= f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
-
-
-            / .span4
-            /   =image_tag @auction.product.photo.url, size: "300x300"
-            /   =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
-            /   =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
-            /   =image_tag @auction.product.photo.url, size: "75x75", alt: "pic #2"
-
--# %p#notice= notice
-
--# .row
--#   .large-12.columns
--#     .span6
--#       =image_tag @auction.product.photo.url
-
--# %br
-
--# = link_to 'Back to Auctions', auctions_path
-
-/ :javascript
-/   var newYear = new Date();
-/   newYear = new Date(newYear.getFullYear() + 1, 1 - 1, 1);
-/   jQuery('#timeleft').countdown({until: newYear , format: 'dHM'});
