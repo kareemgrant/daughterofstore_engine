@@ -11,6 +11,8 @@
           %li
             =link_to 'Products', store_admin_products_path(current_store), class: "admin_header_link products"
           %li
+            =link_to 'Start Auction', new_store_admin_auction_path(current_store)
+          %li
             =link_to 'Categories', store_admin_categories_path(current_store), class: "admin_header_link categories"
           %li
             =link_to 'Admins', store_admin_members_path(current_store), class: "admin_header_link members"
@@ -19,5 +21,4 @@
           %li
             =link_to 'Your Profile', profile_path, class: "admin_header_link settings"
 
-        =link_to "View Your Store", store_home_path(current_store), class: "admin-primary-button admin-cta"
 

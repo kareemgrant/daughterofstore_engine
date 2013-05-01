@@ -44,6 +44,7 @@ StoreEngine::Application.routes.draw do
       resources :members
       resources :stores, :only => [:index, :edit, :update]
       resources :orders, :except => :destroy
+      resources :auctions
     end
 
   end

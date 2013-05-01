@@ -23,11 +23,11 @@ UserStoreRole.create({user_id: user3.id, store_id: store2.id, role: 'stocker'})
 UserStoreRole.create({user_id: user4.id, store_id: store3.id, role: 'admin'})
 UserStoreRole.create({user_id: user5.id, store_id: store4.id, role: 'admin'})
 
-Auction.create(store_id: store4.id, expiration_date: Time.new(2012, 04, 30), starting_bid: 0, shipping_options: 'International', active: true)
-Auction.create(store_id: store4.id, expiration_date: (Time.now + 86400), starting_bid: 0, shipping_options: 'International', active: true)
+Auction.create(store_id: store4.id, expiration_date: DateTime.new(2013, 5, 2), starting_bid: 0, shipping_options: 'international', active: true)
+Auction.create(store_id: store4.id, expiration_date: (Time.now + 86400), starting_bid: 0, shipping_options: 'international', active: true)
 
-Product.create(auction_id: 1, title: 'Rusty Rocket Ship', description: 'This old lady was the prototype for Apollo 11. I stole her from NASA after they threw in a junkyard. I bet this baby is worth millions', price: 1000, active: true)
-Product.create(auction_id: 2, title: 'Rusty Bicycle', description: 'My grandaddy rode this bad boy to and from school, uphill both ways, in the snow.', price: 1000, active: true)
+Product.create(auction_id: 1, title: 'Rusty Rocket Ship', description: 'This old lady was the prototype for Apollo 11. I stole her from NASA after they threw in a junkyard. I bet this baby is worth millions', active: true)
+Product.create(auction_id: 2, title: 'Rusty Bicycle', description: 'My grandaddy rode this bad boy to and from school, uphill both ways, in the snow.', active: true)
 
-PaymentOption.create(auction_id: 1, type: 'credit card')
-PaymentOption.create(auction_id: 2, type: 'cash')
+PaymentOption.create(auction_id: 1, payment_type: 'credit')
+PaymentOption.create(auction_id: 2, payment_type: 'cash')

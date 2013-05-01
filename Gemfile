@@ -23,9 +23,9 @@ gem 'twilio-ruby'
 gem 'haml-rails'
 gem 'newrelic_rpm'
 gem 'resque'
+gem 'ui_datepicker-rails3'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
-
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -53,7 +53,7 @@ group :development, :test do
   gem 'letter_opener'
 end
 
-group :test do 
+group :test do
   gem 'database_cleaner'
   gem 'launchy'
   gem 'capybara'
@@ -61,7 +61,7 @@ group :test do
   gem 'ruby-growl'
 end
 
-group :development do 
+group :development do
   gem 'bullet'
   gem 'quiet_assets'
   gem 'better_errors'
