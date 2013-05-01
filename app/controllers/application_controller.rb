@@ -70,14 +70,14 @@ class ApplicationController < ActionController::Base
   def route_user(user)
     if session[:bid_data] && session[:bid_data][:auction_id]
       if user.valid_credit_card?
-        set_redirect(auction_path([:bid][:auction_id]),
+        set_redirect(auction_path(session[:bid_data][:auction_id]),
                      "Welcome back, your bid is ready to be submitted")
       else
         set_redirect(profile_path,
                      "A valid credit card must be entered before a bid can be submitted")
       end
     else
-      set_redirect(auctions_path, "Welcome back!")
+      set_redirect(auctions_path, "Welcome back to Shopmazing!")
     end
   end
 

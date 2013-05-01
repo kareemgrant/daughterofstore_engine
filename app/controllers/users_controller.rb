@@ -34,8 +34,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user].merge(params[:date]))
-      flash[:notice] = "Profile updated!"
-      redirect_to profile_path
+      if session[:bid_data] && session[:bid_data][:auction_id]
+        route_user(@user)
+      else
+        redirect_to profile_path, notice: "Profile updated!"
+      end
     else
       render :edit
     end

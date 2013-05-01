@@ -9,7 +9,7 @@
   
   %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
 
-  #credit-card{:style=>"display:none"}
+  #credit-card{:style=>"display:block"}
     %br
     %br
     %h4
@@ -26,11 +26,11 @@
     %br
     %br
 
-    #close-card-form
+    #close-card-form{:style=>"display:none"}
       %a{:href => "#"} I'll add my card later
 
 
-  #edit-card
+  #edit-card{:style=>"display:none"}
     %a{:href => "#"} Add Credit Card Information
 
   = f.submit "Register", :class => "form-primary-button"

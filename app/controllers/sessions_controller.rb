@@ -10,8 +10,6 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:sessions][:password])
       session[:user_id] = @user.id
       route_user(@user)
-      # destination = session.delete(:return_to) || auctions_path
-      # redirect_to destination
     else
       flash[:alert] = "Invalid email or password"
       render :new

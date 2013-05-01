@@ -1,4 +1,10 @@
 jQuery ->
+  $("#credit-card").hide()
+  $("#edit-card").show()
+
+  $("#edit-credit-card").hide()
+  $("#edit-card-link").show()
+
   $("#edit-card a").click ->
     $("#edit-card").hide()
     $("#credit-card").show()

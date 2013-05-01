@@ -50,7 +50,7 @@
                 - if @auction.active?
                   = simple_form_for @bid, :url => auction_bids_path(params[:id]), html: { class: 'form-inline', id: 'bid-form'} do |f|
                     = f.error_notification
-                    = f.input_field :amount, label: false, class: 'span3'
+                    = f.input_field :amount, label: false, class: 'span3', value: "#{session[:bid_data] && session[:bid_data][:amount] ? session[:bid_data][:amount] : ""}"
                     = f.button :submit, "Submit Bid", :class => "auction-primary-button pull-right"
 
               .row-fluid.product-desc

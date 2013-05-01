@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def valid_credit_card?
-    self.last_4_digits
+    self.last_4_digits.present?
   end
 
   def assign_role(store_id, role)

@@ -81,15 +81,17 @@ describe "User Auction Page:" do
     before do
       @user = create(:user)
       @product = create(:product)
+      @auction = @product.auction
     end
 
 
     context "when user is already registered" do
 
       before do
-        visit auction_path(auction.id)
+        visit auction_path(@auction.id)
         @auction_page = AuctionPage.new(page)
-        @auction_page.place_bid(8)
+        @bid = 8
+        @auction_page.place_bid(@bid)
       end
 
       context "user does not have valid credit card on file" do
@@ -100,14 +102,19 @@ describe "User Auction Page:" do
           expect(current_path).to eq profile_path
 
           click_link ('Update Your Profile')
-          click_link ('Add Credit Card')
 
-          find("#credit_number").fill_in 'credit_number', :with => '4242 4242 4242 4242'
+          fill_in "user_password", with: "password"
+          fill_in "user_password_confirmation", with: "password"
+          fill_in 'user_card_number', :with => '4242 4242 4242 4242'
           fill_in('user_card_code', :with => '123')
           page.select('2017', :from => 'date_card_year')
           click_button('Update Profile')
 
-          expect(current_path).to eq auction_path(@product.auction.id)
+          expect(current_path).to eq auction_path(@auction.id)
+          within '.alert' do
+            expect(page).to have_content "Welcome back, your bid is ready to be submitted"
+          end
+          expect(find_field('bid_amount').value).to eq(@bid.to_s)
         end
 
       end
