@@ -11,5 +11,22 @@
         = f.input :password
         = f.input :password_confirmation
         = f.error :base
+
+        - if @user.last_4_digits
+          #edit-card-link
+            Change card ending in: 
+            %a{href: "#"} (#{@user.last_4_digits})
+
+
+        #edit-credit-card{:style=>"display:none"}
+
+          %h4 Update Your Credit Card Details
+          = f.text_field :card_number, placeholder: "Credit Card Number", input_html: {:id => "credit_number", :disabled => true}
+          = f.text_field :card_code, placeholder: "Security code (CVV)", input_html: {:disabled => true}
+          = select_month(Date.today, :add_month_numbers => true, :field_name => "card_month")
+          = select_year(Date.today, :field_name => "card_year")
+          %br
+          %br
+
         %div
           = f.button :submit, :value => "Update Profile", :class => "btn-primary"

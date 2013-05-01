@@ -18,9 +18,10 @@ user1.save
 
 User.set_callback(:save, :before, :update_stripe)
 
-UserStoreRole.create({user_id: 2, store_id: 1, role: 'admin'})
-UserStoreRole.create({user_id: 3, store_id: 2, role: 'stocker'})
-UserStoreRole.create({user_id: 4, store_id: 3, role: 'admin'})
+UserStoreRole.create({user_id: user2.id, store_id: store1.id, role: 'admin'})
+UserStoreRole.create({user_id: user3.id, store_id: store2.id, role: 'stocker'})
+UserStoreRole.create({user_id: user4.id, store_id: store3.id, role: 'admin'})
+UserStoreRole.create({user_id: user5.id, store_id: store4.id, role: 'admin'})
 
 Auction.create(store_id: store4.id, expiration_date: Time.new(2012, 04, 30), starting_bid: 0, shipping_options: 'International', active: true)
 Auction.create(store_id: store4.id, expiration_date: (Time.now + 86400), starting_bid: 0, shipping_options: 'International', active: true)

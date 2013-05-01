@@ -4,7 +4,7 @@
     %title= full_title(yield(:title))
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = stylesheet_link_tag    "application", "http://fonts.googleapis.com/css?family=Questrial|Damion"
-    = javascript_include_tag "http://code.jquery.com/jquery-1.9.1.min.js"
+    = javascript_include_tag "http://code.jquery.com/jquery-1.9.1.min.js", "application"
     = csrf_meta_tags
   %body
     = render :partial => "shared/profile_navbar"
@@ -21,10 +21,21 @@
         $('.confirmation-button').click(function() {
           $('.confirmation-buttons').removeClass('over-up');
         })
-        if (window.location.toString().split('?')[1].split('=')[1] == "true") {
+
+        var currentUrl = window.location.toString()
+        var parts = currentUrl.split('?')
+        var qs = parts[1]
+        var params = null;
+
+        if (qs) {
+          params = qs.split('&').map(function(s) { return s.split('=') });
+        }
+
+        // if some param is true, then do this stuff:
+        /*
           $('.notification').toggleClass('notification-move');
           setTimeout(function() {
             $(".notification").delay(3500).toggleClass('notification-move');
           }, 3500);
-        }
+        */
       })

@@ -8,6 +8,11 @@ jQuery ->
     $("#credit-card").hide()
     $("#edit-card").show()
 
+  $("#edit-card-link a").click ->
+    console.log "clicked"
+    $("#edit-card-link").hide()
+    $("#edit-credit-card").show()
+
 signup =
   setupForm: ->
     $("new_user").submit ->
