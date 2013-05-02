@@ -1,7 +1,7 @@
 class AuctionsController < ApplicationController
 
   def index
-    @auctions = Auction.includes(:product).all
+    @auctions = Auction.includes(:product).page params[:page]
   end
 
   def show

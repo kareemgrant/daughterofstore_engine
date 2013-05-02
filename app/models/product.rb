@@ -25,7 +25,8 @@ class Product < ActiveRecord::Base
   has_many :categories, through: :product_categories
 
   searchable do
-    text :title, :description
+    text :title, boost: 5
+    text :description
   end
 
   def status

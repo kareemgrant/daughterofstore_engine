@@ -13,4 +13,7 @@
       %td.auction-title.span3= link_to "#{auction_product.title}", auction
       %td.auction-description.span5= link_to "#{auction_product.description[0..29]}...", auction
       %td.auction-bid.span2= "Current bid: $#{auction.highest_bid}"
+
+.text-center
+  = paginate @auctions
 %br
