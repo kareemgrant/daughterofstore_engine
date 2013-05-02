@@ -2,7 +2,7 @@
   .navbar.navbar-fixed-left
     .navbar
       .navbar-inner
-        %a.brand.admin-brand{:href => "#"} Shopmazing
+        = link_to 'Shopmazing', root_path, class: "brand admin-brand"
         %ul#admin-menu
           %li
             =link_to 'Dashboard', admin_home_path, class: "admin_header_link dashboard active"
