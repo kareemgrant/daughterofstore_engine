@@ -27,7 +27,9 @@ gem 'redis-store', '~> 1.0.0'
 gem 'ui_datepicker-rails3'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
-gem 'kaminari'
+gem 'tilt', '~> 1.4.0'
+gem 'capistrano'
+gem 'rvm-capistrano'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -40,7 +42,6 @@ group :development, :test do
   gem "shoulda-matchers"
   gem "shoulda-context"
   gem 'rspec-rails'
-  gem 'unicorn'
   gem 'heroku'
   gem 'pry'
   gem 'simplecov'

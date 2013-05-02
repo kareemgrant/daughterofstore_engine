@@ -367,6 +367,7 @@ DEPENDENCIES
   stripe
   sunspot_rails
   sunspot_solr
+  tilt (~> 1.4.0)
   twilio-ruby
   uglifier (>= 1.0.3)
   ui_datepicker-rails3
