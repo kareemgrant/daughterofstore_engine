@@ -1,5 +1,12 @@
 class BidsController < ApplicationController
 
+  layout 'profile', only: [:index]
+  before_filter :require_current_user, only: ['index']
+
+  def index
+    @bids = Bid.includes(auction: :product).find_all_by_user_id(current_user)
+  end
+
   def create
     clear_bid_session_data
 

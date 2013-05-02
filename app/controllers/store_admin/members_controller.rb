@@ -5,16 +5,10 @@ class StoreAdmin::MembersController < ApplicationController
 
   def index
     @admins = UserStoreRole.where(store_id: current_store.id, role: 'admin').map(&:user)
-    @stockers = UserStoreRole.where(store_id: current_store.id, role: 'stocker').map(&:user)
   end
 
   def new
-    if params[:role] == 'admin'
-      @role = 'admin'
-    else
-      @role = 'stocker'
-    end
-
+    @role = 'admin'
     @member = UserStoreRole.new
   end
 

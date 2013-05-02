@@ -17,7 +17,7 @@ body {
 }
 body#public {
   padding-top: 50px;
-  font-size: 13px;
+  font-size: 15px;
 }
 a {
   color: #005580;
@@ -609,7 +609,7 @@ body {
   float: left;
 }
 .dashboard {
-  margin-top: 1em;
+  margin-top: 0px;
 }
 .widget {
   background: #fff;
@@ -621,7 +621,8 @@ body {
   text-align: center;
   font-family: 'Questrial', sans-serif;
   margin-top: 0;
-  color: #666;
+  color: #777;
+  font-size: 17px;
 }
 .widget-count {
   font-weight: normal;

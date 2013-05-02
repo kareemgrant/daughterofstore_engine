@@ -33,35 +33,3 @@
                 %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: admin.id),
                     method: :delete, data: { confirm: 'Are you sure?' }
 
-    :javascript
-      $(document).ready(function(){
-        var something = window.location.toString().split('/')[5];
-        if (something != null) {
-          $('.' + something).addClass('active');
-          $('.dashboard').removeClass('active');
-        }
-      })
-
-    .row-fluid
-      .span12
-        .span6
-          %h3 Stockers
-        .span6.header-button
-          = link_to "Add New Stocker", new_store_admin_member_path(current_store, {:role => "stocker"}), method: :get, :class => "admin-primary-button pull-right"
-
-    .row-fluid
-      .span12#store-admin-table
-        %table.table.table-striped.table-bordered.cart-detail
-          %thead
-            %tr
-              %th.span3 Full Name
-              %th.span3 Email
-              %th.span3 Role
-              %th.span3 Action
-          %tbody
-            - @stockers.each do |stocker|
-              %tr
-                %td= stocker.full_name
-                %td= stocker.email
-                %td Stocker
-                %td= link_to "Remove", store_admin_member_path(current_store, current_store.id, user: stocker.id), method: :delete, data: { confirm: 'Are you sure?' }

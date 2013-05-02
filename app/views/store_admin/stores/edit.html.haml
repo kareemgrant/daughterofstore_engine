@@ -1,29 +1,13 @@
 - provide(:title, 'Admin Edit Store')
-.row-fluid
-  .span12
-    .page-header
-      %h1 Administration Portal
-
-.row-fluid
-  .tabbable
-    %ul.nav.nav-tabs
-      %li
-        = link_to "Dashboard", store_admin_path
-      %li
-        = link_to "Past Orders", store_admin_orders_path
-      %li
-        = link_to "Manage Products", store_admin_products_path
-      %li.active
-        = link_to "Manage Categories", store_admin_categories_path
-      %li
-        = link_to "Manage Admins", store_admin_members_path
-
-.row-fluid
-  = simple_form_for :store, :url => store_admin_store_path(current_store), :method => :put do |f|
-    = f.error_notification
-    = f.input :name
-    = f.input :path
-    = f.input :description, as: :text
-    = f.error :base
-    %div
-      = f.button :submit, :value => "Update Store", :class => "btn-primary"
+%section#right-pane
+  .row.admin-header
+    .span9
+      %h3 Edit Your Store
+      = simple_form_for :store, :url => store_admin_store_path(current_store), :method => :put do |f|
+        = f.error_notification
+        = f.input :name
+        = f.input :path
+        = f.input :description, as: :text
+        = f.error :base
+        %div
+          = f.button :submit, :value => "Update Store", :class => "btn-primary"

@@ -5,11 +5,8 @@
         %a.brand.admin-brand{:href => "#"} Shopmazing
         %ul#admin-menu
           %li
-            %a.active{:href => "#"}
-              Dashboard
-          -# %li
-          -#   %a{:href => "#"}
-          -#     Orders
-          -# %li
-          -#   %a{:href => "#"}
-          -#     Products
+            =link_to 'Dashboard', admin_home_path, class: "admin_header_link dashboard active"
+          %li
+            =link_to 'Profile', profile_path
+          %li
+            =link_to 'Logout', logout_path

@@ -1,4 +1,5 @@
 class StoreAdmin::StoresController < ApplicationController
+  layout 'admin', only: [:edit, :update]
 
   before_filter :require_admin, except: :index
 
