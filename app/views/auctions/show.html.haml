@@ -21,20 +21,20 @@
                   .span7#highest_bidder
                     %span.label.label-info Highest Bidder
 
-              -# .row-fluid
-              -#   .span4
-              -#     %p.list-label
-              -#       Time Left
-              -#   .span8
-              -#     -if @auction.active?
-              -#       #countDownTimer
-              -#       :erb
+              .row-fluid
+                .span4
+                  %p.list-label
+                    Time Left
+                .span8
+                  -if @auction.active?
+                    #countDownTimer
+                  -else
+                    %p Auction has ended
+                    -# :erb
               -#         <script>
               -#           expirationDate = new Date(<%= "#{@auction.expiration_date.year}, #{@auction.expiration_date.month - 1}, #{@auction.expiration_date.day}, #{@auction.expiration_date.hour}, #{@auction.expiration_date.min}, #{@auction.expiration_date.sec}" %>);
               -#           $('#countDownTimer').countdown({until: expirationDate, format: 'DHMS', compact: true, timezone: +0});
               -#         </script>
-              -#     -else
-              -#       %p Auction has ended
 
 
               .row-fluid
