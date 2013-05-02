@@ -27,7 +27,7 @@ UserStoreRole.create({user_id: user4.id, store_id: store3.id, role: 'admin'})
 UserStoreRole.create({user_id: user5.id, store_id: store4.id, role: 'admin'})
 UserStoreRole.create({user_id: user6.id, store_id: store5.id, role: 'admin'})
 
-auction1 = Auction.create(store_id: store4.id, expiration_date: DateTime.new(2013, 5, 2), starting_bid: 0, shipping_options: 'international', active: true)
+auction1 = Auction.create(store_id: store4.id, expiration_date: (Time.now + 30), starting_bid: 0, shipping_options: 'international', active: true)
 auction2 = Auction.create(store_id: store4.id, expiration_date: (Time.now + 86400), starting_bid: 0, shipping_options: 'international', active: true)
 auction3 = Auction.create(store_id: store4.id, expiration_date: (Time.now + 172800), starting_bid: 0, shipping_options: 'international', active: true)
 auction4 = Auction.create(store_id: store4.id, expiration_date: (Time.now + 345600), starting_bid: 0, shipping_options: 'international', active: true)
