@@ -4,16 +4,15 @@
   .row.admin-header
     .span12
       %h3
-        #{current_store.name.titleize}'s Auction 
+        #{current_store.name.titleize}'s Auction
 
 
   .row-fluid
     .span12
       .span6
-        %h4 Add New Product
+        %h4 Create a New Auction
 
   = simple_form_for [:store_admin, @auction] do |f|
-    %h4= "Create an Account"
     - if @auction.errors.any?
       #error_explanation
         %h2

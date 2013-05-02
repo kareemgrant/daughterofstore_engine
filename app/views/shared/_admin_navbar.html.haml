@@ -4,17 +4,13 @@
       .navbar-inner
         %a.brand.admin-brand{:href => "#"} Shopmazing
         %ul#admin-menu
-          %li
-            =link_to 'Dashboard', store_admin_path(current_store), class: "admin_header_link dashboard active"
-          %li
-            =link_to 'Orders', store_admin_orders_path(current_store), class: "admin_header_link orders"
-          %li
-            =link_to 'Auctions', store_admin_auctions_path(current_store)
-          %li
-            =link_to 'Admins', store_admin_members_path(current_store), class: "admin_header_link members"
-          %li
-            =link_to 'Store Settings', "#", class: "admin_header_link settings"
-          %li
-            =link_to 'Your Profile', profile_path, class: "admin_header_link settings"
+          %li= admin_navbar_link 'Dashboard', store_admin_path, %w( admin_header_link dashboard )
+
+          %li= admin_navbar_link 'Orders', store_admin_orders_path(current_store), %w( admin_header_link dashboard )
+          %li= admin_navbar_link 'Auctions', store_admin_auctions_path(current_store), %w( admin_header_link dashboard )
+          %li= admin_navbar_link 'Admins', store_admin_members_path(current_store), %w( admin_header_link dashboard )
+          %li= admin_navbar_link 'Settings', edit_store_admin_store_path(current_store, current_store.id), %w( admin_header_link dashboard )
+          %li=link_to 'Your Profile', profile_path, class: "admin_header_link settings"
+          %li=link_to 'Logout', logout_path, class: "admin_header_link settings"
 
 

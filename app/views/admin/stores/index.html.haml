@@ -29,18 +29,7 @@
             - if store.status == "declined"
               - declined << store
           = declined.count
-  
-  :javascript
-    $(document).ready(function(){
-      try {
-        var something = window.location.toString().split('?')[1].split('=')[1];
-        $('.approved').removeClass('active');
-        $('.' + something).addClass('active');
-      }
-      catch(err) {
-        var something = window.location.toString().split('?')[1].split('=')[1];
-      }
-    })
+
   %ul#admin-tabs
     %li.approved.active
       = link_to "Approved Stores", admin_stores_path({status: "approved"})

@@ -609,7 +609,7 @@ body {
   float: left;
 }
 .dashboard {
-  margin-top: 1em;
+  margin-top: 0px;
 }
 .widget {
   background: #fff;
@@ -621,7 +621,8 @@ body {
   text-align: center;
   font-family: 'Questrial', sans-serif;
   margin-top: 0;
-  color: #666;
+  color: #777;
+  font-size: 17px;
 }
 .widget-count {
   font-weight: normal;

@@ -1,4 +1,18 @@
-- @stores.each do |store|
-  %li
-    = link_to store.name, home_path(store)
+- provide(:title, 'Your Stores')
+%section#right-pane
+  .row.admin-header
+    .span9
+      %h3 Your Stores 
+
+      %table.table.table-striped.table-bordered.cart-detail
+        %thead
+          %tr
+            %th.span4 Store Name
+            %th.span4 Status
+        %tbody
+          - @stores.each do |store|
+            %tr
+              %td
+                = link_to store.name, store_admin_path(store)
+              %td= store.status
 

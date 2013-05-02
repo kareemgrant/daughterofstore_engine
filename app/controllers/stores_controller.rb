@@ -1,9 +1,11 @@
 class StoresController < ApplicationController
   layout 'session'
+  before_filter :require_current_user, only: ['index']
 
-  # def index
-  #   @stores = Store.online
-  # end
+  def index
+    @stores = current_user.stores
+    render :layout => 'profile'
+  end
 
   def new
     @store = Store.new
