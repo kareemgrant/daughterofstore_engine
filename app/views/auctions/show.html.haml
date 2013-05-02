@@ -11,15 +11,15 @@
             .span8.left-pane
               %h2= @auction.product.title
 
-              -# .row-fluid
-              -#   .span4
-              -#     %p.list-label
-              -#       Current Bid
-              -#   .span1#highest_bid
-              -#     %p= number_to_currency(@auction.highest_bid)
-              -#   -if current_user == @auction.highest_bidder && current_user != nil
-              -#     .span7#highest_bidder
-              -#       %span.label.label-info Highest Bidder
+              .row-fluid
+                .span4
+                  %p.list-label
+                    Current Bid
+                .span1#highest_bid
+                  %p= number_to_currency(@auction.highest_bid)
+                -if current_user == @auction.highest_bidder && current_user != nil
+                  .span7#highest_bidder
+                    %span.label.label-info Highest Bidder
 
               -# .row-fluid
               -#   .span4
