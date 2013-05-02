@@ -47,7 +47,8 @@ class Auction < ActiveRecord::Base
   end
 
   def check_status
-    true
+    time_now = DateTime.new(2013, 5, 1, Time.now.hour, Time.now.min, Time.now.sec)
+    update_attributes(active: false) if time_now > expiration_date
     # update_attributes(active: false) if expiration_date < Time.now.utc
   end
 

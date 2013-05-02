@@ -25,7 +25,7 @@
                 .span4
                   %p.list-label
                     Time Left
-                .span8
+                .span4
                   -if @auction.active?
                     #countDownTimer
                     :erb
@@ -35,6 +35,9 @@
                       </script>
                   -else
                     %p Auction has ended
+                .span4
+                  - if current_user && @auction.store.user_store_roles.any?{|user_role| current_user.id == user_role.user_id} && @auction.active?
+                    = button_to "End Auction", store_admin_auction_path(@auction.store, @auction), method: :put
 
 
               .row-fluid

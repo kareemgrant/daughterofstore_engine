@@ -9,6 +9,7 @@ namespace :resque do
 
     ENV['QUEUE'] ||= '*'
 
+
     Resque.after_fork do |job|
       ActiveRecord::Base.establish_connection
     end

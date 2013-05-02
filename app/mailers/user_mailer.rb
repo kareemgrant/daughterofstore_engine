@@ -16,5 +16,10 @@ class UserMailer < ActionMailer::Base
     mail(:to => @winner.email, :subject => "You've Won!")
   end
 
+  def end_early_auction_winner_email(auction)
+    @winner = auction.highest_bidder
+    mail(:to => @winner.email, :subject => "Auction ended early you've won!")
+  end
+
 
 end

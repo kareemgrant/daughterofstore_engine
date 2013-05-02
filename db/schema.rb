@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430032017) do
+ActiveRecord::Schema.define(:version => 20130501214032) do
 
   create_table "auctions", :force => true do |t|
     t.integer  "store_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20130430032017) do
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.datetime "expiration_date"
+    t.boolean  "end_early"
   end
 
   add_index "auctions", ["store_id"], :name => "index_auctions_on_store_id"
