@@ -28,11 +28,19 @@
                 .span8
                   -if @auction.active?
                     #countDownTimer
-                    :erb
-                      <script>
-                        expirationDate = new Date(<%= "#{@auction.expiration_date.year}, #{@auction.expiration_date.month - 1}, #{@auction.expiration_date.day}, #{@auction.expiration_date.hour}, #{@auction.expiration_date.min}, #{@auction.expiration_date.sec}" %>);
-                        $('#countDownTimer').countdown({until: expirationDate, format: 'DHMS', compact: true, timezone: +0});
-                      </script>
+                    :javascript
+                        expirationDate = 
+                          new Date("#{@auction.expiration_date.year}", 
+                                   "#{@auction.expiration_date.month - 1}",
+                                   "#{@auction.expiration_date.day}",
+                                   "#{@auction.expiration_date.hour}",
+                                   "#{@auction.expiration_date.min}",
+                                   "#{@auction.expiration_date.sec}");
+
+                        $('#countDownTimer').countdown({until: expirationDate, 
+                          format: 'DHMS', 
+                          compact: true, 
+                          timezone: +0});
                   -else
                     %p Auction has ended
 
